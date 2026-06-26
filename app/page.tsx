@@ -1,10 +1,8 @@
 import { HeroSection } from "@/components/home/HeroSection";
 import { StatsSection } from "@/components/home/StatsSection";
-import { CategoriesSection } from "@/components/home/CategoriesSection";
 import { FeaturedProducts } from "@/components/home/FeaturedProducts";
-import { StudioPreview } from "@/components/home/StudioPreview";
+import { NeonBoxContents } from "@/components/home/NeonBoxContents";
 import { HowItWorks } from "@/components/home/HowItWorks";
-import { WhyUs } from "@/components/home/WhyUs";
 import { Testimonials } from "@/components/home/Testimonials";
 import { BlogSection } from "@/components/home/BlogSection";
 import { Newsletter } from "@/components/home/Newsletter";
@@ -15,11 +13,9 @@ export default function HomePage() {
     <>
       <HeroSection />
       <StatsSection />
-      <CategoriesSection />
       <FeaturedProducts />
-      <StudioPreview />
+      <NeonBoxContents />
       <HowItWorks />
-      <WhyUs />
       <Testimonials />
       <BlogSection />
       <WhatsAppCTA />
