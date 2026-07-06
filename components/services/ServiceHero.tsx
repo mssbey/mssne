@@ -11,15 +11,17 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 
 export function ServiceHero({ service }: { service: ServiceData }) {
   const Icon = getServiceIcon(service.heroIcon);
+  const basePath = service.basePath ?? "hizmetler";
+  const sectionLabel = service.sectionLabel ?? "Hizmetler";
 
   return (
     <section className="relative min-h-[86vh] flex flex-col justify-end overflow-hidden">
       {/* Background visual */}
       <div className="absolute inset-0">
         <ServiceImage
-          src={`/hizmetler/${service.slug}/hero.jpg`}
+          src={`/${basePath}/${service.slug}/hero.jpg`}
           alt={`${service.title} — Ikarus Reklam`}
-          label={`${service.title} hero görseli — public/hizmetler/${service.slug}/hero.jpg`}
+          label={`${service.title} hero görseli — public/${basePath}/${service.slug}/hero.jpg`}
           icon={service.heroIcon}
           color={service.color}
           fill
@@ -45,8 +47,8 @@ export function ServiceHero({ service }: { service: ServiceData }) {
               Ana Sayfa
             </Link>
             <ChevronRight size={12} />
-            <Link href="/hizmetler" className="hover:text-white transition-colors cursor-none">
-              Hizmetler
+            <Link href={`/${basePath}`} className="hover:text-white transition-colors cursor-none">
+              {sectionLabel}
             </Link>
             <ChevronRight size={12} />
             <span className="text-white/70">{service.shortTitle}</span>

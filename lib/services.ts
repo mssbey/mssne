@@ -43,6 +43,10 @@ export interface ServiceData {
   heroIcon: string;
   category: string;
   color: string;
+  /** Route segment the detail pages live under, e.g. "hizmetler" or "baski-matbaa". Defaults to "hizmetler". */
+  basePath?: string;
+  /** Breadcrumb / section label shown above the title. Defaults to "Hizmetler". */
+  sectionLabel?: string;
   seo: {
     title: string;
     description: string;

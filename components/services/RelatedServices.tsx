@@ -6,16 +6,26 @@ import { ArrowRight } from "lucide-react";
 import { getServiceIcon } from "./icon-map";
 import type { ServiceData } from "@/lib/services";
 
-export function RelatedServices({ services }: { services: ServiceData[] }) {
+interface RelatedServicesProps {
+  services: ServiceData[];
+  eyebrow?: string;
+  heading?: string;
+}
+
+export function RelatedServices({
+  services,
+  eyebrow = "Diğer Hizmetlerimiz",
+  heading = "Tabela ve Cephe Çözümlerimizin Tamamını Keşfedin",
+}: RelatedServicesProps) {
   return (
     <section className="py-24 px-6 bg-[#080808]">
       <div className="max-w-7xl mx-auto">
         <div className="max-w-2xl mb-14">
           <span className="text-xs font-bold uppercase tracking-[4px] mb-4 block text-white/40">
-            Diğer Hizmetlerimiz
+            {eyebrow}
           </span>
           <h2 className="text-[clamp(28px,4vw,44px)] font-black tracking-[-1.5px] leading-tight text-white">
-            Tabela ve Cephe Çözümlerimizin Tamamını Keşfedin
+            {heading}
           </h2>
         </div>
 
@@ -31,7 +41,7 @@ export function RelatedServices({ services }: { services: ServiceData[] }) {
                 transition={{ delay: i * 0.08 }}
               >
                 <Link
-                  href={`/hizmetler/${service.slug}`}
+                  href={`/${service.basePath ?? "hizmetler"}/${service.slug}`}
                   className="group flex flex-col justify-between h-full p-6 rounded-2xl border border-white/8 bg-[#0D0D0D] hover:border-white/20 transition-all cursor-none"
                 >
                   <div

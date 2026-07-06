@@ -48,6 +48,13 @@ import {
   Ribbon,
   GraduationCap,
   Sparkle,
+  CreditCard,
+  FileText,
+  Magnet,
+  Scissors,
+  Printer,
+  Gift,
+  BookOpen,
   type LucideIcon,
 } from "lucide-react";
 
@@ -100,6 +107,13 @@ export const SERVICE_ICONS: Record<string, LucideIcon> = {
   Droplets,
   Ribbon,
   GraduationCap,
+  CreditCard,
+  FileText,
+  Magnet,
+  Scissors,
+  Printer,
+  Gift,
+  BookOpen,
 };
 
 export function getServiceIcon(name: string): LucideIcon {

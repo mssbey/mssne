@@ -46,7 +46,7 @@ export function GallerySection({ service }: { service: ServiceData }) {
               style={{ breakInside: "avoid", aspectRatio: i % 5 === 0 ? "3/4" : "4/5" }}
             >
               <ServiceImage
-                src={`/hizmetler/${service.slug}/gallery-${i + 1}.jpg`}
+                src={`/${service.basePath ?? "hizmetler"}/${service.slug}/gallery-${i + 1}.jpg`}
                 alt={item.alt}
                 label={item.alt}
                 icon={item.icon}
@@ -109,7 +109,7 @@ export function GallerySection({ service }: { service: ServiceData }) {
               className="relative w-full max-w-3xl aspect-[4/3] rounded-2xl overflow-hidden border border-white/10"
             >
               <ServiceImage
-                src={`/hizmetler/${service.slug}/gallery-${(activeIndex ?? 0) + 1}.jpg`}
+                src={`/${service.basePath ?? "hizmetler"}/${service.slug}/gallery-${(activeIndex ?? 0) + 1}.jpg`}
                 alt={active.alt}
                 label={active.alt}
                 icon={active.icon}
