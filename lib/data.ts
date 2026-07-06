@@ -23,11 +23,11 @@ export const NAV_ITEMS = [
   },
   {
     label: "Açık Hava Reklamları",
-    href: "#",
+    href: "/acik-hava",
     children: [
-      { label: "Billboard", href: "#", icon: "🖼️" },
-      { label: "Vinil Germe", href: "#", icon: "🎨" },
-      { label: "Araç Giydirme", href: "#", icon: "🚗" },
+      { label: "Billboard", href: "/acik-hava/billboard", icon: "🖼️" },
+      { label: "Vinil Germe", href: "/acik-hava/vinil-germe", icon: "🎨" },
+      { label: "Araç Giydirme", href: "/acik-hava/arac-giydirme", icon: "🚗" },
     ],
   },
   {
