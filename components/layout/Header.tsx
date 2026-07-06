@@ -74,17 +74,19 @@ export function Header() {
               </Link>
 
               {item.children && openDropdown === item.label && (
-                <div className="absolute top-full left-0 mt-1 w-52 rounded-xl border border-white/8 bg-[#0D0D0D]/97 backdrop-blur-xl py-2 shadow-2xl">
-                  {item.children.map((child) => (
-                    <Link
-                      key={child.label}
-                      href={child.href}
-                      className="flex items-center gap-3 px-4 py-2.5 text-sm text-white/55 hover:text-white hover:bg-white/5 transition-colors cursor-none"
-                    >
-                      <span className="text-sm">{child.icon}</span>
-                      {child.label}
-                    </Link>
-                  ))}
+                <div className="absolute top-full left-0 pt-2 w-52">
+                  <div className="rounded-xl border border-white/8 bg-[#0D0D0D]/97 backdrop-blur-xl py-2 shadow-2xl">
+                    {item.children.map((child) => (
+                      <Link
+                        key={child.label}
+                        href={child.href}
+                        className="flex items-center gap-3 px-4 py-2.5 text-sm text-white/55 hover:text-white hover:bg-white/5 transition-colors cursor-none"
+                      >
+                        <span className="text-sm">{child.icon}</span>
+                        {child.label}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
