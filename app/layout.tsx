@@ -30,7 +30,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="tr" className={`${inter.variable} scroll-smooth`}>
-      <body className="min-h-full flex flex-col bg-[#050505] text-white antialiased">
+      <body className="min-h-full flex flex-col bg-[#FBF8F6] text-black antialiased">
         <CustomCursor />
         <Header />
         <CartDrawer />

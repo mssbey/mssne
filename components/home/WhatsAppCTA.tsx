@@ -13,7 +13,7 @@ export function WhatsAppCTA() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 80% 60% at 50% 50%, rgba(155,92,255,0.10) 0%, transparent 70%)",
+            "radial-gradient(ellipse 80% 60% at 50% 50%, rgba(95,174,127,0.10) 0%, transparent 70%)",
         }}
       />
 
@@ -22,19 +22,19 @@ export function WhatsAppCTA() {
           initial={{ opacity: 0, y: 32 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="rounded-3xl border border-white/10 bg-gradient-to-br from-[#0D0D0D] to-[#111] p-12 md:p-16 text-center relative overflow-hidden"
+          className="rounded-3xl border border-black/10 bg-gradient-to-br from-[#FFFFFF] to-[#F3EDEA] p-12 md:p-16 text-center relative overflow-hidden"
         >
           {/* Corner glows */}
-          <div className="absolute -top-20 -left-20 w-60 h-60 rounded-full pointer-events-none" style={{ background: "rgba(255,0,200,0.06)", filter: "blur(60px)" }} />
-          <div className="absolute -bottom-20 -right-20 w-60 h-60 rounded-full pointer-events-none" style={{ background: "rgba(155,92,255,0.06)", filter: "blur(60px)" }} />
+          <div className="absolute -top-20 -left-20 w-60 h-60 rounded-full pointer-events-none" style={{ background: "rgba(217,102,138,0.06)", filter: "blur(60px)" }} />
+          <div className="absolute -bottom-20 -right-20 w-60 h-60 rounded-full pointer-events-none" style={{ background: "rgba(95,174,127,0.06)", filter: "blur(60px)" }} />
 
-          <span className="text-xs font-bold uppercase tracking-[4px] text-[#9B5CFF] mb-6 block">
+          <span className="text-xs font-bold uppercase tracking-[4px] text-[#5FAE7F] mb-6 block">
             Hemen Başlayın
           </span>
           <h2
             className="text-[clamp(32px,5vw,60px)] font-black tracking-[-2px] leading-tight mb-6"
             style={{
-              background: "linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.7) 100%)",
+              background: "linear-gradient(135deg, #1a1a1a 0%, rgba(0,0,0,0.7) 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -44,7 +44,7 @@ export function WhatsAppCTA() {
             <br />
             <span
               style={{
-                background: "linear-gradient(135deg, #FF00C8, #9B5CFF)",
+                background: "linear-gradient(135deg, #D9668A, #5FAE7F)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
@@ -53,7 +53,7 @@ export function WhatsAppCTA() {
               Şimdi Hazır Olsun
             </span>
           </h2>
-          <p className="text-white/45 text-base mb-10 max-w-md mx-auto leading-relaxed">
+          <p className="text-black/45 text-base mb-10 max-w-md mx-auto leading-relaxed">
             Uzman ekibimiz 7/24 WhatsApp&apos;ta. Tasarımınızı gönderin, ücretsiz önizleme ve fiyat teklifi alın.
           </p>
 
@@ -62,7 +62,7 @@ export function WhatsAppCTA() {
               href={waLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-3 px-8 py-4 rounded-full font-bold text-white transition-all hover:scale-105 cursor-none"
+              className="group inline-flex items-center gap-3 px-8 py-4 rounded-full font-bold text-black transition-all hover:scale-105 cursor-none"
               style={{ background: "#25D366", boxShadow: "0 0 40px rgba(37,211,102,0.35)" }}
             >
               <span className="text-xl">💬</span>
@@ -71,7 +71,7 @@ export function WhatsAppCTA() {
             </a>
             <a
               href="/studio"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-semibold text-white border border-white/15 bg-white/5 hover:bg-white/10 transition-all cursor-none"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-semibold text-black border border-black/15 bg-black/5 hover:bg-black/10 transition-all cursor-none"
             >
               ✦ Önce Tasarla
             </a>

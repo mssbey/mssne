@@ -6,7 +6,7 @@ import type { ServiceData } from "@/lib/services";
 
 export function UseCasesSection({ service }: { service: ServiceData }) {
   return (
-    <section className="py-24 px-6 bg-[#050505]">
+    <section className="py-24 px-6 bg-[#FBF8F6]">
       <div className="max-w-7xl mx-auto">
         <div className="max-w-2xl mb-14">
           <span
@@ -15,7 +15,7 @@ export function UseCasesSection({ service }: { service: ServiceData }) {
           >
             Kullanım Alanları
           </span>
-          <h2 className="text-[clamp(28px,4vw,44px)] font-black tracking-[-1.5px] leading-tight text-white">
+          <h2 className="text-[clamp(28px,4vw,44px)] font-black tracking-[-1.5px] leading-tight text-black">
             Her Sektöre Uygun {service.shortTitle} Çözümleri
           </h2>
         </div>
@@ -31,7 +31,7 @@ export function UseCasesSection({ service }: { service: ServiceData }) {
                 viewport={{ once: true }}
                 transition={{ delay: (i % 5) * 0.06, ease: [0.22, 1, 0.36, 1] }}
                 whileHover={{ y: -4 }}
-                className="flex flex-col items-center text-center gap-3 p-5 rounded-2xl border border-white/8 bg-[#0D0D0D] hover:border-white/15 transition-colors"
+                className="flex flex-col items-center text-center gap-3 p-5 rounded-2xl border border-black/8 bg-[#FFFFFF] hover:border-black/15 transition-colors"
               >
                 <div
                   className="w-11 h-11 rounded-full flex items-center justify-center"
@@ -40,8 +40,8 @@ export function UseCasesSection({ service }: { service: ServiceData }) {
                   <Icon size={18} style={{ color: service.color }} />
                 </div>
                 <div>
-                  <p className="text-xs font-bold text-white mb-1">{item.label}</p>
-                  <p className="text-[10.5px] text-white/35 leading-snug">{item.desc}</p>
+                  <p className="text-xs font-bold text-black mb-1">{item.label}</p>
+                  <p className="text-[10.5px] text-black/35 leading-snug">{item.desc}</p>
                 </div>
               </motion.div>
             );

@@ -44,17 +44,17 @@ export function ProductActions({ product }: { product: Product }) {
           {formatPrice(totalPrice)}
         </span>
         {quantity > 1 && (
-          <span className="text-sm text-white/30 ml-2">({formatPrice(unitPrice)} / adet)</span>
+          <span className="text-sm text-black/30 ml-2">({formatPrice(unitPrice)} / adet)</span>
         )}
         {selectedSize.priceAdd > 0 && (
-          <p className="text-xs text-white/30 mt-1">Temel fiyat: {formatPrice(product.price)} + boyut farkı: +{formatPrice(selectedSize.priceAdd)}</p>
+          <p className="text-xs text-black/30 mt-1">Temel fiyat: {formatPrice(product.price)} + boyut farkı: +{formatPrice(selectedSize.priceAdd)}</p>
         )}
       </div>
 
       {/* Color */}
       <div>
-        <p className="text-xs font-bold uppercase tracking-wider text-white/30 mb-3">
-          Renk — <span className="text-white/60 normal-case font-normal">{selectedColor.name}</span>
+        <p className="text-xs font-bold uppercase tracking-wider text-black/30 mb-3">
+          Renk — <span className="text-black/60 normal-case font-normal">{selectedColor.name}</span>
         </p>
         <div className="flex flex-wrap gap-2.5">
           {product.colors.map((c) => (
@@ -66,7 +66,7 @@ export function ProductActions({ product }: { product: Product }) {
               style={{
                 background: c.hex,
                 boxShadow: selectedColor.hex === c.hex
-                  ? `0 0 0 2px #050505, 0 0 0 4px ${c.hex}, 0 0 16px ${c.hex}`
+                  ? `0 0 0 2px #FBF8F6, 0 0 0 4px ${c.hex}, 0 0 16px ${c.hex}`
                   : `0 0 8px ${c.hex}40`,
               }}
             />
@@ -76,8 +76,8 @@ export function ProductActions({ product }: { product: Product }) {
 
       {/* Size */}
       <div>
-        <p className="text-xs font-bold uppercase tracking-wider text-white/30 mb-3">
-          Boyut — <span className="text-white/60 normal-case font-normal">{selectedSize.label} ({selectedSize.cm})</span>
+        <p className="text-xs font-bold uppercase tracking-wider text-black/30 mb-3">
+          Boyut — <span className="text-black/60 normal-case font-normal">{selectedSize.label} ({selectedSize.cm})</span>
         </p>
         <div className="flex flex-wrap gap-2">
           {product.sizes.map((s) => (
@@ -86,9 +86,9 @@ export function ProductActions({ product }: { product: Product }) {
               onClick={() => setSelectedSize(s)}
               className="flex flex-col items-center px-4 py-2.5 rounded-xl border transition-all cursor-none min-w-[68px]"
               style={{
-                borderColor: selectedSize.key === s.key ? product.glowColor : "rgba(255,255,255,0.08)",
+                borderColor: selectedSize.key === s.key ? product.glowColor : "rgba(0,0,0,0.08)",
                 background: selectedSize.key === s.key ? `${product.glowColor}10` : "transparent",
-                color: selectedSize.key === s.key ? product.glowColor : "rgba(255,255,255,0.45)",
+                color: selectedSize.key === s.key ? product.glowColor : "rgba(0,0,0,0.45)",
               }}
             >
               <span className="text-sm font-bold">{s.label}</span>
@@ -103,18 +103,18 @@ export function ProductActions({ product }: { product: Product }) {
 
       {/* Quantity */}
       <div>
-        <p className="text-xs font-bold uppercase tracking-wider text-white/30 mb-3">Adet</p>
+        <p className="text-xs font-bold uppercase tracking-wider text-black/30 mb-3">Adet</p>
         <div className="flex items-center gap-3">
           <button
             onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-            className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/50 hover:text-white hover:border-white/25 transition-all cursor-none"
+            className="w-10 h-10 rounded-full border border-black/10 flex items-center justify-center text-black/50 hover:text-black hover:border-black/25 transition-all cursor-none"
           >
             <Minus size={14} />
           </button>
-          <span className="text-xl font-bold text-white w-8 text-center">{quantity}</span>
+          <span className="text-xl font-bold text-black w-8 text-center">{quantity}</span>
           <button
             onClick={() => setQuantity((q) => q + 1)}
-            className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/50 hover:text-white hover:border-white/25 transition-all cursor-none"
+            className="w-10 h-10 rounded-full border border-black/10 flex items-center justify-center text-black/50 hover:text-black hover:border-black/25 transition-all cursor-none"
           >
             <Plus size={14} />
           </button>
@@ -127,7 +127,7 @@ export function ProductActions({ product }: { product: Product }) {
           onClick={handleAddToCart}
           className={cn(
             "flex items-center justify-center gap-3 w-full py-4 rounded-2xl font-bold text-base transition-all hover:scale-[1.02] cursor-none",
-            added ? "bg-green-500 text-white" : "text-black"
+            added ? "bg-green-500 text-black" : "text-black"
           )}
           style={
             added
@@ -142,7 +142,7 @@ export function ProductActions({ product }: { product: Product }) {
           href={waLink}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center justify-center gap-3 w-full py-4 rounded-2xl font-bold text-white text-base transition-all hover:scale-[1.02] cursor-none border border-[#25D366]/30 hover:bg-[#25D366]/10"
+          className="flex items-center justify-center gap-3 w-full py-4 rounded-2xl font-bold text-black text-base transition-all hover:scale-[1.02] cursor-none border border-[#25D366]/30 hover:bg-[#25D366]/10"
         >
           <MessageCircle size={18} className="text-[#25D366]" />
           WhatsApp ile Direkt Sipariş
@@ -153,11 +153,11 @@ export function ProductActions({ product }: { product: Product }) {
           className={cn(
             "flex items-center justify-center gap-2 w-full py-3 rounded-2xl text-sm font-medium border transition-all cursor-none",
             fav
-              ? "border-[#FF00C8]/40 text-[#FF00C8] bg-[#FF00C8]/8"
-              : "border-white/8 text-white/40 hover:border-white/15 hover:text-white/70"
+              ? "border-[#D9668A]/40 text-[#D9668A] bg-[#D9668A]/8"
+              : "border-black/8 text-black/40 hover:border-black/15 hover:text-black/70"
           )}
         >
-          <Heart size={15} fill={fav ? "#FF00C8" : "none"} />
+          <Heart size={15} fill={fav ? "#D9668A" : "none"} />
           {fav ? "Favorilerden Çıkar" : "Favorilere Ekle"}
         </button>
       </div>
@@ -170,9 +170,9 @@ export function ProductActions({ product }: { product: Product }) {
           { icon: "✅", label: "Ücretsiz Montaj Seti" },
           { icon: "↩️", label: "30 Gün İade" },
         ].map((b) => (
-          <div key={b.label} className="flex items-center gap-2 p-3 rounded-xl border border-white/6 bg-white/2">
+          <div key={b.label} className="flex items-center gap-2 p-3 rounded-xl border border-black/6 bg-black/2">
             <span className="text-lg">{b.icon}</span>
-            <span className="text-xs text-white/40">{b.label}</span>
+            <span className="text-xs text-black/40">{b.label}</span>
           </div>
         ))}
       </div>

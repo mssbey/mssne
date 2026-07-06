@@ -12,7 +12,7 @@ export const ACIK_HAVA: ServiceData[] = [
     tagline: "Şehrin en görünür noktalarında markanız.",
     heroIcon: "Image",
     category: "Açık Hava Reklamları",
-    color: "#FF00C8",
+    color: "#D9668A",
     basePath: "acik-hava",
     sectionLabel: "Açık Hava Reklamları",
     seo: {
@@ -115,7 +115,7 @@ export const ACIK_HAVA: ServiceData[] = [
     tagline: "Her yüzeyi markanızın tuvaline dönüştürün.",
     heroIcon: "Palette",
     category: "Açık Hava Reklamları",
-    color: "#9B5CFF",
+    color: "#5FAE7F",
     basePath: "acik-hava",
     sectionLabel: "Açık Hava Reklamları",
     seo: {
@@ -218,7 +218,7 @@ export const ACIK_HAVA: ServiceData[] = [
     tagline: "Filonuz yolda giderken markanız her yerde.",
     heroIcon: "Car",
     category: "Açık Hava Reklamları",
-    color: "#00E5FF",
+    color: "#F2B84B",
     basePath: "acik-hava",
     sectionLabel: "Açık Hava Reklamları",
     seo: {

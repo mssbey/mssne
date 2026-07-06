@@ -7,18 +7,18 @@ import { MessageCircle, X } from "lucide-react";
 const FILTERS = ["Tümü", "İşletme", "Ev Dekorasyon", "Özel Gün", "Kafe", "Güzellik", "Spor"];
 
 const GALLERY_ITEMS = [
-  { id: 1, name: "Bi Güzellik Yap", cat: "Güzellik", color: "#FF00C8", emoji: "✨", size: "tall" },
-  { id: 2, name: "Coffee Shop", cat: "Kafe", color: "#FF7A00", emoji: "☕", size: "wide" },
-  { id: 3, name: "OPEN 24/7", cat: "İşletme", color: "#00E5FF", emoji: "🟢", size: "normal" },
-  { id: 4, name: "Love & Neon", cat: "Özel Gün", color: "#FF00C8", emoji: "❤️", size: "normal" },
-  { id: 5, name: "Home Sweet Home", cat: "Ev Dekorasyon", color: "#9B5CFF", emoji: "🏠", size: "wide" },
-  { id: 6, name: "GYM — No Pain", cat: "Spor", color: "#9B5CFF", emoji: "💪", size: "tall" },
-  { id: 7, name: "Dream Big", cat: "Ev Dekorasyon", color: "#00E5FF", emoji: "💭", size: "normal" },
-  { id: 8, name: "Beauty Studio", cat: "Güzellik", color: "#FF00C8", emoji: "💄", size: "normal" },
-  { id: 9, name: "İyi Geceler", cat: "Ev Dekorasyon", color: "#9B5CFF", emoji: "🌙", size: "wide" },
-  { id: 10, name: "Restoran Açık", cat: "İşletme", color: "#FF7A00", emoji: "🍽️", size: "normal" },
-  { id: 11, name: "Happy Birthday", cat: "Özel Gün", color: "#FF00C8", emoji: "🎉", size: "tall" },
-  { id: 12, name: "Barber Shop", cat: "İşletme", color: "#00E5FF", emoji: "✂️", size: "normal" },
+  { id: 1, name: "Bi Güzellik Yap", cat: "Güzellik", color: "#D9668A", emoji: "✨", size: "tall" },
+  { id: 2, name: "Coffee Shop", cat: "Kafe", color: "#FF8F66", emoji: "☕", size: "wide" },
+  { id: 3, name: "OPEN 24/7", cat: "İşletme", color: "#F2B84B", emoji: "🟢", size: "normal" },
+  { id: 4, name: "Love & Neon", cat: "Özel Gün", color: "#D9668A", emoji: "❤️", size: "normal" },
+  { id: 5, name: "Home Sweet Home", cat: "Ev Dekorasyon", color: "#5FAE7F", emoji: "🏠", size: "wide" },
+  { id: 6, name: "GYM — No Pain", cat: "Spor", color: "#5FAE7F", emoji: "💪", size: "tall" },
+  { id: 7, name: "Dream Big", cat: "Ev Dekorasyon", color: "#F2B84B", emoji: "💭", size: "normal" },
+  { id: 8, name: "Beauty Studio", cat: "Güzellik", color: "#D9668A", emoji: "💄", size: "normal" },
+  { id: 9, name: "İyi Geceler", cat: "Ev Dekorasyon", color: "#5FAE7F", emoji: "🌙", size: "wide" },
+  { id: 10, name: "Restoran Açık", cat: "İşletme", color: "#FF8F66", emoji: "🍽️", size: "normal" },
+  { id: 11, name: "Happy Birthday", cat: "Özel Gün", color: "#D9668A", emoji: "🎉", size: "tall" },
+  { id: 12, name: "Barber Shop", cat: "İşletme", color: "#F2B84B", emoji: "✂️", size: "normal" },
 ];
 
 export default function GaleriPage() {
@@ -30,7 +30,7 @@ export default function GaleriPage() {
     : GALLERY_ITEMS.filter((i) => i.cat === activeFilter);
 
   return (
-    <div className="min-h-screen pt-24 pb-16 px-6 bg-[#050505]">
+    <div className="min-h-screen pt-24 pb-16 px-6 bg-[#FBF8F6]">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
@@ -38,13 +38,13 @@ export default function GaleriPage() {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-12"
         >
-          <span className="text-xs font-bold uppercase tracking-[4px] text-[#FF7A00] mb-3 block">
+          <span className="text-xs font-bold uppercase tracking-[4px] text-[#FF8F66] mb-3 block">
             İlham Galerisi
           </span>
           <h1
             className="text-[clamp(32px,5vw,60px)] font-black tracking-[-2px]"
             style={{
-              background: "linear-gradient(180deg, #fff 0%, rgba(255,255,255,0.65) 100%)",
+              background: "linear-gradient(180deg, #1a1a1a 0%, rgba(0,0,0,0.65) 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -62,9 +62,9 @@ export default function GaleriPage() {
               onClick={() => setActiveFilter(f)}
               className="px-4 py-2 rounded-full text-sm font-medium border transition-all cursor-none"
               style={{
-                borderColor: activeFilter === f ? "#FF00C8" : "rgba(255,255,255,0.08)",
-                background: activeFilter === f ? "rgba(255,0,200,0.08)" : "transparent",
-                color: activeFilter === f ? "#FF00C8" : "rgba(255,255,255,0.45)",
+                borderColor: activeFilter === f ? "#D9668A" : "rgba(0,0,0,0.08)",
+                background: activeFilter === f ? "rgba(217,102,138,0.08)" : "transparent",
+                color: activeFilter === f ? "#D9668A" : "rgba(0,0,0,0.45)",
               }}
             >
               {f}
@@ -83,9 +83,9 @@ export default function GaleriPage() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
                 onClick={() => setSelected(item)}
-                className="group relative rounded-2xl border border-white/8 overflow-hidden cursor-none hover:border-white/20 transition-all break-inside-avoid"
+                className="group relative rounded-2xl border border-black/8 overflow-hidden cursor-none hover:border-black/20 transition-all break-inside-avoid"
                 style={{
-                  background: `radial-gradient(ellipse 80% 80% at 50% 50%, ${item.color}15 0%, transparent 70%), #0D0D0D`,
+                  background: `radial-gradient(ellipse 80% 80% at 50% 50%, ${item.color}15 0%, transparent 70%), #FFFFFF`,
                   minHeight: item.size === "tall" ? "320px" : item.size === "wide" ? "200px" : "250px",
                 }}
               >
@@ -129,12 +129,12 @@ export default function GaleriPage() {
           viewport={{ once: true }}
           className="text-center mt-20"
         >
-          <p className="text-white/40 mb-6">Beğendiğiniz tasarım burada yok mu?</p>
+          <p className="text-black/40 mb-6">Beğendiğiniz tasarım burada yok mu?</p>
           <a
             href={`https://wa.me/905001234567?text=${encodeURIComponent("Merhaba! Özel tasarım neon tabela yaptırmak istiyorum.")}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 px-8 py-4 rounded-full font-bold text-white cursor-none hover:scale-105 transition-all"
+            className="inline-flex items-center gap-3 px-8 py-4 rounded-full font-bold text-black cursor-none hover:scale-105 transition-all"
             style={{ background: "#25D366", boxShadow: "0 0 32px rgba(37,211,102,0.35)" }}
           >
             <MessageCircle size={18} />
@@ -158,14 +158,14 @@ export default function GaleriPage() {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative max-w-lg w-full rounded-3xl border border-white/15 p-12 text-center"
+              className="relative max-w-lg w-full rounded-3xl border border-black/15 p-12 text-center"
               style={{
-                background: `radial-gradient(ellipse 80% 80% at 50% 50%, ${selected.color}15 0%, transparent 70%), #0D0D0D`,
+                background: `radial-gradient(ellipse 80% 80% at 50% 50%, ${selected.color}15 0%, transparent 70%), #FFFFFF`,
               }}
             >
               <button
                 onClick={() => setSelected(null)}
-                className="absolute top-4 right-4 text-white/40 hover:text-white cursor-none"
+                className="absolute top-4 right-4 text-black/40 hover:text-black cursor-none"
               >
                 <X size={20} />
               </button>
@@ -179,13 +179,13 @@ export default function GaleriPage() {
               >
                 {selected.name}
               </p>
-              <p className="text-sm text-white/40 mb-8">{selected.cat}</p>
+              <p className="text-sm text-black/40 mb-8">{selected.cat}</p>
 
               <a
                 href={`https://wa.me/905001234567?text=${encodeURIComponent(`Merhaba! "${selected.name}" tasarımı neon tabela olarak yaptırmak istiyorum. Fiyat öğrenebilir miyim?`)}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-bold text-white cursor-none"
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-bold text-black cursor-none"
                 style={{ background: "#25D366" }}
               >
                 <MessageCircle size={16} /> Bu Tasarımı Sipariş Et

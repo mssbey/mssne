@@ -19,12 +19,12 @@ export function StudioPreview() {
             viewport={{ once: true }}
             className="relative"
           >
-            <div className="relative rounded-3xl border border-white/10 bg-[#0D0D0D] overflow-hidden p-8">
+            <div className="relative rounded-3xl border border-black/10 bg-[#FFFFFF] overflow-hidden p-8">
               {/* Neon display */}
               <div
                 className="h-48 rounded-2xl flex items-center justify-center mb-6 relative overflow-hidden"
                 style={{
-                  background: "radial-gradient(ellipse 80% 80% at 50% 50%, rgba(155,92,255,0.12) 0%, transparent 70%), #090909",
+                  background: "radial-gradient(ellipse 80% 80% at 50% 50%, rgba(95,174,127,0.12) 0%, transparent 70%), #090909",
                 }}
               >
                 <span
@@ -43,16 +43,16 @@ export function StudioPreview() {
               {/* Controls preview */}
               <div className="space-y-4">
                 <div>
-                  <p className="text-xs text-white/30 mb-2 uppercase tracking-wider">Font</p>
+                  <p className="text-xs text-black/30 mb-2 uppercase tracking-wider">Font</p>
                   <div className="flex gap-2 flex-wrap">
                     {FONTS.map((f, i) => (
                       <span
                         key={f}
                         className="px-3 py-1 rounded-lg text-xs border transition-all"
                         style={{
-                          borderColor: i === 0 ? "#FF00C8" : "rgba(255,255,255,0.08)",
+                          borderColor: i === 0 ? "#FF00C8" : "rgba(0,0,0,0.08)",
                           background: i === 0 ? "rgba(255,0,200,0.1)" : "transparent",
-                          color: i === 0 ? "#FF00C8" : "rgba(255,255,255,0.4)",
+                          color: i === 0 ? "#FF00C8" : "rgba(0,0,0,0.4)",
                         }}
                       >
                         {f}
@@ -61,7 +61,7 @@ export function StudioPreview() {
                   </div>
                 </div>
                 <div>
-                  <p className="text-xs text-white/30 mb-2 uppercase tracking-wider">Renk</p>
+                  <p className="text-xs text-black/30 mb-2 uppercase tracking-wider">Renk</p>
                   <div className="flex gap-2">
                     {COLORS_DEMO.map((c, i) => (
                       <span
@@ -69,7 +69,7 @@ export function StudioPreview() {
                         className="w-8 h-8 rounded-full border-2 cursor-none transition-transform hover:scale-110"
                         style={{
                           background: c,
-                          borderColor: i === 0 ? "#fff" : "transparent",
+                          borderColor: i === 0 ? "#1a1a1a" : "transparent",
                           boxShadow: `0 0 10px ${c}80`,
                         }}
                       />
@@ -81,7 +81,7 @@ export function StudioPreview() {
               {/* Floating glow */}
               <div
                 className="absolute -bottom-20 -right-20 w-60 h-60 rounded-full pointer-events-none"
-                style={{ background: "rgba(155,92,255,0.08)", filter: "blur(60px)" }}
+                style={{ background: "rgba(95,174,127,0.08)", filter: "blur(60px)" }}
               />
             </div>
           </motion.div>
@@ -98,7 +98,7 @@ export function StudioPreview() {
             <h2
               className="text-[clamp(32px,4.5vw,52px)] font-black tracking-[-2px] leading-tight mb-6"
               style={{
-                background: "linear-gradient(180deg, #fff 0%, rgba(255,255,255,0.65) 100%)",
+                background: "linear-gradient(180deg, #1a1a1a 0%, rgba(0,0,0,0.65) 100%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
@@ -108,7 +108,7 @@ export function StudioPreview() {
               <br />
               Neon Önizleme
             </h2>
-            <p className="text-white/45 text-base leading-relaxed mb-10">
+            <p className="text-black/45 text-base leading-relaxed mb-10">
               Yazını gir, fontunu seç, rengini belirle. Neonun nasıl görüneceğini
               anında önizle. Beğenince WhatsApp&apos;tan sipariş ver — dakikalar içinde hazır.
             </p>
@@ -134,7 +134,7 @@ export function StudioPreview() {
               ].map((f) => (
                 <div key={f.label} className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full" style={{ background: f.color }} />
-                  <span className="text-sm text-white/50">{f.label}</span>
+                  <span className="text-sm text-black/50">{f.label}</span>
                 </div>
               ))}
             </div>

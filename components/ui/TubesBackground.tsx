@@ -37,10 +37,10 @@ export function TubesBackground({
 
         const app = TubesCursor(canvasRef.current, {
           tubes: {
-            colors: ["#FF00C8", "#00E5FF", "#9B5CFF"],
+            colors: ["#D9668A", "#F2B84B", "#5FAE7F"],
             lights: {
               intensity: 200,
-              colors: ["#FF00C8", "#FF7A00", "#00E5FF", "#9B5CFF"],
+              colors: ["#D9668A", "#FF8F66", "#F2B84B", "#5FAE7F"],
             },
           },
         });
@@ -75,10 +75,10 @@ export function TubesBackground({
       />
 
       {!loaded && (
-        <div className="absolute inset-0 bg-[#050505]"
+        <div className="absolute inset-0 bg-[#FBF8F6]"
           style={{
             background:
-              "radial-gradient(ellipse 80% 60% at 50% 40%, rgba(155,92,255,0.15) 0%, transparent 60%), radial-gradient(ellipse 60% 40% at 20% 70%, rgba(255,0,200,0.10) 0%, transparent 50%), #050505",
+              "radial-gradient(ellipse 80% 60% at 50% 40%, rgba(95,174,127,0.15) 0%, transparent 60%), radial-gradient(ellipse 60% 40% at 20% 70%, rgba(217,102,138,0.10) 0%, transparent 50%), #FBF8F6",
           }}
         />
       )}

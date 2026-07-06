@@ -16,13 +16,13 @@ export function BlogSection() {
           className="mb-16 flex flex-col lg:flex-row lg:items-end justify-between gap-6"
         >
           <div>
-            <span className="text-xs font-bold uppercase tracking-[4px] text-[#00E5FF] mb-4 block">
+            <span className="text-xs font-bold uppercase tracking-[4px] text-[#F2B84B] mb-4 block">
               Blog
             </span>
             <h2
               className="text-[clamp(32px,4.5vw,52px)] font-black tracking-[-2px]"
               style={{
-                background: "linear-gradient(180deg, #fff 0%, rgba(255,255,255,0.65) 100%)",
+                background: "linear-gradient(180deg, #1a1a1a 0%, rgba(0,0,0,0.65) 100%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
@@ -33,7 +33,7 @@ export function BlogSection() {
           </div>
           <Link
             href="/blog"
-            className="text-sm text-white/40 hover:text-white transition-colors cursor-none"
+            className="text-sm text-black/40 hover:text-black transition-colors cursor-none"
           >
             Tümünü Gör →
           </Link>
@@ -47,7 +47,7 @@ export function BlogSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="group relative rounded-2xl border border-white/8 bg-[#0D0D0D] overflow-hidden hover:border-white/15 transition-all cursor-none hover:-translate-y-1 duration-300"
+              className="group relative rounded-2xl border border-black/8 bg-[#FFFFFF] overflow-hidden hover:border-black/15 transition-all cursor-none hover:-translate-y-1 duration-300"
             >
               {/* Color strip */}
               <div
@@ -56,7 +56,7 @@ export function BlogSection() {
               />
 
               <div className="p-7">
-                <div className="flex items-center gap-3 text-xs text-white/30 mb-5">
+                <div className="flex items-center gap-3 text-xs text-black/30 mb-5">
                   <span>{post.date}</span>
                   <span>·</span>
                   <span className="flex items-center gap-1">
@@ -64,10 +64,10 @@ export function BlogSection() {
                     {post.readTime}
                   </span>
                 </div>
-                <h3 className="text-base font-bold text-white mb-3 leading-snug group-hover:text-[#FF00C8] transition-colors">
+                <h3 className="text-base font-bold text-black mb-3 leading-snug group-hover:text-[#D9668A] transition-colors">
                   {post.title}
                 </h3>
-                <p className="text-sm text-white/40 leading-relaxed mb-6">{post.excerpt}</p>
+                <p className="text-sm text-black/40 leading-relaxed mb-6">{post.excerpt}</p>
                 <span
                   className="inline-flex items-center gap-1 text-xs font-medium"
                   style={{ color: post.color }}

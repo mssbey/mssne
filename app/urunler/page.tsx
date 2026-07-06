@@ -48,7 +48,7 @@ export default function UrunlerPage() {
   }, [search, activeCategory, sort]);
 
   return (
-    <div className="min-h-screen pt-24 pb-20 px-6 bg-[#050505]">
+    <div className="min-h-screen pt-24 pb-20 px-6 bg-[#FBF8F6]">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
@@ -56,13 +56,13 @@ export default function UrunlerPage() {
           animate={{ opacity: 1, y: 0 }}
           className="mb-10"
         >
-          <span className="text-xs font-bold uppercase tracking-[4px] text-[#9B5CFF] mb-3 block">
+          <span className="text-xs font-bold uppercase tracking-[4px] text-[#5FAE7F] mb-3 block">
             Katalog
           </span>
           <h1
             className="text-[clamp(28px,4vw,48px)] font-black tracking-[-2px] mb-2"
             style={{
-              background: "linear-gradient(180deg, #fff 0%, rgba(255,255,255,0.65) 100%)",
+              background: "linear-gradient(180deg, #1a1a1a 0%, rgba(0,0,0,0.65) 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -70,22 +70,22 @@ export default function UrunlerPage() {
           >
             Tüm Ürünler
           </h1>
-          <p className="text-white/40 text-sm">{filtered.length} ürün listeleniyor</p>
+          <p className="text-black/40 text-sm">{filtered.length} ürün listeleniyor</p>
         </motion.div>
 
         {/* Search + Sort bar */}
         <div className="flex gap-3 mb-6">
           <div className="flex-1 relative">
-            <Search size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-white/30" />
+            <Search size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-black/30" />
             <input
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Ürün ara..."
-              className="w-full pl-11 pr-4 py-3 rounded-xl bg-[#0D0D0D] border border-white/8 text-white placeholder:text-white/25 text-sm outline-none focus:border-[#9B5CFF]/50 transition-colors cursor-auto"
+              className="w-full pl-11 pr-4 py-3 rounded-xl bg-[#FFFFFF] border border-black/8 text-black placeholder:text-black/25 text-sm outline-none focus:border-[#5FAE7F]/50 transition-colors cursor-auto"
             />
             {search && (
-              <button onClick={() => setSearch("")} className="absolute right-3 top-1/2 -translate-y-1/2 text-white/30 hover:text-white cursor-none">
+              <button onClick={() => setSearch("")} className="absolute right-3 top-1/2 -translate-y-1/2 text-black/30 hover:text-black cursor-none">
                 <X size={14} />
               </button>
             )}
@@ -93,7 +93,7 @@ export default function UrunlerPage() {
           <select
             value={sort}
             onChange={(e) => setSort(e.target.value)}
-            className="px-4 py-3 rounded-xl bg-[#0D0D0D] border border-white/8 text-white/70 text-sm outline-none cursor-auto appearance-none"
+            className="px-4 py-3 rounded-xl bg-[#FFFFFF] border border-black/8 text-black/70 text-sm outline-none cursor-auto appearance-none"
           >
             {SORT_OPTIONS.map((o) => <option key={o.value} value={o.value}>{o.label}</option>)}
           </select>
@@ -107,9 +107,9 @@ export default function UrunlerPage() {
               onClick={() => setActiveCategory(cat.slug)}
               className="flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium border whitespace-nowrap transition-all cursor-none shrink-0"
               style={{
-                borderColor: activeCategory === cat.slug ? "#9B5CFF" : "rgba(255,255,255,0.08)",
-                background: activeCategory === cat.slug ? "rgba(155,92,255,0.1)" : "transparent",
-                color: activeCategory === cat.slug ? "#9B5CFF" : "rgba(255,255,255,0.45)",
+                borderColor: activeCategory === cat.slug ? "#5FAE7F" : "rgba(0,0,0,0.08)",
+                background: activeCategory === cat.slug ? "rgba(95,174,127,0.1)" : "transparent",
+                color: activeCategory === cat.slug ? "#5FAE7F" : "rgba(0,0,0,0.45)",
               }}
             >
               <span>{cat.emoji}</span> {cat.label}
@@ -127,10 +127,10 @@ export default function UrunlerPage() {
               className="text-center py-20"
             >
               <span className="text-5xl mb-4 block">🔍</span>
-              <p className="text-white/40">Aramanızla eşleşen ürün bulunamadı.</p>
+              <p className="text-black/40">Aramanızla eşleşen ürün bulunamadı.</p>
               <button
                 onClick={() => { setSearch(""); setActiveCategory("tumu"); }}
-                className="mt-4 px-5 py-2.5 rounded-full text-sm border border-white/10 text-white/50 hover:text-white cursor-none"
+                className="mt-4 px-5 py-2.5 rounded-full text-sm border border-black/10 text-black/50 hover:text-black cursor-none"
               >
                 Filtreleri Temizle
               </button>

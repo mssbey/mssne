@@ -12,7 +12,7 @@ export const BASKI_MATBAA: ServiceData[] = [
     tagline: "İlk izlenim elinizde — kaliteli kağıt, kusursuz baskı.",
     heroIcon: "CreditCard",
     category: "Baskı ve Matbaa",
-    color: "#00E5FF",
+    color: "#F2B84B",
     basePath: "baski-matbaa",
     sectionLabel: "Baskı ve Matbaa",
     seo: {
@@ -117,7 +117,7 @@ export const BASKI_MATBAA: ServiceData[] = [
     tagline: "Markanızın hikayesini katlanır sayfalarda anlatın.",
     heroIcon: "FileText",
     category: "Baskı ve Matbaa",
-    color: "#FF7A00",
+    color: "#FF8F66",
     basePath: "baski-matbaa",
     sectionLabel: "Baskı ve Matbaa",
     seo: {
@@ -222,7 +222,7 @@ export const BASKI_MATBAA: ServiceData[] = [
     tagline: "Buzdolabında kalıcı, aklınızda kalıcı reklam.",
     heroIcon: "Magnet",
     category: "Baskı ve Matbaa",
-    color: "#9B5CFF",
+    color: "#5FAE7F",
     basePath: "baski-matbaa",
     sectionLabel: "Baskı ve Matbaa",
     seo: {

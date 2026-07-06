@@ -38,38 +38,38 @@ export default function ProfilPage() {
   };
 
   return (
-    <div className="min-h-screen pt-24 pb-20 px-6 bg-[#050505]">
+    <div className="min-h-screen pt-24 pb-20 px-6 bg-[#FBF8F6]">
       <div className="max-w-2xl mx-auto">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
           {/* Profile card */}
           <div
-            className="relative p-8 rounded-3xl border border-white/8 bg-[#0D0D0D] mb-6 overflow-hidden"
+            className="relative p-8 rounded-3xl border border-black/8 bg-[#FFFFFF] mb-6 overflow-hidden"
           >
-            <div className="absolute -top-20 -right-20 w-60 h-60 rounded-full pointer-events-none" style={{ background: "rgba(255,0,200,0.05)", filter: "blur(60px)" }} />
+            <div className="absolute -top-20 -right-20 w-60 h-60 rounded-full pointer-events-none" style={{ background: "rgba(217,102,138,0.05)", filter: "blur(60px)" }} />
             <div className="flex items-center gap-5">
               <div
                 className="w-20 h-20 rounded-2xl flex items-center justify-center text-3xl font-black text-black shrink-0"
-                style={{ background: "linear-gradient(135deg, #FF00C8, #9B5CFF)" }}
+                style={{ background: "linear-gradient(135deg, #D9668A, #5FAE7F)" }}
               >
                 {user.name[0].toUpperCase()}
               </div>
               <div>
-                <h1 className="text-2xl font-black text-white">{user.name}</h1>
-                <p className="text-white/40 text-sm mt-0.5">{user.email}</p>
-                {user.phone && <p className="text-white/30 text-xs mt-0.5">{user.phone}</p>}
+                <h1 className="text-2xl font-black text-black">{user.name}</h1>
+                <p className="text-black/40 text-sm mt-0.5">{user.email}</p>
+                {user.phone && <p className="text-black/30 text-xs mt-0.5">{user.phone}</p>}
               </div>
             </div>
 
             {/* Quick stats */}
             <div className="grid grid-cols-3 gap-3 mt-8">
               {[
-                { label: "Favoriler", value: ids.length, color: "#FF00C8" },
-                { label: "Sepet", value: cartCount, color: "#9B5CFF" },
-                { label: "Sipariş", value: 0, color: "#00E5FF" },
+                { label: "Favoriler", value: ids.length, color: "#D9668A" },
+                { label: "Sepet", value: cartCount, color: "#5FAE7F" },
+                { label: "Sipariş", value: 0, color: "#F2B84B" },
               ].map((stat) => (
-                <div key={stat.label} className="text-center p-3 rounded-xl border border-white/5 bg-white/2">
+                <div key={stat.label} className="text-center p-3 rounded-xl border border-black/5 bg-black/2">
                   <p className="text-2xl font-black" style={{ color: stat.color }}>{stat.value}</p>
-                  <p className="text-xs text-white/30 mt-0.5">{stat.label}</p>
+                  <p className="text-xs text-black/30 mt-0.5">{stat.label}</p>
                 </div>
               ))}
             </div>
@@ -81,16 +81,16 @@ export default function ProfilPage() {
               <Link
                 key={label}
                 href={href}
-                className="flex items-center gap-4 p-5 rounded-2xl border border-white/8 bg-[#0D0D0D] hover:border-white/15 transition-all cursor-none group"
+                className="flex items-center gap-4 p-5 rounded-2xl border border-black/8 bg-[#FFFFFF] hover:border-black/15 transition-all cursor-none group"
               >
-                <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center group-hover:bg-white/8 transition-colors">
-                  <Icon size={17} className="text-white/40 group-hover:text-white/70 transition-colors" />
+                <div className="w-10 h-10 rounded-xl bg-black/5 flex items-center justify-center group-hover:bg-black/8 transition-colors">
+                  <Icon size={17} className="text-black/40 group-hover:text-black/70 transition-colors" />
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm font-semibold text-white">{label}</p>
-                  <p className="text-xs text-white/30">{desc}</p>
+                  <p className="text-sm font-semibold text-black">{label}</p>
+                  <p className="text-xs text-black/30">{desc}</p>
                 </div>
-                <ChevronRight size={14} className="text-white/20 group-hover:text-white/50 transition-colors" />
+                <ChevronRight size={14} className="text-black/20 group-hover:text-black/50 transition-colors" />
               </Link>
             ))}
           </div>

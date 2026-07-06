@@ -18,13 +18,13 @@ export function RelatedServices({
   heading = "Tabela ve Cephe Çözümlerimizin Tamamını Keşfedin",
 }: RelatedServicesProps) {
   return (
-    <section className="py-24 px-6 bg-[#080808]">
+    <section className="py-24 px-6 bg-[#F3EDEA]">
       <div className="max-w-7xl mx-auto">
         <div className="max-w-2xl mb-14">
-          <span className="text-xs font-bold uppercase tracking-[4px] mb-4 block text-white/40">
+          <span className="text-xs font-bold uppercase tracking-[4px] mb-4 block text-black/40">
             {eyebrow}
           </span>
-          <h2 className="text-[clamp(28px,4vw,44px)] font-black tracking-[-1.5px] leading-tight text-white">
+          <h2 className="text-[clamp(28px,4vw,44px)] font-black tracking-[-1.5px] leading-tight text-black">
             {heading}
           </h2>
         </div>
@@ -42,7 +42,7 @@ export function RelatedServices({
               >
                 <Link
                   href={`/${service.basePath ?? "hizmetler"}/${service.slug}`}
-                  className="group flex flex-col justify-between h-full p-6 rounded-2xl border border-white/8 bg-[#0D0D0D] hover:border-white/20 transition-all cursor-none"
+                  className="group flex flex-col justify-between h-full p-6 rounded-2xl border border-black/8 bg-[#FFFFFF] hover:border-black/20 transition-all cursor-none"
                 >
                   <div
                     className="w-11 h-11 rounded-xl flex items-center justify-center mb-6"
@@ -51,8 +51,8 @@ export function RelatedServices({
                     <Icon size={18} style={{ color: service.color }} />
                   </div>
                   <div>
-                    <h4 className="text-sm font-bold text-white mb-2">{service.shortTitle}</h4>
-                    <p className="text-xs text-white/40 leading-relaxed mb-4">{service.tagline}</p>
+                    <h4 className="text-sm font-bold text-black mb-2">{service.shortTitle}</h4>
+                    <p className="text-xs text-black/40 leading-relaxed mb-4">{service.tagline}</p>
                     <span
                       className="inline-flex items-center gap-1.5 text-xs font-semibold transition-transform group-hover:translate-x-1"
                       style={{ color: service.color }}

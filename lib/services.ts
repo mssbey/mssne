@@ -83,7 +83,7 @@ export const SERVICES: ServiceData[] = [
     tagline: "Markanızın adını üç boyutlu ışıkla yazıyoruz.",
     heroIcon: "CaseSensitive",
     category: "Tabela Sistemleri",
-    color: "#FF00C8",
+    color: "#D9668A",
     seo: {
       title: "Kutu Harf Tabela İmalatı ve Montajı | Ikarus Reklam",
       description:
@@ -192,7 +192,7 @@ export const SERVICES: ServiceData[] = [
     tagline: "Gündüz şık, gece göz alıcı.",
     heroIcon: "Lightbulb",
     category: "Tabela Sistemleri",
-    color: "#FF7A00",
+    color: "#FF8F66",
     seo: {
       title: "Işıklı ve Işıksız Tabela İmalatı | Ikarus Reklam",
       description:
@@ -300,7 +300,7 @@ export const SERVICES: ServiceData[] = [
     tagline: "Cepheden tabelaya kusursuz bütünlük.",
     heroIcon: "PanelsTopLeft",
     category: "Tabela Sistemleri",
-    color: "#9B5CFF",
+    color: "#5FAE7F",
     seo: {
       title: "Kompozit Tabela (ACP) İmalatı ve Uygulaması | Ikarus Reklam",
       description:
@@ -407,7 +407,7 @@ export const SERVICES: ServiceData[] = [
     tagline: "Uzaktan görünür, yakından etkileyici.",
     heroIcon: "SignpostBig",
     category: "Tabela Sistemleri",
-    color: "#00E5FF",
+    color: "#F2B84B",
     seo: {
       title: "Totem Tabela İmalatı ve Montajı | Ikarus Reklam",
       description:
@@ -514,7 +514,7 @@ export const SERVICES: ServiceData[] = [
     tagline: "Binanızın kimliğini yeniden tasarlayın.",
     heroIcon: "Building2",
     category: "Tabela Sistemleri",
-    color: "#FF00C8",
+    color: "#D9668A",
     seo: {
       title: "Cephe Giydirme (ACP / Cam Cephe) Uygulaması | Ikarus Reklam",
       description:

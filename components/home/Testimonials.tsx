@@ -6,7 +6,7 @@ import { Star } from "lucide-react";
 
 export function Testimonials() {
   return (
-    <section className="py-28 px-6 bg-[#080808]">
+    <section className="py-28 px-6 bg-[#F3EDEA]">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -14,13 +14,13 @@ export function Testimonials() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <span className="text-xs font-bold uppercase tracking-[4px] text-[#FF00C8] mb-4 block">
+          <span className="text-xs font-bold uppercase tracking-[4px] text-[#D9668A] mb-4 block">
             Yorumlar
           </span>
           <h2
             className="text-[clamp(32px,4.5vw,52px)] font-black tracking-[-2px]"
             style={{
-              background: "linear-gradient(180deg, #fff 0%, rgba(255,255,255,0.65) 100%)",
+              background: "linear-gradient(180deg, #1a1a1a 0%, rgba(0,0,0,0.65) 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -40,7 +40,7 @@ export function Testimonials() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className="group p-6 rounded-2xl border border-white/8 bg-[#0D0D0D] hover:border-white/15 transition-all relative overflow-hidden"
+              className="group p-6 rounded-2xl border border-black/8 bg-[#FFFFFF] hover:border-black/15 transition-all relative overflow-hidden"
             >
               {/* Glow */}
               <div
@@ -55,7 +55,7 @@ export function Testimonials() {
                 ))}
               </div>
 
-              <p className="text-sm text-white/55 leading-relaxed mb-6 italic">
+              <p className="text-sm text-black/55 leading-relaxed mb-6 italic">
                 &ldquo;{t.text}&rdquo;
               </p>
 
@@ -67,8 +67,8 @@ export function Testimonials() {
                   {t.name[0]}
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-white">{t.name}</p>
-                  <p className="text-xs text-white/30">{t.role}</p>
+                  <p className="text-sm font-semibold text-black">{t.name}</p>
+                  <p className="text-xs text-black/30">{t.role}</p>
                 </div>
               </div>
             </motion.div>

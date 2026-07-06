@@ -5,7 +5,7 @@ import { WHY_US } from "@/lib/data";
 
 export function WhyUs() {
   return (
-    <section className="py-28 px-6 bg-[#080808]">
+    <section className="py-28 px-6 bg-[#F3EDEA]">
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-20 items-center">
           {/* Left text */}
@@ -14,13 +14,13 @@ export function WhyUs() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <span className="text-xs font-bold uppercase tracking-[4px] text-[#FF7A00] mb-4 block">
+            <span className="text-xs font-bold uppercase tracking-[4px] text-[#FF8F66] mb-4 block">
               Neden Ikarus?
             </span>
             <h2
               className="text-[clamp(32px,4.5vw,52px)] font-black tracking-[-2px] leading-tight mb-6"
               style={{
-                background: "linear-gradient(180deg, #fff 0%, rgba(255,255,255,0.65) 100%)",
+                background: "linear-gradient(180deg, #1a1a1a 0%, rgba(0,0,0,0.65) 100%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
@@ -30,7 +30,7 @@ export function WhyUs() {
               <br />
               Uygun Fiyat
             </h2>
-            <p className="text-white/45 text-base leading-relaxed mb-10 max-w-md">
+            <p className="text-black/45 text-base leading-relaxed mb-10 max-w-md">
               10.000+ üretim deneyimiyle Türkiye&apos;nin en güvenilir neon tabela
               stüdyosu olarak 81 ile hizmet veriyoruz.
             </p>
@@ -40,7 +40,7 @@ export function WhyUs() {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-semibold text-sm text-black transition-all hover:scale-105 cursor-none"
-              style={{ background: "#FF7A00", boxShadow: "0 0 30px rgba(255,122,0,0.4)" }}
+              style={{ background: "#FF8F66", boxShadow: "0 0 30px rgba(255,143,102,0.4)" }}
             >
               💬 WhatsApp&apos;tan Fiyat Al
             </a>
@@ -55,7 +55,7 @@ export function WhyUs() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                className="group p-6 rounded-2xl border border-white/8 bg-[#0D0D0D] hover:border-white/15 transition-all"
+                className="group p-6 rounded-2xl border border-black/8 bg-[#FFFFFF] hover:border-black/15 transition-all"
               >
                 <div
                   className="text-2xl mb-4 w-12 h-12 rounded-xl flex items-center justify-center"
@@ -63,8 +63,8 @@ export function WhyUs() {
                 >
                   {item.icon}
                 </div>
-                <h4 className="text-sm font-bold text-white mb-2">{item.title}</h4>
-                <p className="text-xs text-white/40 leading-relaxed">{item.desc}</p>
+                <h4 className="text-sm font-bold text-black mb-2">{item.title}</h4>
+                <p className="text-xs text-black/40 leading-relaxed">{item.desc}</p>
               </motion.div>
             ))}
           </div>

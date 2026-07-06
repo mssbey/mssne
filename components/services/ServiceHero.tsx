@@ -30,8 +30,8 @@ export function ServiceHero({ service }: { service: ServiceData }) {
           className="object-cover"
         />
         {/* Dark overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/70 to-[#050505]/30" />
-        <div className="absolute inset-0 bg-[#050505]/35" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#FBF8F6] via-[#FBF8F6]/70 to-[#FBF8F6]/30" />
+        <div className="absolute inset-0 bg-[#FBF8F6]/35" />
       </div>
 
       <div className="relative z-10 px-6 pb-16 pt-40">
@@ -41,17 +41,17 @@ export function ServiceHero({ service }: { service: ServiceData }) {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: EASE }}
-            className="flex items-center gap-1.5 text-xs text-white/45 mb-8"
+            className="flex items-center gap-1.5 text-xs text-black/45 mb-8"
           >
-            <Link href="/" className="hover:text-white transition-colors cursor-none">
+            <Link href="/" className="hover:text-black transition-colors cursor-none">
               Ana Sayfa
             </Link>
             <ChevronRight size={12} />
-            <Link href={`/${basePath}`} className="hover:text-white transition-colors cursor-none">
+            <Link href={`/${basePath}`} className="hover:text-black transition-colors cursor-none">
               {sectionLabel}
             </Link>
             <ChevronRight size={12} />
-            <span className="text-white/70">{service.shortTitle}</span>
+            <span className="text-black/70">{service.shortTitle}</span>
           </motion.nav>
 
           <motion.div
@@ -75,7 +75,7 @@ export function ServiceHero({ service }: { service: ServiceData }) {
             initial={{ opacity: 0, y: 32 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.15, ease: EASE }}
-            className="text-[clamp(40px,7vw,86px)] font-black leading-[0.95] tracking-[-3px] text-white mb-6 max-w-4xl"
+            className="text-[clamp(40px,7vw,86px)] font-black leading-[0.95] tracking-[-3px] text-black mb-6 max-w-4xl"
           >
             {service.title}
           </motion.h1>
@@ -84,7 +84,7 @@ export function ServiceHero({ service }: { service: ServiceData }) {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.25, ease: EASE }}
-            className="text-[clamp(16px,2vw,22px)] text-white/65 max-w-xl leading-relaxed mb-10"
+            className="text-[clamp(16px,2vw,22px)] text-black/65 max-w-xl leading-relaxed mb-10"
           >
             {service.tagline}
           </motion.p>
@@ -106,7 +106,7 @@ export function ServiceHero({ service }: { service: ServiceData }) {
             </a>
             <a
               href="#galeri"
-              className="flex items-center gap-2 px-8 py-4 rounded-full text-base font-semibold text-white border border-white/15 bg-white/5 backdrop-blur-sm hover:bg-white/10 hover:border-white/25 transition-all cursor-none"
+              className="flex items-center gap-2 px-8 py-4 rounded-full text-base font-semibold text-black border border-black/15 bg-black/5 backdrop-blur-sm hover:bg-black/10 hover:border-black/25 transition-all cursor-none"
             >
               Örnek Çalışmalar
             </a>
@@ -118,7 +118,7 @@ export function ServiceHero({ service }: { service: ServiceData }) {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1 }}
-        className="relative z-10 flex justify-center pb-8 text-white/30 text-[11px] font-medium tracking-[2px] uppercase"
+        className="relative z-10 flex justify-center pb-8 text-black/30 text-[11px] font-medium tracking-[2px] uppercase"
       >
         <div className="flex flex-col items-center gap-2">
           <ChevronDown size={16} className="animate-bounce" />

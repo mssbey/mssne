@@ -8,7 +8,7 @@ function Checkbox({ className, ...props }: Omit<InputHTMLAttributes<HTMLInputEle
     <input
       type="checkbox"
       className={cn(
-        "h-4 w-4 rounded border border-white/20 bg-transparent accent-[#9B5CFF] cursor-pointer",
+        "h-4 w-4 rounded border border-black/20 bg-transparent accent-[#5FAE7F] cursor-pointer",
         className
       )}
       {...props}

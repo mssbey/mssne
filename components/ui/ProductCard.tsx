@@ -38,7 +38,7 @@ export function ProductCard({ product, index = 0 }: Props) {
       initial={{ opacity: 0, y: 28 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.06, ease: [0.22, 1, 0.36, 1] }}
-      className="group relative rounded-2xl border border-white/8 bg-[#0D0D0D] overflow-hidden hover:border-white/18 transition-all duration-500 hover:-translate-y-1.5 flex flex-col"
+      className="group relative rounded-2xl border border-black/8 bg-[#FFFFFF] overflow-hidden hover:border-black/18 transition-all duration-500 hover:-translate-y-1.5 flex flex-col"
     >
       <Link href={`/urunler/${product.slug}`} className="flex flex-col flex-1 cursor-none">
         {/* Image area */}
@@ -72,7 +72,7 @@ export function ProductCard({ product, index = 0 }: Props) {
               </span>
             )}
             {product.isNew && !product.badge && (
-              <span className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-[#00E5FF]/15 text-[#00E5FF] border border-[#00E5FF]/30">
+              <span className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-[#F2B84B]/15 text-[#F2B84B] border border-[#F2B84B]/30">
                 Yeni
               </span>
             )}
@@ -84,25 +84,25 @@ export function ProductCard({ product, index = 0 }: Props) {
             className={cn(
               "absolute top-3 right-3 w-8 h-8 rounded-full flex items-center justify-center border transition-all cursor-none",
               fav
-                ? "bg-[#FF00C8]/20 border-[#FF00C8]/50 text-[#FF00C8]"
-                : "bg-black/40 border-white/10 text-white/30 hover:text-white/70"
+                ? "bg-[#D9668A]/20 border-[#D9668A]/50 text-[#D9668A]"
+                : "bg-black/40 border-white/10 text-white/40 hover:text-white/80"
             )}
           >
-            <Heart size={13} fill={fav ? "#FF00C8" : "none"} />
+            <Heart size={13} fill={fav ? "#D9668A" : "none"} />
           </button>
 
           {/* Stock */}
           {!product.inStock && (
             <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
-              <span className="text-white/50 text-sm font-medium">Stokta Yok</span>
+              <span className="text-white/60 text-sm font-medium">Stokta Yok</span>
             </div>
           )}
         </div>
 
         {/* Info */}
         <div className="p-5 flex-1 flex flex-col">
-          <p className="text-xs text-white/30 mb-1 uppercase tracking-wider">{product.category}</p>
-          <h3 className="text-sm font-bold text-white mb-2 leading-snug flex-1">{product.name}</h3>
+          <p className="text-xs text-black/30 mb-1 uppercase tracking-wider">{product.category}</p>
+          <h3 className="text-sm font-bold text-black mb-2 leading-snug flex-1">{product.name}</h3>
 
           {/* Rating */}
           <div className="flex items-center gap-1.5 mb-3">
@@ -112,18 +112,18 @@ export function ProductCard({ product, index = 0 }: Props) {
                   key={i}
                   size={10}
                   fill={i < Math.floor(product.rating) ? product.glowColor : "none"}
-                  stroke={i < Math.floor(product.rating) ? product.glowColor : "rgba(255,255,255,0.2)"}
+                  stroke={i < Math.floor(product.rating) ? product.glowColor : "rgba(0,0,0,0.2)"}
                 />
               ))}
             </div>
-            <span className="text-xs text-white/30">({product.reviewCount})</span>
+            <span className="text-xs text-black/30">({product.reviewCount})</span>
           </div>
 
           {/* Price + Cart */}
-          <div className="flex items-center justify-between mt-auto pt-3 border-t border-white/5">
+          <div className="flex items-center justify-between mt-auto pt-3 border-t border-black/5">
             <div>
-              <span className="text-lg font-black text-white">{formatPrice(product.price)}</span>
-              <span className="text-xs text-white/30 ml-1">den</span>
+              <span className="text-lg font-black text-black">{formatPrice(product.price)}</span>
+              <span className="text-xs text-black/30 ml-1">den</span>
             </div>
             <button
               onClick={handleAddToCart}

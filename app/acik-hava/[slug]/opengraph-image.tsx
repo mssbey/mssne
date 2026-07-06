@@ -19,7 +19,7 @@ export default async function Image({ params }: { params: Promise<{ slug: string
           flexDirection: "column",
           justifyContent: "center",
           padding: "80px",
-          background: `radial-gradient(ellipse 70% 70% at 15% 20%, ${service.color}33 0%, transparent 60%), #050505`,
+          background: `radial-gradient(ellipse 70% 70% at 15% 20%, ${service.color}33 0%, transparent 60%), #FBF8F6`,
           fontFamily: "sans-serif",
         }}
       >
@@ -53,7 +53,7 @@ export default async function Image({ params }: { params: Promise<{ slug: string
           style={{
             display: "flex",
             fontSize: 30,
-            color: "rgba(255,255,255,0.55)",
+            color: "rgba(0,0,0,0.55)",
             marginTop: 28,
             maxWidth: 800,
           }}

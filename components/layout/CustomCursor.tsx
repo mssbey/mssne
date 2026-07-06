@@ -48,13 +48,13 @@ export function CustomCursor() {
       <div
         ref={dotRef}
         className="fixed top-0 left-0 w-2 h-2 rounded-full pointer-events-none z-[9999]"
-        style={{ background: "#FF00C8", boxShadow: "0 0 6px #FF00C8" }}
+        style={{ background: "#D9668A", boxShadow: "0 0 6px #D9668A" }}
       />
       <div
         ref={ringRef}
         className="fixed top-0 left-0 w-10 h-10 rounded-full pointer-events-none z-[9998]"
         style={{
-          border: "1.5px solid rgba(255,0,200,0.5)",
+          border: "1.5px solid rgba(217,102,138,0.5)",
           transition: "transform 0s, opacity 0.3s",
         }}
       />

@@ -81,39 +81,39 @@ const BOX_ITEMS: {
   color: string;
   optional: boolean;
 }[] = [
-  { label: "Güç Çıkışı", Icon: OutletIcon, color: "#FF00C8", optional: false },
-  { label: "Adaptör", Icon: AdapterIcon, color: "#9B5CFF", optional: false },
-  { label: "Güç Kablosu", Icon: CableLineIcon, color: "#00E5FF", optional: false },
-  { label: "Vidalar", Icon: ScrewsIcon, color: "#FF7A00", optional: false },
-  { label: "Bant", Icon: TapeIcon, color: "#FF00C8", optional: true },
-  { label: "Kumanda", Icon: RemoteIcon, color: "#9B5CFF", optional: true },
+  { label: "Güç Çıkışı", Icon: OutletIcon, color: "#D9668A", optional: false },
+  { label: "Adaptör", Icon: AdapterIcon, color: "#5FAE7F", optional: false },
+  { label: "Güç Kablosu", Icon: CableLineIcon, color: "#F2B84B", optional: false },
+  { label: "Vidalar", Icon: ScrewsIcon, color: "#FF8F66", optional: false },
+  { label: "Bant", Icon: TapeIcon, color: "#D9668A", optional: true },
+  { label: "Kumanda", Icon: RemoteIcon, color: "#5FAE7F", optional: true },
 ];
 
 function GeometricBg() {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none select-none" aria-hidden="true">
       <svg className="absolute w-full h-full" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" fill="none">
-        <polygon points="60,55 125,55 92,115" stroke="#FF00C8" strokeWidth="1.5" opacity="0.22" />
-        <polygon points="1290,100 1380,100 1335,175" fill="#00E5FF" opacity="0.06" />
-        <polygon points="215,750 275,750 245,810" stroke="#9B5CFF" strokeWidth="1.5" opacity="0.18" />
-        <circle cx="75" cy="370" r="52" stroke="#FF00C8" strokeWidth="1.5" opacity="0.13" />
-        <circle cx="1410" cy="470" r="72" stroke="#00E5FF" strokeWidth="1.5" opacity="0.13" />
-        <circle cx="670" cy="840" r="36" fill="#9B5CFF" opacity="0.045" />
-        <circle cx="340" cy="125" r="22" fill="#FF7A00" opacity="0.06" />
-        <circle cx="1090" cy="195" r="17" fill="#FF00C8" opacity="0.07" />
-        <rect x="1175" y="675" width="46" height="46" rx="4" stroke="#FF7A00" strokeWidth="1.5" opacity="0.18" transform="rotate(25 1198 698)" />
-        <rect x="38" y="575" width="30" height="30" rx="3" stroke="#9B5CFF" strokeWidth="1.5" opacity="0.18" transform="rotate(-18 53 590)" />
-        <rect x="695" y="36" width="24" height="24" rx="2" stroke="#00E5FF" strokeWidth="1.5" opacity="0.18" transform="rotate(12 707 48)" />
-        <circle cx="155" cy="215" r="4" fill="#FF00C8" opacity="0.28" />
-        <circle cx="445" cy="798" r="4" fill="#00E5FF" opacity="0.28" />
-        <circle cx="945" cy="115" r="4" fill="#9B5CFF" opacity="0.28" />
-        <circle cx="1245" cy="695" r="4" fill="#FF7A00" opacity="0.28" />
-        <circle cx="815" cy="858" r="3" fill="#FF00C8" opacity="0.22" />
-        <polyline points="0,878 45,848 90,878 135,848 180,878 225,848 270,878 315,848 360,878" stroke="#FF00C8" strokeWidth="1.5" opacity="0.1" />
-        <polyline points="1075,25 1118,58 1162,25 1206,58 1250,25 1294,58 1338,25 1382,58 1440,25" stroke="#00E5FF" strokeWidth="1.5" opacity="0.1" />
+        <polygon points="60,55 125,55 92,115" stroke="#D9668A" strokeWidth="1.5" opacity="0.22" />
+        <polygon points="1290,100 1380,100 1335,175" fill="#F2B84B" opacity="0.06" />
+        <polygon points="215,750 275,750 245,810" stroke="#5FAE7F" strokeWidth="1.5" opacity="0.18" />
+        <circle cx="75" cy="370" r="52" stroke="#D9668A" strokeWidth="1.5" opacity="0.13" />
+        <circle cx="1410" cy="470" r="72" stroke="#F2B84B" strokeWidth="1.5" opacity="0.13" />
+        <circle cx="670" cy="840" r="36" fill="#5FAE7F" opacity="0.045" />
+        <circle cx="340" cy="125" r="22" fill="#FF8F66" opacity="0.06" />
+        <circle cx="1090" cy="195" r="17" fill="#D9668A" opacity="0.07" />
+        <rect x="1175" y="675" width="46" height="46" rx="4" stroke="#FF8F66" strokeWidth="1.5" opacity="0.18" transform="rotate(25 1198 698)" />
+        <rect x="38" y="575" width="30" height="30" rx="3" stroke="#5FAE7F" strokeWidth="1.5" opacity="0.18" transform="rotate(-18 53 590)" />
+        <rect x="695" y="36" width="24" height="24" rx="2" stroke="#F2B84B" strokeWidth="1.5" opacity="0.18" transform="rotate(12 707 48)" />
+        <circle cx="155" cy="215" r="4" fill="#D9668A" opacity="0.28" />
+        <circle cx="445" cy="798" r="4" fill="#F2B84B" opacity="0.28" />
+        <circle cx="945" cy="115" r="4" fill="#5FAE7F" opacity="0.28" />
+        <circle cx="1245" cy="695" r="4" fill="#FF8F66" opacity="0.28" />
+        <circle cx="815" cy="858" r="3" fill="#D9668A" opacity="0.22" />
+        <polyline points="0,878 45,848 90,878 135,848 180,878 225,848 270,878 315,848 360,878" stroke="#D9668A" strokeWidth="1.5" opacity="0.1" />
+        <polyline points="1075,25 1118,58 1162,25 1206,58 1250,25 1294,58 1338,25 1382,58 1440,25" stroke="#F2B84B" strokeWidth="1.5" opacity="0.1" />
         {Array.from({ length: 4 }, (_, row) =>
           Array.from({ length: 6 }, (_, col) => (
-            <circle key={`dot-${row}-${col}`} cx={1075 + col * 28} cy={575 + row * 28} r="2.5" fill="#9B5CFF" opacity="0.09" />
+            <circle key={`dot-${row}-${col}`} cx={1075 + col * 28} cy={575 + row * 28} r="2.5" fill="#5FAE7F" opacity="0.09" />
           ))
         )}
       </svg>
@@ -142,10 +142,10 @@ export function NeonBoxContents() {
   }
 
   const blueGlow = isOn
-    ? "drop-shadow(0 0 6px #00E5FF) drop-shadow(0 0 16px rgba(0,229,255,0.65)) drop-shadow(0 0 32px rgba(0,229,255,0.35))"
+    ? "drop-shadow(0 0 6px #F2B84B) drop-shadow(0 0 16px rgba(242,184,75,0.65)) drop-shadow(0 0 32px rgba(242,184,75,0.35))"
     : "none";
   const pinkGlow = isOn
-    ? "drop-shadow(0 0 6px #FF00C8) drop-shadow(0 0 16px rgba(255,0,200,0.65)) drop-shadow(0 0 32px rgba(255,0,200,0.35))"
+    ? "drop-shadow(0 0 6px #D9668A) drop-shadow(0 0 16px rgba(217,102,138,0.65)) drop-shadow(0 0 32px rgba(217,102,138,0.35))"
     : "none";
 
   return (
@@ -164,7 +164,7 @@ export function NeonBoxContents() {
           <h2
             className="text-[clamp(28px,4vw,48px)] font-black tracking-tight mb-4"
             style={{
-              background: "linear-gradient(90deg, #FF00C8 0%, #9B5CFF 50%, #00E5FF 100%)",
+              background: "linear-gradient(90deg, #D9668A 0%, #5FAE7F 50%, #F2B84B 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -197,7 +197,7 @@ export function NeonBoxContents() {
                 border: "1px solid rgba(255,255,255,0.06)",
                 padding: "44px 24px 36px",
                 boxShadow: isOn
-                  ? "0 0 80px rgba(0,229,255,0.12), 0 0 140px rgba(255,0,200,0.07), 0 24px 64px rgba(0,0,0,0.2)"
+                  ? "0 0 80px rgba(242,184,75,0.12), 0 0 140px rgba(217,102,138,0.07), 0 24px 64px rgba(0,0,0,0.2)"
                   : "0 24px 64px rgba(0,0,0,0.1)",
                 transition: "box-shadow 0.8s ease",
               }}
@@ -205,10 +205,10 @@ export function NeonBoxContents() {
               {/* Corner status dots */}
               {(
                 [
-                  ["top-3 left-3", "#FF00C8"],
-                  ["top-3 right-3", "#00E5FF"],
-                  ["bottom-3 left-3", "#9B5CFF"],
-                  ["bottom-3 right-3", "#FF7A00"],
+                  ["top-3 left-3", "#D9668A"],
+                  ["top-3 right-3", "#F2B84B"],
+                  ["bottom-3 left-3", "#5FAE7F"],
+                  ["bottom-3 right-3", "#FF8F66"],
                 ] as [string, string][]
               ).map(([pos, color]) => (
                 <div
@@ -227,7 +227,7 @@ export function NeonBoxContents() {
                 className="absolute inset-0 rounded-[20px] pointer-events-none"
                 style={{
                   background: isOn
-                    ? "radial-gradient(ellipse at 50% 40%, rgba(0,229,255,0.05) 0%, rgba(255,0,200,0.04) 55%, transparent 75%)"
+                    ? "radial-gradient(ellipse at 50% 40%, rgba(242,184,75,0.05) 0%, rgba(217,102,138,0.04) 55%, transparent 75%)"
                     : "none",
                   transition: "background 0.8s ease",
                 }}
@@ -253,8 +253,8 @@ export function NeonBoxContents() {
                       fontWeight="900"
                       fontSize="88"
                       letterSpacing="6"
-                      fill={isOn ? "rgba(0,229,255,0.09)" : "none"}
-                      stroke={isOn ? "#00E5FF" : "#282828"}
+                      fill={isOn ? "rgba(242,184,75,0.09)" : "none"}
+                      stroke={isOn ? "#F2B84B" : "#282828"}
                       strokeWidth={isOn ? "2.5" : "1.5"}
                       style={{ transition: "stroke 0.6s ease, fill 0.6s ease" }}
                     >
@@ -274,8 +274,8 @@ export function NeonBoxContents() {
                       fontWeight="900"
                       fontSize="84"
                       letterSpacing="8"
-                      fill={isOn ? "rgba(255,0,200,0.09)" : "none"}
-                      stroke={isOn ? "#FF00C8" : "#282828"}
+                      fill={isOn ? "rgba(217,102,138,0.09)" : "none"}
+                      stroke={isOn ? "#D9668A" : "#282828"}
                       strokeWidth={isOn ? "2.5" : "1.5"}
                       style={{ transition: "stroke 0.6s ease, fill 0.6s ease" }}
                     >
@@ -293,7 +293,7 @@ export function NeonBoxContents() {
                   transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                   style={{
                     background:
-                      "radial-gradient(ellipse at center, rgba(0,229,255,0.1) 0%, rgba(255,0,200,0.07) 45%, transparent 72%)",
+                      "radial-gradient(ellipse at center, rgba(242,184,75,0.1) 0%, rgba(217,102,138,0.07) 45%, transparent 72%)",
                   }}
                 />
               )}
@@ -303,9 +303,9 @@ export function NeonBoxContents() {
             <svg viewBox="0 0 280 180" className="w-64 h-40">
               <defs>
                 <linearGradient id="cable-elec-grad" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stopColor="#00E5FF" />
-                  <stop offset="55%" stopColor="#9B5CFF" />
-                  <stop offset="100%" stopColor="#FF00C8" />
+                  <stop offset="0%" stopColor="#F2B84B" />
+                  <stop offset="55%" stopColor="#5FAE7F" />
+                  <stop offset="100%" stopColor="#D9668A" />
                 </linearGradient>
               </defs>
 
@@ -337,7 +337,7 @@ export function NeonBoxContents() {
                 <rect
                   x="112" y="10" width="56" height="30" rx="7"
                   fill="#181818"
-                  stroke={isPlugged ? "#00E5FF" : "#333"}
+                  stroke={isPlugged ? "#F2B84B" : "#333"}
                   strokeWidth="1.5"
                   style={{ transition: "stroke 0.3s" }}
                 />
@@ -347,7 +347,7 @@ export function NeonBoxContents() {
                   <motion.rect
                     x="103" y="1" width="74" height="48" rx="10"
                     fill="none"
-                    stroke="#00E5FF"
+                    stroke="#F2B84B"
                     strokeWidth="1.5"
                     initial={{ scale: 1, opacity: 0.8 }}
                     animate={{ scale: 1.5, opacity: 0 }}
@@ -365,7 +365,7 @@ export function NeonBoxContents() {
                 <rect
                   x="113" y="158" width="54" height="26" rx="6"
                   fill="#121212"
-                  stroke={isPlugged ? "#00E5FF" : "#333"}
+                  stroke={isPlugged ? "#F2B84B" : "#333"}
                   strokeWidth="1.5"
                   style={{ transition: "stroke 0.3s" }}
                 />
@@ -383,8 +383,8 @@ export function NeonBoxContents() {
                   onClick={handlePlug}
                   className="px-8 py-3 rounded-full font-bold text-sm text-white hover:scale-105 active:scale-95 cursor-pointer"
                   style={{
-                    background: "linear-gradient(135deg, #9B5CFF 0%, #FF00C8 100%)",
-                    boxShadow: "0 6px 28px rgba(155,92,255,0.4)",
+                    background: "linear-gradient(135deg, #5FAE7F 0%, #D9668A 100%)",
+                    boxShadow: "0 6px 28px rgba(95,174,127,0.4)",
                     transition: "transform 0.15s",
                   }}
                 >

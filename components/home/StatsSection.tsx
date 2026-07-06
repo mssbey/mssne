@@ -57,16 +57,16 @@ export function StatsSection() {
   return (
     <section className="relative py-20 overflow-hidden">
       {/* Subtle top/bottom borders */}
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-      <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-black/10 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-black/10 to-transparent" />
 
       {/* Background glow */}
-      <div className="absolute inset-0 bg-[#0A0A0A]" />
+      <div className="absolute inset-0 bg-[#F3EDEA]" />
       <div
         className="absolute inset-0 opacity-30"
         style={{
           background:
-            "radial-gradient(ellipse 80% 60% at 50% 50%, rgba(155,92,255,0.08) 0%, transparent 70%)",
+            "radial-gradient(ellipse 80% 60% at 50% 50%, rgba(95,174,127,0.08) 0%, transparent 70%)",
         }}
       />
 
@@ -76,13 +76,13 @@ export function StatsSection() {
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center text-xs font-bold uppercase tracking-[5px] text-white/25 mb-12"
+          className="text-center text-xs font-bold uppercase tracking-[5px] text-black/25 mb-12"
         >
           Rakamlarla Ikarus
         </motion.p>
 
         {/* Stats grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-white/5 rounded-2xl overflow-hidden border border-white/[0.06]">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-black/5 rounded-2xl overflow-hidden border border-black/[0.06]">
           {STATS.map((stat, i) => (
             <motion.div
               key={stat.label}
@@ -90,7 +90,7 @@ export function StatsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
-              className="group relative flex flex-col items-center justify-center gap-3 px-8 py-10 bg-[#0A0A0A] hover:bg-[#0F0F0F] transition-colors duration-300"
+              className="group relative flex flex-col items-center justify-center gap-3 px-8 py-10 bg-[#F3EDEA] hover:bg-[#FFFFFF] transition-colors duration-300"
             >
               {/* Hover accent line */}
               <div
@@ -126,7 +126,7 @@ export function StatsSection() {
               </div>
 
               {/* Label */}
-              <div className="text-[11px] font-semibold uppercase tracking-[2px] text-white/35 text-center">
+              <div className="text-[11px] font-semibold uppercase tracking-[2px] text-black/35 text-center">
                 {stat.label}
               </div>
             </motion.div>

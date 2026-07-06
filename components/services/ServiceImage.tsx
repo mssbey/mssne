@@ -17,7 +17,7 @@ export function ServiceImage({
   alt,
   label,
   icon,
-  color = "#FF00C8",
+  color = "#D9668A",
   className,
   ...props
 }: ServiceImageProps) {
@@ -32,7 +32,7 @@ export function ServiceImage({
           className
         )}
         style={{
-          background: `radial-gradient(ellipse 90% 90% at 50% 30%, ${color}1c 0%, transparent 70%), #0B0B0D`,
+          background: `radial-gradient(ellipse 90% 90% at 50% 30%, ${color}1c 0%, transparent 70%), #FFFFFF`,
         }}
       >
         <div
@@ -49,7 +49,7 @@ export function ServiceImage({
           style={{ color, filter: `drop-shadow(0 0 16px ${color}80)` }}
           className="relative"
         />
-        <span className="relative text-[11px] text-white/35 text-center px-6 max-w-[260px] leading-relaxed tracking-wide">
+        <span className="relative text-[11px] text-black/35 text-center px-6 max-w-[260px] leading-relaxed tracking-wide">
           {label}
         </span>
       </div>

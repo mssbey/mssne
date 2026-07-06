@@ -6,7 +6,7 @@ import type { ServiceData } from "@/lib/services";
 
 export function ProcessTimeline({ service }: { service: ServiceData }) {
   return (
-    <section className="py-24 px-6 bg-[#080808] overflow-hidden">
+    <section className="py-24 px-6 bg-[#F3EDEA] overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="max-w-2xl mb-16">
           <span
@@ -15,14 +15,14 @@ export function ProcessTimeline({ service }: { service: ServiceData }) {
           >
             Üretim Süreci
           </span>
-          <h2 className="text-[clamp(28px,4vw,44px)] font-black tracking-[-1.5px] leading-tight text-white">
+          <h2 className="text-[clamp(28px,4vw,44px)] font-black tracking-[-1.5px] leading-tight text-black">
             Keşiften Teslime 6 Adımlık Yol Haritası
           </h2>
         </div>
 
         {/* Desktop timeline */}
         <div className="hidden lg:block relative">
-          <div className="absolute top-9 left-0 right-0 h-px bg-white/8" />
+          <div className="absolute top-9 left-0 right-0 h-px bg-black/8" />
           <motion.div
             initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
@@ -45,7 +45,7 @@ export function ProcessTimeline({ service }: { service: ServiceData }) {
                 >
                   <div
                     className="relative z-10 w-[72px] h-[72px] rounded-2xl flex items-center justify-center mb-5 border"
-                    style={{ background: "#0D0D0D", borderColor: `${service.color}40` }}
+                    style={{ background: "#FFFFFF", borderColor: `${service.color}40` }}
                   >
                     <Icon size={24} style={{ color: service.color }} />
                   </div>
@@ -55,8 +55,8 @@ export function ProcessTimeline({ service }: { service: ServiceData }) {
                   >
                     {step.step}
                   </span>
-                  <h4 className="text-sm font-bold text-white mb-2">{step.title}</h4>
-                  <p className="text-[11.5px] text-white/40 leading-relaxed px-1">{step.desc}</p>
+                  <h4 className="text-sm font-bold text-black mb-2">{step.title}</h4>
+                  <p className="text-[11.5px] text-black/40 leading-relaxed px-1">{step.desc}</p>
                 </motion.div>
               );
             })}
@@ -65,7 +65,7 @@ export function ProcessTimeline({ service }: { service: ServiceData }) {
 
         {/* Mobile / tablet timeline */}
         <div className="lg:hidden relative pl-8">
-          <div className="absolute top-2 bottom-2 left-[15px] w-px bg-white/8" />
+          <div className="absolute top-2 bottom-2 left-[15px] w-px bg-black/8" />
           <div className="space-y-8">
             {service.process.map((step, i) => {
               const Icon = getServiceIcon(step.icon);
@@ -80,7 +80,7 @@ export function ProcessTimeline({ service }: { service: ServiceData }) {
                 >
                   <div
                     className="absolute -left-8 top-0 w-8 h-8 rounded-full flex items-center justify-center border"
-                    style={{ background: "#0D0D0D", borderColor: `${service.color}40` }}
+                    style={{ background: "#FFFFFF", borderColor: `${service.color}40` }}
                   >
                     <Icon size={14} style={{ color: service.color }} />
                   </div>
@@ -88,8 +88,8 @@ export function ProcessTimeline({ service }: { service: ServiceData }) {
                     <span className="text-[11px] font-bold tracking-[3px]" style={{ color: service.color }}>
                       {step.step}
                     </span>
-                    <h4 className="text-sm font-bold text-white mt-1 mb-1.5">{step.title}</h4>
-                    <p className="text-xs text-white/40 leading-relaxed">{step.desc}</p>
+                    <h4 className="text-sm font-bold text-black mt-1 mb-1.5">{step.title}</h4>
+                    <p className="text-xs text-black/40 leading-relaxed">{step.desc}</p>
                   </div>
                 </motion.div>
               );

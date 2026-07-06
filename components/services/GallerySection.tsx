@@ -18,7 +18,7 @@ export function GallerySection({ service }: { service: ServiceData }) {
   const active = activeIndex !== null ? service.gallery[activeIndex] : null;
 
   return (
-    <section id="galeri" className="py-24 px-6 bg-[#050505]">
+    <section id="galeri" className="py-24 px-6 bg-[#FBF8F6]">
       <div className="max-w-7xl mx-auto">
         <div className="max-w-2xl mb-14">
           <span
@@ -27,7 +27,7 @@ export function GallerySection({ service }: { service: ServiceData }) {
           >
             Galeri
           </span>
-          <h2 className="text-[clamp(28px,4vw,44px)] font-black tracking-[-1.5px] leading-tight text-white">
+          <h2 className="text-[clamp(28px,4vw,44px)] font-black tracking-[-1.5px] leading-tight text-black">
             Tamamlanan {service.shortTitle} Projelerimizden
           </h2>
         </div>
@@ -42,7 +42,7 @@ export function GallerySection({ service }: { service: ServiceData }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: (i % 4) * 0.08 }}
-              className="group relative w-full mb-4 rounded-2xl overflow-hidden border border-white/8 hover:border-white/20 transition-all block cursor-none text-left"
+              className="group relative w-full mb-4 rounded-2xl overflow-hidden border border-black/8 hover:border-black/20 transition-all block cursor-none text-left"
               style={{ breakInside: "avoid", aspectRatio: i % 5 === 0 ? "3/4" : "4/5" }}
             >
               <ServiceImage
@@ -78,7 +78,7 @@ export function GallerySection({ service }: { service: ServiceData }) {
           >
             <button
               onClick={close}
-              className="absolute top-6 right-6 w-10 h-10 rounded-full flex items-center justify-center bg-white/10 text-white hover:bg-white/20 transition-colors cursor-none"
+              className="absolute top-6 right-6 w-10 h-10 rounded-full flex items-center justify-center bg-black/10 text-white hover:bg-black/20 transition-colors cursor-none"
             >
               <X size={18} />
             </button>
@@ -87,7 +87,7 @@ export function GallerySection({ service }: { service: ServiceData }) {
                 e.stopPropagation();
                 prev();
               }}
-              className="absolute left-4 sm:left-8 w-11 h-11 rounded-full flex items-center justify-center bg-white/10 text-white hover:bg-white/20 transition-colors cursor-none"
+              className="absolute left-4 sm:left-8 w-11 h-11 rounded-full flex items-center justify-center bg-black/10 text-white hover:bg-black/20 transition-colors cursor-none"
             >
               <ChevronLeft size={20} />
             </button>
@@ -96,7 +96,7 @@ export function GallerySection({ service }: { service: ServiceData }) {
                 e.stopPropagation();
                 next();
               }}
-              className="absolute right-4 sm:right-8 w-11 h-11 rounded-full flex items-center justify-center bg-white/10 text-white hover:bg-white/20 transition-colors cursor-none"
+              className="absolute right-4 sm:right-8 w-11 h-11 rounded-full flex items-center justify-center bg-black/10 text-white hover:bg-black/20 transition-colors cursor-none"
             >
               <ChevronRight size={20} />
             </button>
@@ -106,7 +106,7 @@ export function GallerySection({ service }: { service: ServiceData }) {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-3xl aspect-[4/3] rounded-2xl overflow-hidden border border-white/10"
+              className="relative w-full max-w-3xl aspect-[4/3] rounded-2xl overflow-hidden border border-black/10"
             >
               <ServiceImage
                 src={`/${service.basePath ?? "hizmetler"}/${service.slug}/gallery-${(activeIndex ?? 0) + 1}.jpg`}

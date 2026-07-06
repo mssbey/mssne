@@ -266,15 +266,15 @@ export default function GirisPage() {
   return (
     <div className="min-h-screen grid lg:grid-cols-2">
       {/* Left Content Section */}
-      <div className="relative hidden lg:flex flex-col justify-between bg-gradient-to-br from-[#9B5CFF]/90 via-[#9B5CFF] to-[#9B5CFF]/80 p-12 text-white">
+      <div className="relative hidden lg:flex flex-col justify-between bg-gradient-to-br from-[#5FAE7F]/90 via-[#5FAE7F] to-[#5FAE7F]/80 p-12 text-black">
         <div className="relative z-20">
           <Link href="/" className="flex items-center gap-2 text-lg font-semibold cursor-none">
-            <div className="size-8 rounded-lg bg-white/10 backdrop-blur-sm flex items-center justify-center">
+            <div className="size-8 rounded-lg bg-black/10 backdrop-blur-sm flex items-center justify-center">
               <Sparkles className="size-4" />
             </div>
             <span className="font-black">
-              <span style={{ background: "linear-gradient(135deg,#FF00C8,#fff)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>IKARUS</span>
-              <span className="text-white ml-1">REKLAM</span>
+              <span style={{ background: "linear-gradient(135deg,#D9668A,#fff)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>IKARUS</span>
+              <span className="text-black ml-1">REKLAM</span>
             </span>
           </Link>
         </div>
@@ -433,39 +433,39 @@ export default function GirisPage() {
         </div>
 
 
-        <div className="relative z-20 flex items-center gap-8 text-sm text-white/60">
-          <a href="#" className="hover:text-white transition-colors cursor-none">Privacy Policy</a>
-          <a href="#" className="hover:text-white transition-colors cursor-none">Terms of Service</a>
-          <a href="#" className="hover:text-white transition-colors cursor-none">Contact</a>
+        <div className="relative z-20 flex items-center gap-8 text-sm text-black/60">
+          <a href="#" className="hover:text-black transition-colors cursor-none">Privacy Policy</a>
+          <a href="#" className="hover:text-black transition-colors cursor-none">Terms of Service</a>
+          <a href="#" className="hover:text-black transition-colors cursor-none">Contact</a>
         </div>
 
-        <div className="absolute inset-0 bg-[size:20px_20px]" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.05) 1px,transparent 1px)" }} />
-        <div className="absolute top-1/4 right-1/4 size-64 bg-white/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 left-1/4 size-96 bg-white/5 rounded-full blur-3xl" />
+        <div className="absolute inset-0 bg-[size:20px_20px]" style={{ backgroundImage: "linear-gradient(rgba(0,0,0,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,0.05) 1px,transparent 1px)" }} />
+        <div className="absolute top-1/4 right-1/4 size-64 bg-black/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 left-1/4 size-96 bg-black/5 rounded-full blur-3xl" />
       </div>
 
       {/* Right Login Section */}
-      <div className="flex items-center justify-center p-8 bg-[#050505]">
+      <div className="flex items-center justify-center p-8 bg-[#FBF8F6]">
         <div className="w-full max-w-[420px]">
           {/* Mobile Logo */}
           <div className="lg:hidden flex items-center justify-center gap-2 text-lg font-semibold mb-12">
-            <div className="size-8 rounded-lg bg-[#9B5CFF]/10 flex items-center justify-center">
-              <Sparkles className="size-4 text-[#9B5CFF]" />
+            <div className="size-8 rounded-lg bg-[#5FAE7F]/10 flex items-center justify-center">
+              <Sparkles className="size-4 text-[#5FAE7F]" />
             </div>
             <Link href="/" className="font-black cursor-none">
-              <span style={{ background: "linear-gradient(135deg,#FF00C8,#9B5CFF)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>IKARUS</span>
-              <span className="text-white ml-1">REKLAM</span>
+              <span style={{ background: "linear-gradient(135deg,#D9668A,#5FAE7F)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>IKARUS</span>
+              <span className="text-black ml-1">REKLAM</span>
             </Link>
           </div>
 
           <div className="text-center mb-10">
-            <h1 className="text-3xl font-bold tracking-tight mb-2 text-white">Welcome back!</h1>
-            <p className="text-white/55 text-sm">Please enter your details</p>
+            <h1 className="text-3xl font-bold tracking-tight mb-2 text-black">Welcome back!</h1>
+            <p className="text-black/55 text-sm">Please enter your details</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-5">
             <div className="space-y-2">
-              <Label htmlFor="email" className="text-sm font-medium text-white/70">Email</Label>
+              <Label htmlFor="email" className="text-sm font-medium text-black/70">Email</Label>
               <Input
                 id="email"
                 type="email"
@@ -481,7 +481,7 @@ export default function GirisPage() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="password" className="text-sm font-medium text-white/70">Password</Label>
+              <Label htmlFor="password" className="text-sm font-medium text-black/70">Password</Label>
               <div className="relative">
                 <Input
                   id="password"
@@ -495,7 +495,7 @@ export default function GirisPage() {
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-white/30 hover:text-white transition-colors cursor-none"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-black/30 hover:text-black transition-colors cursor-none"
                 >
                   {showPassword ? <EyeOff className="size-5" /> : <Eye className="size-5" />}
                 </button>
@@ -505,11 +505,11 @@ export default function GirisPage() {
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-2">
                 <Checkbox id="remember" />
-                <Label htmlFor="remember" className="text-sm font-normal text-white/55 cursor-pointer">
+                <Label htmlFor="remember" className="text-sm font-normal text-black/55 cursor-pointer">
                   Remember for 30 days
                 </Label>
               </div>
-              <a href="#" className="text-sm text-[#9B5CFF] hover:underline font-medium cursor-none">
+              <a href="#" className="text-sm text-[#5FAE7F] hover:underline font-medium cursor-none">
                 Forgot password?
               </a>
             </div>
@@ -528,7 +528,7 @@ export default function GirisPage() {
           <div className="mt-6">
             <Button
               variant="outline"
-              className="w-full h-12 border-white/15 hover:bg-[#111] text-white"
+              className="w-full h-12 border-black/15 hover:bg-black/5 text-black"
               type="button"
             >
               <Mail className="mr-2 size-5" />
@@ -536,9 +536,9 @@ export default function GirisPage() {
             </Button>
           </div>
 
-          <div className="text-center text-sm text-white/40 mt-8">
+          <div className="text-center text-sm text-black/40 mt-8">
             Don&apos;t have an account?{" "}
-            <Link href="/kayit" className="text-white font-medium hover:underline cursor-none">
+            <Link href="/kayit" className="text-black font-medium hover:underline cursor-none">
               Sign Up
             </Link>
           </div>

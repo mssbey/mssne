@@ -9,7 +9,7 @@ export function FaqSection({ service }: { service: ServiceData }) {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section className="py-24 px-6 bg-[#080808]">
+    <section className="py-24 px-6 bg-[#F3EDEA]">
       <div className="max-w-3xl mx-auto">
         <div className="mb-14">
           <span
@@ -18,7 +18,7 @@ export function FaqSection({ service }: { service: ServiceData }) {
           >
             Sık Sorulan Sorular
           </span>
-          <h2 className="text-[clamp(28px,4vw,44px)] font-black tracking-[-1.5px] leading-tight text-white">
+          <h2 className="text-[clamp(28px,4vw,44px)] font-black tracking-[-1.5px] leading-tight text-black">
             {service.shortTitle} Hakkında Merak Edilenler
           </h2>
         </div>
@@ -33,14 +33,14 @@ export function FaqSection({ service }: { service: ServiceData }) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: (i % 10) * 0.04 }}
-                className="rounded-2xl border border-white/8 bg-[#0D0D0D] overflow-hidden"
+                className="rounded-2xl border border-black/8 bg-[#FFFFFF] overflow-hidden"
               >
                 <button
                   type="button"
                   onClick={() => setOpen(isOpen ? null : i)}
                   className="w-full flex items-center justify-between gap-4 text-left px-6 py-5 cursor-none"
                 >
-                  <span className="text-sm font-semibold text-white">{item.q}</span>
+                  <span className="text-sm font-semibold text-black">{item.q}</span>
                   <span
                     className="shrink-0 w-7 h-7 rounded-full flex items-center justify-center transition-transform"
                     style={{
@@ -61,7 +61,7 @@ export function FaqSection({ service }: { service: ServiceData }) {
                       transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
                       className="overflow-hidden"
                     >
-                      <p className="px-6 pb-5 text-sm text-white/45 leading-relaxed">{item.a}</p>
+                      <p className="px-6 pb-5 text-sm text-black/45 leading-relaxed">{item.a}</p>
                     </motion.div>
                   )}
                 </AnimatePresence>

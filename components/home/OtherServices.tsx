@@ -20,42 +20,42 @@ const OTHER_SERVICES: OtherService[] = [
     title: "Tabela Sistemleri",
     tagline: "Kutu harf, ışıklı tabela, kompozit, totem ve cephe giydirme.",
     icon: "CaseSensitive",
-    color: "#FF00C8",
+    color: "#D9668A",
   },
   {
     href: "/urunler",
     title: "Neon Tabela",
     tagline: "Kişiye özel LED neon tasarımları, online stüdyoda hazırla.",
     icon: "Sparkles",
-    color: "#9B5CFF",
+    color: "#5FAE7F",
   },
   {
     href: "/baski-matbaa",
     title: "Baskı ve Matbaa",
     tagline: "Kartvizit, broşür ve magnet baskı hizmeti.",
     icon: "CreditCard",
-    color: "#00E5FF",
+    color: "#F2B84B",
   },
   {
     href: "/acik-hava",
     title: "Açık Hava Reklamları",
     tagline: "Billboard, vinil germe ve araç giydirme çözümleri.",
     icon: "Image",
-    color: "#FF7A00",
+    color: "#FF8F66",
   },
   {
     href: "/davetiyeler",
     title: "Davetiye",
     tagline: "Düğün, nişan ve özel günler için davetiye koleksiyonu.",
     emoji: "💌",
-    color: "#9B5CFF",
+    color: "#5FAE7F",
   },
   {
     href: "/studio",
     title: "Kendin Tasarla",
     tagline: "Online stüdyoda yazını gir, tasarımını gerçek zamanlı gör.",
     icon: "PenTool",
-    color: "#FF00C8",
+    color: "#D9668A",
   },
 ];
 
@@ -83,7 +83,7 @@ function ServiceCard({ service, index }: { service: OtherService; index: number 
         />
 
         {/* Card body */}
-        <div className="relative flex h-full min-h-[248px] flex-col justify-between overflow-hidden rounded-[27px] border border-white/8 bg-[#0D0D0D] p-7 transition-colors duration-500 group-hover:border-transparent">
+        <div className="relative flex h-full min-h-[248px] flex-col justify-between overflow-hidden rounded-[27px] border border-black/8 bg-[#FFFFFF] p-7 transition-colors duration-500 group-hover:border-transparent">
           {/* Ambient hover glow */}
           <div
             className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
@@ -111,7 +111,7 @@ function ServiceCard({ service, index }: { service: OtherService; index: number 
           </div>
 
           {/* Index badge */}
-          <span className="absolute top-6 right-7 text-[11px] font-black tracking-widest text-white/10 transition-colors duration-500 group-hover:text-white/25">
+          <span className="absolute top-6 right-7 text-[11px] font-black tracking-widest text-black/10 transition-colors duration-500 group-hover:text-black/25">
             {String(index + 1).padStart(2, "0")}
           </span>
 
@@ -136,10 +136,10 @@ function ServiceCard({ service, index }: { service: OtherService; index: number 
 
           {/* Text */}
           <div className="relative z-10">
-            <h3 className="mb-2 text-lg font-black tracking-[-0.3px] text-white">
+            <h3 className="mb-2 text-lg font-black tracking-[-0.3px] text-black">
               {service.title}
             </h3>
-            <p className="mb-6 text-xs leading-relaxed text-white/40">{service.tagline}</p>
+            <p className="mb-6 text-xs leading-relaxed text-black/40">{service.tagline}</p>
 
             <span
               className="inline-flex items-center gap-1.5 text-xs font-bold"
@@ -169,17 +169,17 @@ export function OtherServices() {
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
         <div
           className="absolute -left-32 -top-32 h-96 w-96 rounded-full opacity-[0.12] blur-[100px]"
-          style={{ background: "#FF00C8" }}
+          style={{ background: "#D9668A" }}
         />
         <div
           className="absolute -right-32 bottom-0 h-96 w-96 rounded-full opacity-[0.10] blur-[100px]"
-          style={{ background: "#00E5FF" }}
+          style={{ background: "#F2B84B" }}
         />
         <div
           className="absolute inset-0 opacity-[0.4]"
           style={{
             backgroundImage:
-              "radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px)",
+              "radial-gradient(rgba(0,0,0,0.05) 1px, transparent 1px)",
             backgroundSize: "26px 26px",
             maskImage: "radial-gradient(ellipse 60% 60% at 50% 40%, black, transparent)",
             WebkitMaskImage: "radial-gradient(ellipse 60% 60% at 50% 40%, black, transparent)",
@@ -194,17 +194,17 @@ export function OtherServices() {
           viewport={{ once: true }}
           className="mb-16 text-center"
         >
-          <span className="mb-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[4px] text-[#00E5FF]">
+          <span className="mb-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[4px] text-[#F2B84B]">
             <span
               className="h-1.5 w-1.5 rounded-full"
-              style={{ background: "#00E5FF", boxShadow: "0 0 8px #00E5FF" }}
+              style={{ background: "#F2B84B", boxShadow: "0 0 8px #F2B84B" }}
             />
             Diğer Hizmetlerimiz
           </span>
           <h2
             className="mx-auto max-w-2xl text-[clamp(28px,4vw,48px)] font-black leading-tight tracking-[-1.5px]"
             style={{
-              background: "linear-gradient(180deg, #fff 0%, rgba(255,255,255,0.65) 100%)",
+              background: "linear-gradient(180deg, #1a1a1a 0%, rgba(0,0,0,0.65) 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -212,7 +212,7 @@ export function OtherServices() {
           >
             Neon&apos;un Ötesinde de Yanınızdayız
           </h2>
-          <p className="mx-auto mt-4 max-w-lg text-sm leading-relaxed text-white/40">
+          <p className="mx-auto mt-4 max-w-lg text-sm leading-relaxed text-black/40">
             Tabeladan baskıya, açık hava reklamından kişiye özel tasarıma kadar markanızın
             ihtiyaç duyduğu her şey tek çatı altında.
           </p>

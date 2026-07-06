@@ -226,7 +226,7 @@ export default function StudioPage() {
         onChange={handleBgUpload}
       />
 
-      <div className="min-h-screen pt-24 pb-16 px-6 bg-[#050505]">
+      <div className="min-h-screen pt-24 pb-16 px-6 bg-[#FBF8F6]">
         <div className="max-w-7xl mx-auto">
           {/* Başlık */}
           <motion.div
@@ -240,7 +240,7 @@ export default function StudioPage() {
             <h1
               className="text-[clamp(32px,5vw,60px)] font-black tracking-[-2px]"
               style={{
-                background: "linear-gradient(180deg, #fff 0%, rgba(255,255,255,0.65) 100%)",
+                background: "linear-gradient(180deg, #1a1a1a 0%, rgba(0,0,0,0.65) 100%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
@@ -255,7 +255,7 @@ export default function StudioPage() {
             <div className="sticky top-28">
               <div
                 ref={previewRef}
-                className="relative rounded-3xl border border-white/10 overflow-hidden min-h-[380px]"
+                className="relative rounded-3xl border border-black/10 overflow-hidden min-h-[380px]"
                 style={{ ...bgStyle, cursor: isDragging ? "grabbing" : "default" }}
               >
                 {/* Ortam overlay */}
@@ -299,14 +299,14 @@ export default function StudioPage() {
               <div className="flex gap-3 mt-4">
                 <button
                   onClick={() => fileInputRef.current?.click()}
-                  className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl border border-white/10 text-sm text-white/50 hover:text-white hover:border-white/20 transition-all cursor-none"
+                  className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl border border-black/10 text-sm text-black/50 hover:text-black hover:border-black/20 transition-all cursor-none"
                 >
                   <ImagePlus size={14} />
                   Arka Plan Ekle
                 </button>
                 <button
                   onClick={() => { setFlicker(!flicker); }}
-                  className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl border border-white/10 text-sm text-white/50 hover:text-white hover:border-white/20 transition-all cursor-none"
+                  className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl border border-black/10 text-sm text-black/50 hover:text-black hover:border-black/20 transition-all cursor-none"
                 >
                   <RefreshCw size={14} />
                   {flicker ? "Yanıp Sönmeyi Durdur" : "Yanıp Sönme Efekti"}
@@ -314,14 +314,14 @@ export default function StudioPage() {
                 <button
                   onClick={handleDownload}
                   disabled={isDownloading}
-                  className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl border border-white/10 text-sm text-white/50 hover:text-white hover:border-white/20 transition-all cursor-none disabled:opacity-40"
+                  className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl border border-black/10 text-sm text-black/50 hover:text-black hover:border-black/20 transition-all cursor-none disabled:opacity-40"
                 >
                   <Download size={14} />
                   {isDownloading ? "İndiriliyor…" : "PNG İndir"}
                 </button>
               </div>
 
-              <p className="text-xs text-white/20 text-center mt-2">
+              <p className="text-xs text-black/20 text-center mt-2">
                 ✦ Yazıyı fare ile sürükleyerek konumlandırabilirsiniz
               </p>
             </div>
@@ -329,8 +329,8 @@ export default function StudioPage() {
             {/* Kontroller */}
             <div className="space-y-6">
               {/* Yazı */}
-              <div className="p-6 rounded-2xl border border-white/8 bg-[#0D0D0D]">
-                <label className="text-xs font-bold uppercase tracking-wider text-white/30 mb-3 block">
+              <div className="p-6 rounded-2xl border border-black/8 bg-[#FFFFFF]">
+                <label className="text-xs font-bold uppercase tracking-wider text-black/30 mb-3 block">
                   Yazınız
                 </label>
                 <input
@@ -339,14 +339,14 @@ export default function StudioPage() {
                   onChange={(e) => setText(e.target.value)}
                   maxLength={30}
                   placeholder="Neon yazınızı girin..."
-                  className="w-full bg-transparent text-white text-lg font-semibold outline-none placeholder:text-white/20 border-b border-white/10 pb-2 focus:border-[#FF00C8]/50 transition-colors cursor-auto"
+                  className="w-full bg-transparent text-black text-lg font-semibold outline-none placeholder:text-black/20 border-b border-black/10 pb-2 focus:border-[#FF00C8]/50 transition-colors cursor-auto"
                 />
-                <p className="text-xs text-white/20 mt-2 text-right">{text.length}/30</p>
+                <p className="text-xs text-black/20 mt-2 text-right">{text.length}/30</p>
               </div>
 
               {/* Font */}
-              <div className="p-6 rounded-2xl border border-white/8 bg-[#0D0D0D]">
-                <label className="text-xs font-bold uppercase tracking-wider text-white/30 mb-4 block">
+              <div className="p-6 rounded-2xl border border-black/8 bg-[#FFFFFF]">
+                <label className="text-xs font-bold uppercase tracking-wider text-black/30 mb-4 block">
                   Font Seçimi
                 </label>
                 <div className="grid grid-cols-2 gap-2">
@@ -356,22 +356,22 @@ export default function StudioPage() {
                       onClick={() => setFont(f.name)}
                       className="flex flex-col items-start px-4 py-3 rounded-xl border transition-all cursor-none text-left"
                       style={{
-                        borderColor: font === f.name ? "#9B5CFF" : "rgba(255,255,255,0.08)",
+                        borderColor: font === f.name ? "#9B5CFF" : "rgba(0,0,0,0.08)",
                         background: font === f.name ? "rgba(155,92,255,0.08)" : "transparent",
                       }}
                     >
-                      <span className="text-base font-bold text-white mb-0.5" style={{ fontFamily: `'${f.name}', cursive` }}>
+                      <span className="text-base font-bold text-black mb-0.5" style={{ fontFamily: `'${f.name}', cursive` }}>
                         {f.label}
                       </span>
-                      <span className="text-[10px] text-white/30">{f.style}</span>
+                      <span className="text-[10px] text-black/30">{f.style}</span>
                     </button>
                   ))}
                 </div>
               </div>
 
               {/* Renk */}
-              <div className="p-6 rounded-2xl border border-white/8 bg-[#0D0D0D]">
-                <label className="text-xs font-bold uppercase tracking-wider text-white/30 mb-4 block">
+              <div className="p-6 rounded-2xl border border-black/8 bg-[#FFFFFF]">
+                <label className="text-xs font-bold uppercase tracking-wider text-black/30 mb-4 block">
                   Renk
                 </label>
                 <div className="grid grid-cols-4 gap-3">
@@ -391,15 +391,15 @@ export default function StudioPage() {
                           outlineOffset: "3px",
                         }}
                       />
-                      <span className="text-[10px] text-white/30">{c.name}</span>
+                      <span className="text-[10px] text-black/30">{c.name}</span>
                     </button>
                   ))}
                 </div>
               </div>
 
               {/* Boyut */}
-              <div className="p-6 rounded-2xl border border-white/8 bg-[#0D0D0D]">
-                <label className="text-xs font-bold uppercase tracking-wider text-white/30 mb-3 block">
+              <div className="p-6 rounded-2xl border border-black/8 bg-[#FFFFFF]">
+                <label className="text-xs font-bold uppercase tracking-wider text-black/30 mb-3 block">
                   Boyut
                 </label>
                 <div className="flex flex-wrap gap-2">
@@ -409,9 +409,9 @@ export default function StudioPage() {
                       onClick={() => setSize(s)}
                       className="px-4 py-2 rounded-lg text-sm border transition-all cursor-none"
                       style={{
-                        borderColor: size === s ? "#FF00C8" : "rgba(255,255,255,0.08)",
+                        borderColor: size === s ? "#FF00C8" : "rgba(0,0,0,0.08)",
                         background: size === s ? "rgba(255,0,200,0.08)" : "transparent",
-                        color: size === s ? "#FF00C8" : "rgba(255,255,255,0.5)",
+                        color: size === s ? "#FF00C8" : "rgba(0,0,0,0.5)",
                       }}
                     >
                       {s}
@@ -421,8 +421,8 @@ export default function StudioPage() {
               </div>
 
               {/* Ortam */}
-              <div className="p-6 rounded-2xl border border-white/8 bg-[#0D0D0D]">
-                <label className="text-xs font-bold uppercase tracking-wider text-white/30 mb-3 block">
+              <div className="p-6 rounded-2xl border border-black/8 bg-[#FFFFFF]">
+                <label className="text-xs font-bold uppercase tracking-wider text-black/30 mb-3 block">
                   Ortam Önizleme
                 </label>
                 <div className="flex flex-wrap gap-2">
@@ -432,9 +432,9 @@ export default function StudioPage() {
                       onClick={() => setEnv(e)}
                       className="px-4 py-2 rounded-lg text-sm border transition-all cursor-none"
                       style={{
-                        borderColor: env === e ? "#00E5FF" : "rgba(255,255,255,0.08)",
+                        borderColor: env === e ? "#00E5FF" : "rgba(0,0,0,0.08)",
                         background: env === e ? "rgba(0,229,255,0.08)" : "transparent",
-                        color: env === e ? "#00E5FF" : "rgba(255,255,255,0.5)",
+                        color: env === e ? "#00E5FF" : "rgba(0,0,0,0.5)",
                       }}
                     >
                       {e}
@@ -447,14 +447,14 @@ export default function StudioPage() {
               <button
                 onClick={handleWaOrder}
                 disabled={isDownloading}
-                className="flex items-center justify-center gap-3 w-full py-4 rounded-2xl font-bold text-white text-base transition-all hover:scale-[1.02] cursor-none disabled:opacity-60"
+                className="flex items-center justify-center gap-3 w-full py-4 rounded-2xl font-bold text-black text-base transition-all hover:scale-[1.02] cursor-none disabled:opacity-60"
                 style={{ background: "#25D366", boxShadow: "0 0 32px rgba(37,211,102,0.35)" }}
               >
                 <MessageCircle size={20} />
                 WhatsApp ile Sipariş Ver
               </button>
 
-              <p className="text-xs text-white/25 text-center">
+              <p className="text-xs text-black/25 text-center">
                 Ücretsiz tasarım danışmanlığı · 7/24 destek · 2 yıl garanti
               </p>
             </div>

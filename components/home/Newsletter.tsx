@@ -14,20 +14,20 @@ export function Newsletter() {
   };
 
   return (
-    <section className="py-28 px-6 bg-[#080808]">
+    <section className="py-28 px-6 bg-[#F3EDEA]">
       <div className="max-w-2xl mx-auto text-center">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <span className="text-xs font-bold uppercase tracking-[4px] text-[#FF00C8] mb-4 block">
+          <span className="text-xs font-bold uppercase tracking-[4px] text-[#D9668A] mb-4 block">
             Bülten
           </span>
           <h2
             className="text-[clamp(28px,4vw,48px)] font-black tracking-[-2px] mb-4"
             style={{
-              background: "linear-gradient(180deg, #fff 0%, rgba(255,255,255,0.65) 100%)",
+              background: "linear-gradient(180deg, #1a1a1a 0%, rgba(0,0,0,0.65) 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -35,7 +35,7 @@ export function Newsletter() {
           >
             Haberdar Olun
           </h2>
-          <p className="text-white/40 text-base mb-10">
+          <p className="text-black/40 text-base mb-10">
             Yeni ürünler, kampanyalar ve özel tekliflerden ilk siz haberdar olun.
           </p>
 
@@ -43,9 +43,9 @@ export function Newsletter() {
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="py-6 px-8 rounded-2xl border border-[#FF00C8]/30 bg-[#FF00C8]/5"
+              className="py-6 px-8 rounded-2xl border border-[#D9668A]/30 bg-[#D9668A]/5"
             >
-              <p className="text-[#FF00C8] font-semibold">✓ Harika! Bültene kaydoldunuz.</p>
+              <p className="text-[#D9668A] font-semibold">✓ Harika! Bültene kaydoldunuz.</p>
             </motion.div>
           ) : (
             <form
@@ -58,12 +58,12 @@ export function Newsletter() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="E-posta adresiniz"
                 required
-                className="flex-1 px-5 py-3.5 rounded-full bg-[#0D0D0D] border border-white/10 text-white placeholder:text-white/25 text-sm outline-none focus:border-[#FF00C8]/50 transition-colors cursor-auto"
+                className="flex-1 px-5 py-3.5 rounded-full bg-[#FFFFFF] border border-black/10 text-black placeholder:text-black/25 text-sm outline-none focus:border-[#D9668A]/50 transition-colors cursor-auto"
               />
               <button
                 type="submit"
                 className="group flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold text-sm text-black cursor-none transition-all hover:scale-105"
-                style={{ background: "#FF00C8", boxShadow: "0 0 24px rgba(255,0,200,0.4)" }}
+                style={{ background: "#D9668A", boxShadow: "0 0 24px rgba(217,102,138,0.4)" }}
               >
                 Abone Ol
                 <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
@@ -71,7 +71,7 @@ export function Newsletter() {
             </form>
           )}
 
-          <p className="text-xs text-white/20 mt-4">
+          <p className="text-xs text-black/20 mt-4">
             Spam göndermeyiz. İstediğiniz zaman çıkabilirsiniz.
           </p>
         </motion.div>
