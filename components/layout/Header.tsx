@@ -36,7 +36,7 @@ export function Header() {
         "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
         scrolled
           ? "bg-[#FBF8F6]/92 backdrop-blur-xl border-b border-black/5 py-3"
-          : "bg-transparent py-5"
+          : "bg-gradient-to-b from-[#FBF8F6]/80 via-[#FBF8F6]/40 to-transparent py-5"
       )}
     >
       <div className="max-w-screen-2xl mx-auto px-10 flex items-center justify-between gap-8">

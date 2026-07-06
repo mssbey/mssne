@@ -65,23 +65,24 @@ export function TubesBackground({
 
   return (
     <div
-      className={cn("relative w-full h-full overflow-hidden", className)}
+      className={cn("relative w-full h-full overflow-hidden isolate", className)}
       onClick={handleClick}
     >
-      <canvas
-        ref={canvasRef}
-        className="absolute inset-0 w-full h-full block"
-        style={{ touchAction: "none" }}
+      {/* Clean, opaque light backdrop — sits behind the canvas */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(ellipse 70% 55% at 18% 15%, rgba(217,102,138,0.22) 0%, transparent 60%), radial-gradient(ellipse 60% 55% at 85% 25%, rgba(242,184,75,0.20) 0%, transparent 60%), radial-gradient(ellipse 70% 60% at 50% 100%, rgba(95,174,127,0.18) 0%, transparent 60%), #FBF8F6",
+        }}
       />
 
-      {!loaded && (
-        <div className="absolute inset-0 bg-[#FBF8F6]"
-          style={{
-            background:
-              "radial-gradient(ellipse 80% 60% at 50% 40%, rgba(95,174,127,0.15) 0%, transparent 60%), radial-gradient(ellipse 60% 40% at 20% 70%, rgba(217,102,138,0.10) 0%, transparent 50%), #FBF8F6",
-          }}
-        />
-      )}
+      {/* Canvas lightens onto the backdrop: black clears away, bright tube glow shines through */}
+      <canvas
+        ref={canvasRef}
+        className="absolute inset-0 w-full h-full block mix-blend-lighten opacity-90 transition-opacity duration-700"
+        style={{ touchAction: "none", opacity: loaded ? 0.9 : 0 }}
+      />
 
       <div className="relative z-10 w-full h-full pointer-events-none">
         {children}
