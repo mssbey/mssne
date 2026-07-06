@@ -1,6 +1,5 @@
 import { HeroSection } from "@/components/home/HeroSection";
 import { StatsSection } from "@/components/home/StatsSection";
-import { FeaturedProducts } from "@/components/home/FeaturedProducts";
 import { NeonBoxContents } from "@/components/home/NeonBoxContents";
 import { HowItWorks } from "@/components/home/HowItWorks";
 import { Testimonials } from "@/components/home/Testimonials";
@@ -13,7 +12,6 @@ export default function HomePage() {
     <>
       <HeroSection />
       <StatsSection />
-      <FeaturedProducts />
       <NeonBoxContents />
       <HowItWorks />
       <Testimonials />

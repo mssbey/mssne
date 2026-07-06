@@ -1,13 +1,13 @@
 export const NAV_ITEMS = [
   {
     label: "Tabela Sistemleri",
-    href: "#",
+    href: "/hizmetler",
     children: [
-      { label: "Kutu Harf", href: "#", icon: "🔠" },
-      { label: "Işıklı / Işıksız Tabela", href: "#", icon: "💡" },
-      { label: "Kompozit Tabela", href: "#", icon: "🪟" },
-      { label: "Totem", href: "#", icon: "🗿" },
-      { label: "Cephe Giydirme", href: "#", icon: "🏢" },
+      { label: "Kutu Harf", href: "/hizmetler/kutu-harf", icon: "🔠" },
+      { label: "Işıklı / Işıksız Tabela", href: "/hizmetler/isikli-isiksiz-tabela", icon: "💡" },
+      { label: "Kompozit Tabela", href: "/hizmetler/kompozit-tabela", icon: "🪟" },
+      { label: "Totem", href: "/hizmetler/totem", icon: "🗿" },
+      { label: "Cephe Giydirme", href: "/hizmetler/cephe-giydirme", icon: "🏢" },
     ],
   },
   { label: "Neon Tabela", href: "#" },
@@ -18,7 +18,7 @@ export const NAV_ITEMS = [
       { label: "Kartvizit", href: "#", icon: "🪪" },
       { label: "Broşür", href: "#", icon: "📄" },
       { label: "Magnet", href: "#", icon: "🧲" },
-      { label: "Davetiye", href: "#", icon: "💌" },
+      { label: "Davetiye", href: "/davetiyeler", icon: "💌" },
     ],
   },
   {

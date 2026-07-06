@@ -13,6 +13,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.ikarusreklam.com"),
   title: "Ikarus Reklam — Türkiye'nin 1 Numaralı Neon Stüdyosu",
   description:
     "Kişiye özel LED neon tabelalar. Online tasarla, WhatsApp ile sipariş ver. 81 ile hızlı kargo. 10.000+ üretim tamamlandı.",
