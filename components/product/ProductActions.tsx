@@ -4,7 +4,6 @@ import { useState } from "react";
 import { ShoppingBag, Heart, MessageCircle, Check, Minus, Plus } from "lucide-react";
 import { useCart } from "@/lib/store/useCart";
 import { useFavorites } from "@/lib/store/useFavorites";
-import { formatPrice } from "@/lib/utils";
 import { cn } from "@/lib/utils";
 import type { Product } from "@/lib/products";
 
@@ -18,37 +17,31 @@ export function ProductActions({ product }: { product: Product }) {
   const { toggle, isFavorite } = useFavorites();
   const fav = isFavorite(product.id);
 
-  const unitPrice = product.price + (selectedSize?.priceAdd ?? 0);
-  const totalPrice = unitPrice * quantity;
-
   const handleAddToCart = () => {
     for (let i = 0; i < quantity; i++) {
-      addItem(product, selectedColor.name, selectedSize.label, unitPrice);
+      addItem(product, selectedColor.name, selectedSize.label, 0);
     }
     setAdded(true);
     setTimeout(() => setAdded(false), 2000);
   };
 
   const waLink = `https://wa.me/905001234567?text=${encodeURIComponent(
-    `Merhaba! Şu ürünü sipariş etmek istiyorum:\n\n• ${product.name}\n  Renk: ${selectedColor.name}\n  Boyut: ${selectedSize.label} (${selectedSize.cm})\n  Adet: ${quantity}\n  Tutar: ${formatPrice(totalPrice)}\n\nNasıl devam edebilirim?`
+    `Merhaba! Şu ürün için teklif almak istiyorum:\n\n• ${product.name}\n  Renk: ${selectedColor.name}\n  Boyut: ${selectedSize.label} (${selectedSize.cm})\n  Adet: ${quantity}\n\nFiyat bilgisi alabilir miyim?`
   )}`;
 
   return (
     <div className="space-y-6">
-      {/* Price */}
-      <div>
-        <span
-          className="text-4xl font-black"
-          style={{ color: product.glowColor, filter: `drop-shadow(0 0 12px ${product.glowColor}60)` }}
-        >
-          {formatPrice(totalPrice)}
-        </span>
-        {quantity > 1 && (
-          <span className="text-sm text-black/30 ml-2">({formatPrice(unitPrice)} / adet)</span>
-        )}
-        {selectedSize.priceAdd > 0 && (
-          <p className="text-xs text-black/30 mt-1">Temel fiyat: {formatPrice(product.price)} + boyut farkı: +{formatPrice(selectedSize.priceAdd)}</p>
-        )}
+      {/* Teklif notu */}
+      <div
+        className="rounded-2xl border px-5 py-4"
+        style={{ borderColor: `${product.glowColor}30`, background: `${product.glowColor}08` }}
+      >
+        <p className="text-sm font-bold" style={{ color: product.glowColor }}>
+          Kişiye özel üretim — fiyat için teklif alın
+        </p>
+        <p className="text-xs text-black/40 mt-1">
+          Boyut, renk ve adedinizi seçin; WhatsApp üzerinden dakikalar içinde net fiyat verelim.
+        </p>
       </div>
 
       {/* Color */}
@@ -93,9 +86,6 @@ export function ProductActions({ product }: { product: Product }) {
             >
               <span className="text-sm font-bold">{s.label}</span>
               <span className="text-[10px] opacity-60">{s.cm}</span>
-              {s.priceAdd > 0 && (
-                <span className="text-[10px] opacity-50">+{formatPrice(s.priceAdd)}</span>
-              )}
             </button>
           ))}
         </div>
@@ -145,7 +135,7 @@ export function ProductActions({ product }: { product: Product }) {
           className="flex items-center justify-center gap-3 w-full py-4 rounded-2xl font-bold text-black text-base transition-all hover:scale-[1.02] cursor-none border border-[#25D366]/30 hover:bg-[#25D366]/10"
         >
           <MessageCircle size={18} className="text-[#25D366]" />
-          WhatsApp ile Direkt Sipariş
+          WhatsApp ile Teklif Al
         </a>
 
         <button

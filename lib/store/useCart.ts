@@ -3,7 +3,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import type { Product } from "@/lib/products";
-import { formatPrice } from "@/lib/utils";
 
 export interface CartItem {
   product: Product;
@@ -88,14 +87,13 @@ export const useCart = create<CartStore>()(
         get().items.reduce((sum, i) => sum + i.quantity, 0),
 
       buildWhatsAppMessage: () => {
-        const { items, total } = get();
+        const { items } = get();
         if (items.length === 0) return "";
         const lines = items.map(
-          (i) =>
-            `• ${i.product.name} (${i.selectedColor}, ${i.selectedSize}) x${i.quantity} — ${formatPrice(i.unitPrice * i.quantity)}`
+          (i) => `• ${i.product.name} (${i.selectedColor}, ${i.selectedSize}) x${i.quantity}`
         );
         return encodeURIComponent(
-          `Merhaba! Sepetimde şu ürünler var:\n\n${lines.join("\n")}\n\nToplam: ${formatPrice(total())}\n\nSipariş vermek istiyorum, nasıl devam edebilirim?`
+          `Merhaba! Şu ürünler için teklif almak istiyorum:\n\n${lines.join("\n")}\n\nFiyat bilgisi alabilir miyim?`
         );
       },
     }),

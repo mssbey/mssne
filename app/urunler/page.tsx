@@ -8,8 +8,6 @@ import { ProductCard } from "@/components/ui/ProductCard";
 
 const SORT_OPTIONS = [
   { value: "default", label: "Önerilen" },
-  { value: "price-asc", label: "Fiyat: Artan" },
-  { value: "price-desc", label: "Fiyat: Azalan" },
   { value: "rating", label: "En Yüksek Puan" },
   { value: "new", label: "Yeni Gelenler" },
 ];
@@ -38,8 +36,6 @@ export default function UrunlerPage() {
     }
 
     switch (sort) {
-      case "price-asc": list.sort((a, b) => a.price - b.price); break;
-      case "price-desc": list.sort((a, b) => b.price - a.price); break;
       case "rating": list.sort((a, b) => b.rating - a.rating); break;
       case "new": list = list.filter((p) => p.isNew).concat(list.filter((p) => !p.isNew)); break;
     }

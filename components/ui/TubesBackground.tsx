@@ -3,10 +3,13 @@
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
-const randomColors = (count: number) =>
-  Array.from({ length: count }, () =>
-    "#" + Math.floor(Math.random() * 16777215).toString(16).padStart(6, "0")
-  );
+// Tıklamada sırayla geçilen, birbiriyle uyumlu neon paletleri
+const PALETTES: { tubes: string[]; lights: string[] }[] = [
+  { tubes: ["#FF6EC7", "#9B5CFF", "#00D4FF"], lights: ["#FF6EC7", "#9B5CFF", "#00D4FF", "#FFD166"] },
+  { tubes: ["#F2B84B", "#FF8F66", "#D9668A"], lights: ["#F2B84B", "#FF8F66", "#D9668A", "#FFE29A"] },
+  { tubes: ["#5FAE7F", "#00E5A0", "#00D4FF"], lights: ["#5FAE7F", "#00E5A0", "#00D4FF", "#B7F5D8"] },
+  { tubes: ["#FF3131", "#FF6EC7", "#FFD166"], lights: ["#FF3131", "#FF6EC7", "#FFD166", "#FFFFFF"] },
+];
 
 interface TubesBackgroundProps {
   children?: React.ReactNode;
@@ -21,6 +24,7 @@ export function TubesBackground({
 }: TubesBackgroundProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const tubesRef = useRef<any>(null);
+  const paletteIndex = useRef(0);
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
@@ -37,10 +41,10 @@ export function TubesBackground({
 
         const app = TubesCursor(canvasRef.current, {
           tubes: {
-            colors: ["#D9668A", "#F2B84B", "#5FAE7F"],
+            colors: PALETTES[0].tubes,
             lights: {
-              intensity: 200,
-              colors: ["#D9668A", "#FF8F66", "#F2B84B", "#5FAE7F"],
+              intensity: 160,
+              colors: PALETTES[0].lights,
             },
           },
         });
@@ -59,8 +63,10 @@ export function TubesBackground({
 
   const handleClick = () => {
     if (!enableClickInteraction || !tubesRef.current) return;
-    tubesRef.current.tubes.setColors(randomColors(3));
-    tubesRef.current.tubes.setLightsColors(randomColors(4));
+    paletteIndex.current = (paletteIndex.current + 1) % PALETTES.length;
+    const palette = PALETTES[paletteIndex.current];
+    tubesRef.current.tubes.setColors(palette.tubes);
+    tubesRef.current.tubes.setLightsColors(palette.lights);
   };
 
   return (
@@ -68,20 +74,20 @@ export function TubesBackground({
       className={cn("relative w-full h-full overflow-hidden isolate", className)}
       onClick={handleClick}
     >
-      {/* Clean, opaque light backdrop — sits behind the canvas */}
+      {/* Dark backdrop with faint neon glows — sits behind the canvas */}
       <div
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse 70% 55% at 18% 15%, rgba(217,102,138,0.22) 0%, transparent 60%), radial-gradient(ellipse 60% 55% at 85% 25%, rgba(242,184,75,0.20) 0%, transparent 60%), radial-gradient(ellipse 70% 60% at 50% 100%, rgba(95,174,127,0.18) 0%, transparent 60%), #FBF8F6",
+            "radial-gradient(ellipse 70% 55% at 18% 15%, rgba(217,102,138,0.14) 0%, transparent 60%), radial-gradient(ellipse 60% 55% at 85% 25%, rgba(155,92,255,0.12) 0%, transparent 60%), radial-gradient(ellipse 70% 60% at 50% 100%, rgba(0,212,255,0.10) 0%, transparent 60%), #0A0A12",
         }}
       />
 
       {/* Canvas lightens onto the backdrop: black clears away, bright tube glow shines through */}
       <canvas
         ref={canvasRef}
-        className="absolute inset-0 w-full h-full block mix-blend-lighten opacity-90 transition-opacity duration-700"
-        style={{ touchAction: "none", opacity: loaded ? 0.9 : 0 }}
+        className="absolute inset-0 w-full h-full block mix-blend-lighten transition-opacity duration-700"
+        style={{ touchAction: "none", opacity: loaded ? 1 : 0 }}
       />
 
       <div className="relative z-10 w-full h-full pointer-events-none">

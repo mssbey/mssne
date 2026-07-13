@@ -4,7 +4,6 @@ import { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Plus, Minus, Trash2, ShoppingBag, MessageCircle } from "lucide-react";
 import { useCart } from "@/lib/store/useCart";
-import { formatPrice } from "@/lib/utils";
 
 export function CartDrawer() {
   const { items, isOpen, closeCart, removeItem, updateQuantity, total, itemCount, buildWhatsAppMessage } = useCart();
@@ -94,8 +93,8 @@ export function CartDrawer() {
                         {item.selectedColor} · {item.selectedSize}
                       </p>
                       <div className="flex items-center justify-between">
-                        <span className="text-sm font-bold text-black">
-                          {formatPrice(item.unitPrice * item.quantity)}
+                        <span className="text-xs font-semibold text-black/40">
+                          Teklif verilecek
                         </span>
                         <div className="flex items-center gap-2">
                           <button
@@ -128,12 +127,8 @@ export function CartDrawer() {
             {/* Footer */}
             {items.length > 0 && (
               <div className="px-6 py-5 border-t border-black/5 space-y-4">
-                <div className="flex justify-between items-center">
-                  <span className="text-black/50 text-sm">Toplam</span>
-                  <span className="text-2xl font-black text-black">{formatPrice(total())}</span>
-                </div>
                 <p className="text-xs text-black/30 text-center">
-                  Kargo ve KDV dahildir · Ödeme WhatsApp üzerinden
+                  Fiyatlar kişiye özel hesaplanır · WhatsApp&apos;tan dakikalar içinde teklif
                 </p>
                 <a
                   href={waLink}
@@ -143,7 +138,7 @@ export function CartDrawer() {
                   style={{ background: "#25D366", boxShadow: "0 0 24px rgba(37,211,102,0.3)" }}
                 >
                   <MessageCircle size={18} />
-                  WhatsApp ile Sipariş Ver
+                  WhatsApp ile Teklif Al
                 </a>
               </div>
             )}

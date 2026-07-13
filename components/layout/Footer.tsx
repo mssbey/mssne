@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Phone, Mail, MapPin } from "lucide-react";
+import { Phone, Mail, MapPin, Clock } from "lucide-react";
+import { CONTACT } from "@/lib/data";
 
 const SOCIAL = [
   {
@@ -46,11 +47,11 @@ const SOCIAL = [
 
 const FOOTER_LINKS = {
   Ürünler: [
-    { label: "Kendin Tasarla", href: "/studio" },
-    { label: "İşletme Tabelaları", href: "/isletmeler" },
-    { label: "Ev Dekorasyon", href: "/urunler/ev-dekorasyon" },
-    { label: "Özel Günler", href: "/urunler/ozel-gunler" },
-    { label: "Çok Satanlar", href: "/cok-satanlar" },
+    { label: "Kişiye Özel Tasarım", href: "/studio" },
+    { label: "Neon Tabelalar", href: "/urunler" },
+    { label: "Promosyon Ürünleri", href: "/promosyon" },
+    { label: "Tabela Sistemleri", href: "/hizmetler" },
+    { label: "Baskı ve Matbaa", href: "/baski-matbaa" },
   ],
   Kurumsal: [
     { label: "Hakkımızda", href: "/hakkimizda" },
@@ -94,22 +95,26 @@ export function Footer() {
 
           <div className="flex flex-col gap-3 mb-8">
             <a
-              href="tel:+905001234567"
+              href={CONTACT.phoneHref}
               className="flex items-center gap-2 text-sm text-black/40 hover:text-black transition-colors cursor-none"
             >
               <Phone size={14} className="text-[#D9668A]" />
-              0500 123 45 67
+              {CONTACT.phone}
             </a>
             <a
-              href="mailto:info@ikarusreklam.com"
+              href={`mailto:${CONTACT.email}`}
               className="flex items-center gap-2 text-sm text-black/40 hover:text-black transition-colors cursor-none"
             >
               <Mail size={14} className="text-[#D9668A]" />
-              info@ikarusreklam.com
+              {CONTACT.email}
             </a>
+            <span className="flex items-start gap-2 text-sm text-black/40 max-w-xs">
+              <MapPin size={14} className="text-[#D9668A] mt-0.5 shrink-0" />
+              {CONTACT.address}
+            </span>
             <span className="flex items-center gap-2 text-sm text-black/40">
-              <MapPin size={14} className="text-[#D9668A]" />
-              İstanbul, Türkiye
+              <Clock size={14} className="text-[#D9668A]" />
+              {CONTACT.workingHours}
             </span>
           </div>
 

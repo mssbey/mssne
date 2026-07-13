@@ -31,12 +31,12 @@ export function WhyUs() {
               Uygun Fiyat
             </h2>
             <p className="text-black/45 text-base leading-relaxed mb-10 max-w-md">
-              10.000+ üretim deneyimiyle Türkiye&apos;nin en güvenilir neon tabela
-              stüdyosu olarak 81 ile hizmet veriyoruz.
+              10.000+ üretim deneyimiyle tabeladan baskıya, açık hava reklamından neona
+              kadar Türkiye&apos;nin en güvenilir reklam üreticisi olarak 81 ile hizmet veriyoruz.
             </p>
 
             <a
-              href={`https://wa.me/905001234567?text=${encodeURIComponent("Merhaba! Neon tabela fiyatı öğrenmek istiyorum.")}`}
+              href={`https://wa.me/905001234567?text=${encodeURIComponent("Merhaba! Fiyat teklifi almak istiyorum.")}`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-semibold text-sm text-black transition-all hover:scale-105 cursor-none"

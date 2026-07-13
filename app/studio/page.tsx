@@ -1,17 +1,10 @@
 "use client";
 
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import { motion } from "framer-motion";
 import { MessageCircle, RefreshCw, ImagePlus, Download, X } from "lucide-react";
-
-const FONTS = [
-  { name: "Pacifico", label: "Pacifico", style: "Eğlenceli" },
-  { name: "Satisfy", label: "Satisfy", style: "Zarif" },
-  { name: "Lobster", label: "Lobster", style: "Retro" },
-  { name: "Oswald", label: "Oswald", style: "Modern" },
-  { name: "Montserrat", label: "Montserrat", style: "Minimal" },
-  { name: "Dancing Script", label: "Dancing", style: "Kursif" },
-];
+import { STUDIO_FONTS, getStudioFont } from "./fonts";
+import { CONTACT } from "@/lib/data";
 
 const COLORS = [
   { hex: "#FF00C8", name: "Neon Pembe" },
@@ -24,8 +17,35 @@ const COLORS = [
   { hex: "#FF3131", name: "Kırmızı" },
 ];
 
-const SIZES = ["XS — 30cm", "S — 50cm", "M — 70cm", "L — 100cm", "XL — 150cm"];
+// Boyut seçimi önizlemedeki yazıyı da ölçekler
+const SIZES = [
+  { label: "XS", cm: "30cm", factor: 0.55 },
+  { label: "S", cm: "50cm", factor: 0.75 },
+  { label: "M", cm: "70cm", factor: 1 },
+  { label: "L", cm: "100cm", factor: 1.25 },
+  { label: "XL", cm: "150cm", factor: 1.5 },
+];
+
 const ENVS = ["Karanlık", "Gece", "Kapalı Mekan", "Aydınlık"];
+
+// Hazır arka planlar (public/neon içinden)
+const PRESET_BGS = [
+  { key: "studio", label: "Stüdyo", src: null as string | null },
+  { key: "brick", label: "Tuğla Duvar", src: "/neon/bg-dark-1.jpg" },
+  { key: "beton", label: "Beton Duvar", src: "/neon/bg-dark-2.jpg" },
+];
+
+// Hazır neon tasarımları — tıklayınca uygulanır
+const TEMPLATES = [
+  { label: "Daima Aşk", text: "Daima Aşk", font: "greatvibes", color: "#FF00C8" },
+  { label: "Hoşgeldiniz", text: "Hoşgeldiniz", font: "dancing", color: "#FFD700" },
+  { label: "Coffee Time", text: "Coffee Time", font: "pacifico", color: "#FF7A00" },
+  { label: "OPEN", text: "OPEN", font: "bebas", color: "#39FF14" },
+  { label: "Dream Big", text: "Dream Big", font: "monoton", color: "#00E5FF" },
+  { label: "Good Vibes", text: "Good Vibes", font: "caveat", color: "#9B5CFF" },
+  { label: "Happy Birthday", text: "Happy Birthday", font: "lobster", color: "#FF00C8" },
+  { label: "No Pain No Gain", text: "NO PAIN NO GAIN", font: "oswald", color: "#FF3131" },
+];
 
 function hexToRgba(hex: string, alpha: number) {
   const r = parseInt(hex.slice(1, 3), 16);
@@ -36,23 +56,44 @@ function hexToRgba(hex: string, alpha: number) {
 
 export default function StudioPage() {
   const [text, setText] = useState("Ikarus Neon");
-  const [font, setFont] = useState(FONTS[0].name);
+  const [fontKey, setFontKey] = useState(STUDIO_FONTS[0].key);
   const [color, setColor] = useState(COLORS[0].hex);
   const [size, setSize] = useState(SIZES[2]);
   const [env, setEnv] = useState(ENVS[0]);
   const [flicker, setFlicker] = useState(false);
 
-  // Yeni özellikler
   const [bgImage, setBgImage] = useState<string | null>(null);
   const [textPos, setTextPos] = useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
   const [dragOrigin, setDragOrigin] = useState({ mx: 0, my: 0, tx: 0, ty: 0 });
   const [isDownloading, setIsDownloading] = useState(false);
+  const [previewW, setPreviewW] = useState(800);
 
   const previewRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  // Arka plan görsel yükleme
+  const font = getStudioFont(fontKey);
+
+  // Önizleme genişliğini izle — yazı her zaman konteynere göre ölçeklenir,
+  // böylece arka plan görseli eklenince taşma/küçülmeme sorunu yaşanmaz.
+  useEffect(() => {
+    const el = previewRef.current;
+    if (!el) return;
+    const ro = new ResizeObserver((entries) => {
+      setPreviewW(entries[0]?.contentRect.width ?? 800);
+    });
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
+  // Yazı boyutu: seçilen boyutla ölçeklenir ama asla konteynerden taşmaz
+  const fontSize = useMemo(() => {
+    const len = Math.max(3, (text || "Neonunuz").length);
+    const fit = (previewW * 0.86) / (len * 0.58); // sığdırma üst sınırı
+    const scaled = previewW * 0.105 * size.factor;
+    return Math.max(16, Math.min(scaled, fit));
+  }, [text, previewW, size]);
+
   const handleBgUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -61,7 +102,14 @@ export default function StudioPage() {
     e.target.value = "";
   };
 
-  // Yazı sürükleme — mousedown sadece text üzerinde
+  const applyTemplate = (t: (typeof TEMPLATES)[number]) => {
+    setText(t.text);
+    setFontKey(t.font);
+    setColor(t.color);
+    setTextPos({ x: 0, y: 0 });
+  };
+
+  // Yazı sürükleme
   const handleTextMouseDown = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
@@ -70,8 +118,8 @@ export default function StudioPage() {
   };
 
   useEffect(() => {
+    if (!isDragging) return;
     const onMove = (e: MouseEvent) => {
-      if (!isDragging) return;
       setTextPos({
         x: dragOrigin.tx + (e.clientX - dragOrigin.mx),
         y: dragOrigin.ty + (e.clientY - dragOrigin.my),
@@ -86,7 +134,18 @@ export default function StudioPage() {
     };
   }, [isDragging, dragOrigin]);
 
-  // Canvas'a çizerek PNG oluştur
+  const applyEnvOverlay = (ctx: CanvasRenderingContext2D, W: number, H: number) => {
+    const overlayColor =
+      env === "Aydınlık" ? "rgba(255,255,255,0.12)"
+      : env === "Gece" ? "rgba(0,0,30,0.3)"
+      : null;
+    if (overlayColor) {
+      ctx.fillStyle = overlayColor;
+      ctx.fillRect(0, 0, W, H);
+    }
+  };
+
+  // Önizlemenin birebir aynısını canvas'a çizer (PNG indirme için)
   const buildCanvas = useCallback((): Promise<HTMLCanvasElement> => {
     return new Promise((resolve, reject) => {
       const el = previewRef.current;
@@ -104,21 +163,19 @@ export default function StudioPage() {
       const drawText = () => {
         const tx = W / 2 + textPos.x;
         const ty = H / 2 + textPos.y;
-        const fontSize = Math.min(64, Math.max(28, W * 0.05));
-        const fontStr = `bold ${fontSize}px '${font}', cursive`;
+        const fontStr = `bold ${Math.round(fontSize)}px ${font.family}`;
 
         document.fonts.load(fontStr).then(() => {
           ctx.font = fontStr;
           ctx.textAlign = "center";
           ctx.textBaseline = "middle";
 
-          // Neon glow katmanları
           [80, 40, 20, 8].forEach((blur) => {
             ctx.save();
             ctx.shadowColor = color;
             ctx.shadowBlur = blur;
             ctx.fillStyle = color;
-            ctx.fillText(text || "Neonunuz", tx, ty, W - 64);
+            ctx.fillText(text || "Neonunuz", tx, ty, W - 48);
             ctx.restore();
           });
 
@@ -129,15 +186,17 @@ export default function StudioPage() {
       if (bgImage) {
         const img = new Image();
         img.onload = () => {
-          ctx.drawImage(img, 0, 0, W, H);
-          // Env overlay
+          // object-fit: cover davranışı
+          const scale = Math.max(W / img.width, H / img.height);
+          const dw = img.width * scale;
+          const dh = img.height * scale;
+          ctx.drawImage(img, (W - dw) / 2, (H - dh) / 2, dw, dh);
           applyEnvOverlay(ctx, W, H);
           drawText();
         };
         img.onerror = reject;
         img.src = bgImage;
       } else {
-        // Koyu arka plan
         ctx.fillStyle = "#090909";
         ctx.fillRect(0, 0, W, H);
         const grad = ctx.createRadialGradient(W / 2, H / 2, 0, W / 2, H / 2, W * 0.5);
@@ -149,20 +208,9 @@ export default function StudioPage() {
         drawText();
       }
     });
-  }, [text, font, color, env, bgImage, textPos]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [text, font, color, env, bgImage, textPos, fontSize]);
 
-  const applyEnvOverlay = (ctx: CanvasRenderingContext2D, W: number, H: number) => {
-    const overlayColor =
-      env === "Aydınlık" ? "rgba(255,255,255,0.12)"
-      : env === "Gece" ? "rgba(0,0,30,0.3)"
-      : null;
-    if (overlayColor) {
-      ctx.fillStyle = overlayColor;
-      ctx.fillRect(0, 0, W, H);
-    }
-  };
-
-  // PNG indir
   const handleDownload = async () => {
     setIsDownloading(true);
     try {
@@ -181,26 +229,20 @@ export default function StudioPage() {
     }
   };
 
-  // WhatsApp sipariş: önce görsel indir, sonra WA aç
   const handleWaOrder = async () => {
-    // Tasarımı indir
     await handleDownload();
 
-    // WA mesajı
     const msg =
       `Merhaba! Neon Stüdyo üzerinden tasarım oluşturdum:\n\n` +
       `✍️ Yazı: "${text}"\n` +
-      `🔤 Font: ${font}\n` +
+      `🔤 Font: ${font.label}\n` +
       `🎨 Renk: ${color}\n` +
-      `📐 Boyut: ${size}\n` +
+      `📐 Boyut: ${size.label} — ${size.cm}\n` +
       `🌙 Ortam: ${env}\n\n` +
-      `Tasarım görselini de sohbete ekleyeceğim. Fiyat bilgisi almak istiyorum.`;
+      `Tasarım görselini de sohbete ekleyeceğim. Fiyat teklifi almak istiyorum.`;
 
     setTimeout(() => {
-      window.open(
-        `https://wa.me/905001234567?text=${encodeURIComponent(msg)}`,
-        "_blank"
-      );
+      window.open(`https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(msg)}`, "_blank");
     }, 400);
   };
 
@@ -215,8 +257,6 @@ export default function StudioPage() {
 
   return (
     <>
-      <style>{`@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Satisfy&family=Lobster&family=Oswald:wght@700&family=Montserrat:wght@900&family=Dancing+Script:wght@700&display=swap');`}</style>
-
       {/* Gizli dosya input */}
       <input
         ref={fileInputRef}
@@ -235,7 +275,7 @@ export default function StudioPage() {
             className="text-center mb-12"
           >
             <span className="text-xs font-bold uppercase tracking-[4px] text-[#9B5CFF] mb-3 block">
-              İnteraktif Tasarım
+              Kişiye Özel Tasarım
             </span>
             <h1
               className="text-[clamp(32px,5vw,60px)] font-black tracking-[-2px]"
@@ -252,7 +292,7 @@ export default function StudioPage() {
 
           <div className="grid lg:grid-cols-[1fr_380px] gap-8 items-start">
             {/* Önizleme */}
-            <div className="sticky top-28">
+            <div className="lg:sticky lg:top-28">
               <div
                 ref={previewRef}
                 className="relative rounded-3xl border border-black/10 overflow-hidden min-h-[380px]"
@@ -264,16 +304,18 @@ export default function StudioPage() {
                 {/* Sürüklenebilir neon yazı */}
                 <p
                   onMouseDown={handleTextMouseDown}
-                  className="absolute z-10 text-[clamp(28px,5vw,64px)] font-black text-center px-8 select-none whitespace-pre-wrap break-all"
+                  className="absolute z-10 font-bold text-center px-6 select-none whitespace-nowrap"
                   style={{
-                    fontFamily: `'${font}', cursive`,
+                    fontFamily: font.family,
+                    fontSize: `${fontSize}px`,
                     color: color,
-                    textShadow: `0 0 20px ${color}, 0 0 40px ${color}80, 0 0 80px ${color}30`,
-                    animation: flicker ? "flicker 3s ease-in-out infinite" : "neon-pulse 2s ease-in-out infinite",
+                    textShadow: `0 0 6px ${color}, 0 0 20px ${color}, 0 0 42px ${color}80, 0 0 80px ${color}30`,
+                    animation: flicker ? "flicker 3s ease-in-out infinite" : "none",
                     left: "50%",
                     top: "50%",
                     transform: `translate(calc(-50% + ${textPos.x}px), calc(-50% + ${textPos.y}px))`,
                     cursor: isDragging ? "grabbing" : "grab",
+                    willChange: isDragging ? "transform" : "auto",
                   }}
                 >
                   {text || "Neonunuz"}
@@ -281,7 +323,7 @@ export default function StudioPage() {
 
                 {/* ENV etiketi */}
                 <span className="absolute top-4 right-4 z-20 text-xs text-white/30 px-3 py-1 rounded-full border border-white/8 pointer-events-none">
-                  {env}
+                  {env} · {size.label} ({size.cm})
                 </span>
 
                 {/* Arka plan görseli kaldır */}
@@ -295,17 +337,38 @@ export default function StudioPage() {
                 )}
               </div>
 
-              {/* Eylem butonları */}
-              <div className="flex gap-3 mt-4">
+              {/* Hazır arka planlar */}
+              <div className="flex gap-2 mt-4">
+                {PRESET_BGS.map((bg) => (
+                  <button
+                    key={bg.key}
+                    onClick={() => setBgImage(bg.src)}
+                    className="flex-1 h-14 rounded-xl border overflow-hidden text-xs font-semibold transition-all cursor-none"
+                    style={{
+                      borderColor: bgImage === bg.src ? "#9B5CFF" : "rgba(0,0,0,0.1)",
+                      backgroundImage: bg.src ? `url(${bg.src})` : undefined,
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
+                      background: bg.src ? undefined : "#090909",
+                      color: "rgba(255,255,255,0.85)",
+                      textShadow: "0 1px 4px rgba(0,0,0,0.9)",
+                    }}
+                  >
+                    {bg.label}
+                  </button>
+                ))}
                 <button
                   onClick={() => fileInputRef.current?.click()}
-                  className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl border border-black/10 text-sm text-black/50 hover:text-black hover:border-black/20 transition-all cursor-none"
+                  className="flex-1 h-14 rounded-xl border border-dashed border-black/20 flex items-center justify-center gap-1.5 text-xs text-black/45 hover:text-black hover:border-black/40 transition-all cursor-none"
                 >
-                  <ImagePlus size={14} />
-                  Arka Plan Ekle
+                  <ImagePlus size={13} /> Görsel Yükle
                 </button>
+              </div>
+
+              {/* Eylem butonları */}
+              <div className="flex gap-3 mt-3">
                 <button
-                  onClick={() => { setFlicker(!flicker); }}
+                  onClick={() => setFlicker(!flicker)}
                   className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl border border-black/10 text-sm text-black/50 hover:text-black hover:border-black/20 transition-all cursor-none"
                 >
                   <RefreshCw size={14} />
@@ -324,6 +387,37 @@ export default function StudioPage() {
               <p className="text-xs text-black/20 text-center mt-2">
                 ✦ Yazıyı fare ile sürükleyerek konumlandırabilirsiniz
               </p>
+
+              {/* Hazır tasarımlar */}
+              <div className="mt-6 p-5 rounded-2xl border border-black/8 bg-[#FFFFFF]">
+                <label className="text-xs font-bold uppercase tracking-wider text-black/30 mb-4 block">
+                  Hazır Neon Tasarımları
+                </label>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                  {TEMPLATES.map((t) => {
+                    const tf = getStudioFont(t.font);
+                    return (
+                      <button
+                        key={t.label}
+                        onClick={() => applyTemplate(t)}
+                        className="h-16 rounded-xl bg-[#0b0b0b] border border-black/10 hover:border-[#9B5CFF]/60 flex items-center justify-center px-2 transition-all cursor-none overflow-hidden"
+                        title={t.label}
+                      >
+                        <span
+                          className="text-sm whitespace-nowrap"
+                          style={{
+                            fontFamily: tf.family,
+                            color: t.color,
+                            textShadow: `0 0 5px ${t.color}, 0 0 14px ${t.color}80`,
+                          }}
+                        >
+                          {t.label}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
             </div>
 
             {/* Kontroller */}
@@ -347,20 +441,20 @@ export default function StudioPage() {
               {/* Font */}
               <div className="p-6 rounded-2xl border border-black/8 bg-[#FFFFFF]">
                 <label className="text-xs font-bold uppercase tracking-wider text-black/30 mb-4 block">
-                  Font Seçimi
+                  Font Seçimi — {STUDIO_FONTS.length} font
                 </label>
-                <div className="grid grid-cols-2 gap-2">
-                  {FONTS.map((f) => (
+                <div className="grid grid-cols-2 gap-2 max-h-[320px] overflow-y-auto pr-1">
+                  {STUDIO_FONTS.map((f) => (
                     <button
-                      key={f.name}
-                      onClick={() => setFont(f.name)}
+                      key={f.key}
+                      onClick={() => setFontKey(f.key)}
                       className="flex flex-col items-start px-4 py-3 rounded-xl border transition-all cursor-none text-left"
                       style={{
-                        borderColor: font === f.name ? "#9B5CFF" : "rgba(0,0,0,0.08)",
-                        background: font === f.name ? "rgba(155,92,255,0.08)" : "transparent",
+                        borderColor: fontKey === f.key ? "#9B5CFF" : "rgba(0,0,0,0.08)",
+                        background: fontKey === f.key ? "rgba(155,92,255,0.08)" : "transparent",
                       }}
                     >
-                      <span className="text-base font-bold text-black mb-0.5" style={{ fontFamily: `'${f.name}', cursive` }}>
+                      <span className="text-base text-black mb-0.5" style={{ fontFamily: f.family }}>
                         {f.label}
                       </span>
                       <span className="text-[10px] text-black/30">{f.style}</span>
@@ -400,21 +494,21 @@ export default function StudioPage() {
               {/* Boyut */}
               <div className="p-6 rounded-2xl border border-black/8 bg-[#FFFFFF]">
                 <label className="text-xs font-bold uppercase tracking-wider text-black/30 mb-3 block">
-                  Boyut
+                  Boyut — önizlemeye anında yansır
                 </label>
                 <div className="flex flex-wrap gap-2">
                   {SIZES.map((s) => (
                     <button
-                      key={s}
+                      key={s.label}
                       onClick={() => setSize(s)}
                       className="px-4 py-2 rounded-lg text-sm border transition-all cursor-none"
                       style={{
-                        borderColor: size === s ? "#FF00C8" : "rgba(0,0,0,0.08)",
-                        background: size === s ? "rgba(255,0,200,0.08)" : "transparent",
-                        color: size === s ? "#FF00C8" : "rgba(0,0,0,0.5)",
+                        borderColor: size.label === s.label ? "#FF00C8" : "rgba(0,0,0,0.08)",
+                        background: size.label === s.label ? "rgba(255,0,200,0.08)" : "transparent",
+                        color: size.label === s.label ? "#FF00C8" : "rgba(0,0,0,0.5)",
                       }}
                     >
-                      {s}
+                      {s.label} — {s.cm}
                     </button>
                   ))}
                 </div>
@@ -443,7 +537,7 @@ export default function StudioPage() {
                 </div>
               </div>
 
-              {/* WhatsApp Sipariş */}
+              {/* WhatsApp Teklif */}
               <button
                 onClick={handleWaOrder}
                 disabled={isDownloading}
@@ -451,7 +545,7 @@ export default function StudioPage() {
                 style={{ background: "#25D366", boxShadow: "0 0 32px rgba(37,211,102,0.35)" }}
               >
                 <MessageCircle size={20} />
-                WhatsApp ile Sipariş Ver
+                WhatsApp ile Teklif Al
               </button>
 
               <p className="text-xs text-black/25 text-center">

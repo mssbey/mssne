@@ -5,10 +5,9 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Minus, Plus, Trash2, ShoppingBag, MessageCircle, ArrowLeft } from "lucide-react";
 import { useCart } from "@/lib/store/useCart";
-import { formatPrice } from "@/lib/utils";
 
 export default function SepetPage() {
-  const { items, removeItem, updateQuantity, total, itemCount, clearCart, buildWhatsAppMessage } = useCart();
+  const { items, removeItem, updateQuantity, clearCart, buildWhatsAppMessage } = useCart();
   const [hydrated, setHydrated] = useState(false);
   useEffect(() => setHydrated(true), []);
 
@@ -111,8 +110,8 @@ export default function SepetPage() {
                           <Plus size={12} />
                         </button>
                       </div>
-                      <span className="text-lg font-black text-black">
-                        {formatPrice(item.unitPrice * item.quantity)}
+                      <span className="text-xs font-semibold text-black/40">
+                        Fiyat teklifle netleşir
                       </span>
                     </div>
                   </div>
@@ -138,17 +137,15 @@ export default function SepetPage() {
                       <span className="text-black/40 truncate mr-2">
                         {item.product.name} ×{item.quantity}
                       </span>
-                      <span className="text-black/70 shrink-0">{formatPrice(item.unitPrice * item.quantity)}</span>
                     </div>
                   ))}
                 </div>
 
                 <div className="border-t border-black/5 pt-4 mb-6">
-                  <div className="flex justify-between items-center">
-                    <span className="text-black/50 text-sm">Toplam</span>
-                    <span className="text-2xl font-black text-black">{formatPrice(total())}</span>
-                  </div>
-                  <p className="text-xs text-black/25 mt-1">KDV ve kargo dahildir</p>
+                  <p className="text-sm text-black/50 leading-relaxed">
+                    Fiyatlar boyut, renk ve adede göre kişiye özel hesaplanır.
+                    Listenizi WhatsApp&apos;tan gönderin, dakikalar içinde net teklif verelim.
+                  </p>
                 </div>
 
                 <a
@@ -159,11 +156,11 @@ export default function SepetPage() {
                   style={{ background: "#25D366", boxShadow: "0 0 24px rgba(37,211,102,0.3)" }}
                 >
                   <MessageCircle size={18} />
-                  WhatsApp ile Sipariş Ver
+                  WhatsApp ile Teklif Al
                 </a>
 
                 <p className="text-[11px] text-black/20 text-center mt-3">
-                  Sipariş detayları WhatsApp&apos;a aktarılır, ödeme sonrasında teyit edilir
+                  Liste detayları WhatsApp&apos;a aktarılır, teklif sonrası siparişiniz teyit edilir
                 </p>
               </div>
 

@@ -17,14 +17,14 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-8 inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#D9668A]/30 bg-[#D9668A]/5 backdrop-blur-sm"
+          className="mb-8 inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#FF6EC7]/30 bg-[#FF6EC7]/10 backdrop-blur-sm"
         >
           <span
             className="w-1.5 h-1.5 rounded-full animate-pulse"
-            style={{ background: "#D9668A", boxShadow: "0 0 8px #D9668A" }}
+            style={{ background: "#FF6EC7", boxShadow: "0 0 8px #FF6EC7" }}
           />
-          <span className="text-xs font-semibold tracking-widest uppercase text-[#D9668A]">
-            Türkiye&apos;nin 1 Numaralı Neon Stüdyosu
+          <span className="text-xs font-semibold tracking-widest uppercase text-[#FF6EC7]">
+            Tabela · Baskı · Açık Hava · Neon — Tek Adres
           </span>
         </motion.div>
 
@@ -37,7 +37,7 @@ export function HeroSection() {
         >
           <span
             style={{
-              background: "linear-gradient(180deg, #1a1a1a 0%, rgba(0,0,0,0.65) 100%)",
+              backgroundImage: "linear-gradient(180deg, #FFFFFF 0%, rgba(255,255,255,0.6) 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -50,11 +50,11 @@ export function HeroSection() {
           </span>
           <span
             style={{
-              background: "linear-gradient(135deg, #D9668A 0%, #5FAE7F 100%)",
+              backgroundImage: "linear-gradient(135deg, #FF6EC7 0%, #00D4FF 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
-              filter: "drop-shadow(0 0 30px rgba(217,102,138,0.4))",
+              filter: "drop-shadow(0 0 30px rgba(255,110,199,0.45))",
             }}
           >
             Parlatalım.
@@ -66,10 +66,10 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          className="max-w-xl text-[clamp(16px,2vw,20px)] text-black/55 font-normal leading-relaxed mb-12 tracking-[-0.2px]"
+          className="max-w-xl text-[clamp(16px,2vw,20px)] text-white/60 font-normal leading-relaxed mb-12 tracking-[-0.2px]"
         >
-          Türkiye&apos;nin en premium kişiye özel neon tasarım stüdyosu.
-          Markanız için sınırsız ışık, sonsuz tasarım.
+          Tabela sistemlerinden baskı ve matbaaya, açık hava reklamlarından kişiye özel
+          neon tasarıma kadar markanızın ihtiyaç duyduğu her şeyi tek çatı altında üretiyoruz.
         </motion.p>
 
         {/* CTAs */}
@@ -80,21 +80,21 @@ export function HeroSection() {
           className="flex flex-col sm:flex-row gap-4 justify-center"
         >
           <Link
-            href="/studio"
+            href="/hizmetler"
             className="group flex items-center gap-2 px-8 py-4 rounded-full text-base font-bold text-black transition-all hover:scale-105 cursor-none"
             style={{
-              background: "#D9668A",
-              boxShadow: "0 0 40px rgba(217,102,138,0.5)",
+              background: "#FF6EC7",
+              boxShadow: "0 0 40px rgba(255,110,199,0.5)",
             }}
           >
-            ✦ Kendi Neonunu Tasarla
+            ✦ Hizmetlerimizi Keşfet
             <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
           </Link>
           <Link
-            href="/galeri"
-            className="flex items-center gap-2 px-8 py-4 rounded-full text-base font-semibold text-black border border-black/15 bg-black/5 backdrop-blur-sm hover:bg-black/10 hover:border-black/25 transition-all cursor-none"
+            href="/studio"
+            className="flex items-center gap-2 px-8 py-4 rounded-full text-base font-semibold text-white border border-white/20 bg-white/5 backdrop-blur-sm hover:bg-white/10 hover:border-white/35 transition-all cursor-none"
           >
-            Örnek Çalışmalar
+            Kendi Neonunu Tasarla
           </Link>
         </motion.div>
 
@@ -103,21 +103,12 @@ export function HeroSection() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-black/30 text-[11px] font-medium tracking-[2px] uppercase"
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/35 text-[11px] font-medium tracking-[2px] uppercase"
         >
           <ChevronDown size={16} className="animate-bounce" />
           Kaydır
         </motion.div>
 
-        {/* Click hint */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.35 }}
-          transition={{ delay: 2 }}
-          className="absolute bottom-32 left-1/2 -translate-x-1/2 text-[11px] text-black/30 tracking-wider"
-        >
-          Renk değiştirmek için tıkla
-        </motion.p>
       </div>
     </TubesBackground>
   );

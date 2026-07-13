@@ -51,10 +51,10 @@ const OTHER_SERVICES: OtherService[] = [
     color: "#5FAE7F",
   },
   {
-    href: "/studio",
-    title: "Kendin Tasarla",
-    tagline: "Online stüdyoda yazını gir, tasarımını gerçek zamanlı gör.",
-    icon: "PenTool",
+    href: "/promosyon",
+    title: "Promosyon Ürünleri",
+    tagline: "Termos, kupa, defter ve daha fazlası — logonuzla markanızı taşıyın.",
+    icon: "Gift",
     color: "#D9668A",
   },
 ];

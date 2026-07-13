@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import { Star, Package, Shield, Truck } from "lucide-react";
 import { getProductBySlug, getRelatedProducts, PRODUCTS } from "@/lib/products";
 import { ProductActions } from "@/components/product/ProductActions";
@@ -35,48 +36,50 @@ export default async function ProductDetailPage({ params }: Props) {
           <div className="space-y-4">
             {/* Main preview */}
             <div
-              className="relative rounded-3xl border border-white/8 overflow-hidden flex items-center justify-center"
-              style={{
-                minHeight: "420px",
-                background: `radial-gradient(ellipse 80% 80% at 50% 50%, ${product.glowColor}18 0%, transparent 70%), #090909`,
-              }}
+              className="relative rounded-3xl border border-black/8 overflow-hidden bg-[#090909]"
+              style={{ minHeight: "420px" }}
             >
+              <Image
+                src={product.image}
+                alt={product.name}
+                width={900}
+                height={640}
+                priority
+                className="w-full h-[420px] md:h-[480px] object-cover"
+              />
+              <div
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  background: `radial-gradient(ellipse 80% 60% at 50% 40%, ${product.glowColor}12 0%, transparent 70%)`,
+                }}
+              />
               {product.badge && (
                 <span
-                  className="absolute top-5 left-5 text-xs font-bold px-3 py-1.5 rounded-full"
+                  className="absolute top-5 left-5 text-xs font-bold px-3 py-1.5 rounded-full backdrop-blur-sm"
                   style={{
-                    background: `${product.glowColor}20`,
-                    color: product.glowColor,
-                    border: `1px solid ${product.glowColor}40`,
+                    background: `${product.glowColor}25`,
+                    color: "#fff",
+                    border: `1px solid ${product.glowColor}60`,
+                    textShadow: `0 0 8px ${product.glowColor}`,
                   }}
                 >
                   {product.badge}
                 </span>
               )}
-              <span
-                className="text-[100px] select-none"
-                style={{
-                  filter: `drop-shadow(0 0 40px ${product.glowColor}) drop-shadow(0 0 80px ${product.glowColor}50)`,
-                  animation: "neon-pulse 2s ease-in-out infinite",
-                }}
-              >
-                {product.emoji}
-              </span>
             </div>
 
-            {/* Color swatches preview */}
+            {/* Renk seçenekleri önizleme */}
             <div className="grid grid-cols-4 gap-2">
               {product.colors.map((c) => (
                 <div
                   key={c.hex}
-                  className="rounded-xl border border-black/8 flex items-center justify-center py-4 text-3xl"
-                  style={{
-                    background: `radial-gradient(circle, ${c.hex}20 0%, transparent 70%)`,
-                  }}
+                  className="rounded-xl border border-black/8 flex flex-col items-center justify-center py-4 gap-2 bg-[#0d0d0d]"
                 >
-                  <span style={{ filter: `drop-shadow(0 0 12px ${c.hex})` }}>
-                    {product.emoji}
-                  </span>
+                  <span
+                    className="w-8 h-8 rounded-full"
+                    style={{ background: c.hex, boxShadow: `0 0 14px ${c.hex}, 0 0 28px ${c.hex}50` }}
+                  />
+                  <span className="text-[10px] text-white/40">{c.name}</span>
                 </div>
               ))}
             </div>

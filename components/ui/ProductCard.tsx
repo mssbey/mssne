@@ -1,11 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Heart, ShoppingBag, Star } from "lucide-react";
 import { useCart } from "@/lib/store/useCart";
 import { useFavorites } from "@/lib/store/useFavorites";
-import { formatPrice } from "@/lib/utils";
 import type { Product } from "@/lib/products";
 import { cn } from "@/lib/utils";
 
@@ -24,7 +24,7 @@ export function ProductCard({ product, index = 0 }: Props) {
     e.stopPropagation();
     const defaultColor = product.colors[0]?.name ?? "";
     const defaultSize = product.sizes[0]?.label ?? "";
-    addItem(product, defaultColor, defaultSize, product.price);
+    addItem(product, defaultColor, defaultSize, 0);
   };
 
   const handleFavorite = (e: React.MouseEvent) => {
@@ -42,20 +42,21 @@ export function ProductCard({ product, index = 0 }: Props) {
     >
       <Link href={`/urunler/${product.slug}`} className="flex flex-col flex-1 cursor-none">
         {/* Image area */}
-        <div
-          className="relative h-52 flex items-center justify-center overflow-hidden"
-          style={{
-            background: `radial-gradient(ellipse 80% 80% at 50% 50%, ${product.glowColor}18 0%, transparent 70%), #090909`,
-          }}
-        >
-          <span
-            className="text-5xl select-none transition-transform duration-500 group-hover:scale-110"
+        <div className="relative h-52 overflow-hidden bg-[#090909]">
+          <Image
+            src={product.image}
+            alt={product.name}
+            width={520}
+            height={340}
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+          {/* Neon parıltı overlay */}
+          <div
+            className="absolute inset-0 pointer-events-none"
             style={{
-              filter: `drop-shadow(0 0 20px ${product.glowColor})`,
+              background: `linear-gradient(180deg, transparent 55%, rgba(0,0,0,0.55) 100%), radial-gradient(ellipse 80% 60% at 50% 40%, ${product.glowColor}14 0%, transparent 70%)`,
             }}
-          >
-            {product.emoji}
-          </span>
+          />
 
           {/* Badges */}
           <div className="absolute top-3 left-3 flex flex-col gap-1.5">
@@ -119,12 +120,11 @@ export function ProductCard({ product, index = 0 }: Props) {
             <span className="text-xs text-black/30">({product.reviewCount})</span>
           </div>
 
-          {/* Price + Cart */}
+          {/* Teklif + Sepet */}
           <div className="flex items-center justify-between mt-auto pt-3 border-t border-black/5">
-            <div>
-              <span className="text-lg font-black text-black">{formatPrice(product.price)}</span>
-              <span className="text-xs text-black/30 ml-1">den</span>
-            </div>
+            <span className="text-xs font-semibold" style={{ color: product.glowColor }}>
+              Fiyat için teklif alın
+            </span>
             <button
               onClick={handleAddToCart}
               disabled={!product.inStock}
