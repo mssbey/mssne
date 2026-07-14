@@ -39,7 +39,7 @@ export default function RootLayout({
 
         {/* WhatsApp floating button */}
         <a
-          href={`https://wa.me/905001234567?text=${encodeURIComponent("Merhaba! Neon tabela hakkında bilgi almak istiyorum.")}`}
+          href={`https://wa.me/905468156089?text=${encodeURIComponent("Merhaba! Neon tabela hakkında bilgi almak istiyorum.")}`}
           target="_blank"
           rel="noopener noreferrer"
           className="fixed bottom-6 right-6 z-40 w-14 h-14 rounded-full flex items-center justify-center text-2xl shadow-lg hover:scale-110 transition-transform cursor-none"

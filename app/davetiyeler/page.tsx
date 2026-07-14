@@ -124,7 +124,7 @@ export default function DavetiyelerPage() {
         >
           <p className="text-black/40 mb-6">Aradığınız tarzda davetiye bulamadınız mı?</p>
           <a
-            href={`https://wa.me/905001234567?text=${encodeURIComponent("Merhaba! Özel tasarım davetiye yaptırmak istiyorum.")}`}
+            href={`https://wa.me/905468156089?text=${encodeURIComponent("Merhaba! Özel tasarım davetiye yaptırmak istiyorum.")}`}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-3 px-8 py-4 rounded-full font-bold text-black cursor-none hover:scale-105 transition-all"
@@ -198,7 +198,7 @@ export default function DavetiyelerPage() {
                   </p>
                 </div>
                 <a
-                  href={`https://wa.me/905001234567?text=${encodeURIComponent(`Merhaba! ${selected} numaralı davetiye modelini sipariş etmek istiyorum. Bilgi alabilir miyim?`)}`}
+                  href={`https://wa.me/905468156089?text=${encodeURIComponent(`Merhaba! ${selected} numaralı davetiye modelini sipariş etmek istiyorum. Bilgi alabilir miyim?`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-bold text-black cursor-none whitespace-nowrap"

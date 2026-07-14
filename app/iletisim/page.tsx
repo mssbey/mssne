@@ -12,7 +12,7 @@ const CARDS = [
   {
     icon: Phone,
     title: "Telefon",
-    value: CONTACT.phone,
+    value: `${CONTACT.phone} · ${CONTACT.phone2}`,
     href: CONTACT.phoneHref,
     color: "#D9668A",
     note: "Mesai saatleri içinde arayabilirsiniz",

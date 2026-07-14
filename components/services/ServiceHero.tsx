@@ -96,7 +96,7 @@ export function ServiceHero({ service }: { service: ServiceData }) {
             className="flex flex-wrap gap-4"
           >
             <a
-              href={`https://wa.me/905001234567?text=${encodeURIComponent(service.cta.whatsappMessage)}`}
+              href={`https://wa.me/905468156089?text=${encodeURIComponent(service.cta.whatsappMessage)}`}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 px-8 py-4 rounded-full text-base font-bold text-black transition-all hover:scale-105 cursor-none"

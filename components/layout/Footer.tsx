@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import { CONTACT } from "@/lib/data";
 
@@ -76,17 +77,15 @@ export function Footer() {
         {/* Brand */}
         <div className="lg:col-span-2">
           <div className="mb-6">
-            <span
-              className="text-2xl font-black"
-              style={{
-                background: "linear-gradient(135deg, #D9668A, #5FAE7F)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-              }}
-            >
-              IKARUS
-            </span>
-            <span className="text-2xl font-black text-black ml-1">REKLAM</span>
+            <Link href="/" className="inline-block cursor-none">
+              <Image
+                src="/logo.png"
+                alt="İkarus Reklam"
+                width={176}
+                height={60}
+                className="h-14 w-auto"
+              />
+            </Link>
           </div>
           <p className="text-black/40 text-sm leading-relaxed mb-6 max-w-xs">
             Türkiye&apos;nin en premium kişiye özel neon tabela stüdyosu.
@@ -100,6 +99,13 @@ export function Footer() {
             >
               <Phone size={14} className="text-[#D9668A]" />
               {CONTACT.phone}
+            </a>
+            <a
+              href={CONTACT.phone2Href}
+              className="flex items-center gap-2 text-sm text-black/40 hover:text-black transition-colors cursor-none"
+            >
+              <Phone size={14} className="text-[#D9668A]" />
+              {CONTACT.phone2}
             </a>
             <a
               href={`mailto:${CONTACT.email}`}
@@ -159,7 +165,7 @@ export function Footer() {
         <div className="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-black/25">© 2026 Ikarus Reklam. Tüm hakları saklıdır.</p>
           <a
-            href={`https://wa.me/905001234567?text=${encodeURIComponent("Merhaba, neon tabela hakkında bilgi almak istiyorum.")}`}
+            href={`https://wa.me/905468156089?text=${encodeURIComponent("Merhaba, neon tabela hakkında bilgi almak istiyorum.")}`}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 text-xs font-medium px-4 py-2 rounded-full border border-[#25D366]/30 text-[#25D366] hover:bg-[#25D366]/10 transition-all cursor-none"

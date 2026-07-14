@@ -13,7 +13,7 @@ export default function SepetPage() {
 
   if (!hydrated) return null;
 
-  const waLink = `https://wa.me/905001234567?text=${buildWhatsAppMessage()}`;
+  const waLink = `https://wa.me/905468156089?text=${buildWhatsAppMessage()}`;
 
   return (
     <div className="min-h-screen pt-24 pb-20 px-6 bg-[#FBF8F6]">

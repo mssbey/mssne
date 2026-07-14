@@ -14,7 +14,7 @@ export function CartDrawer() {
     return () => { document.body.style.overflow = ""; };
   }, [isOpen]);
 
-  const waLink = `https://wa.me/905001234567?text=${buildWhatsAppMessage()}`;
+  const waLink = `https://wa.me/905468156089?text=${buildWhatsAppMessage()}`;
 
   return (
     <AnimatePresence>

@@ -25,7 +25,7 @@ export function ProductActions({ product }: { product: Product }) {
     setTimeout(() => setAdded(false), 2000);
   };
 
-  const waLink = `https://wa.me/905001234567?text=${encodeURIComponent(
+  const waLink = `https://wa.me/905468156089?text=${encodeURIComponent(
     `Merhaba! Şu ürün için teklif almak istiyorum:\n\n• ${product.name}\n  Renk: ${selectedColor.name}\n  Boyut: ${selectedSize.label} (${selectedSize.cm})\n  Adet: ${quantity}\n\nFiyat bilgisi alabilir miyim?`
   )}`;
 

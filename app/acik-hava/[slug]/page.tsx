@@ -74,8 +74,8 @@ export default async function AcikHavaDetailPage({ params }: Props) {
           "@type": "Organization",
           name: "Ikarus Reklam",
           url: SITE_URL,
-          telephone: "+905001234567",
-          email: "info@ikarusreklam.com",
+          telephone: "+905468156089",
+          email: "ikarusreklam@outlook.com",
         },
       },
       {

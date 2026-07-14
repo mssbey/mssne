@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { UserPlus, Eye, EyeOff } from "lucide-react";
@@ -46,8 +47,7 @@ export default function KayitPage() {
       <motion.div initial={{ opacity: 0, y: 32 }} animate={{ opacity: 1, y: 0 }} className="w-full max-w-md">
         <div className="text-center mb-10">
           <Link href="/" className="inline-block cursor-none">
-            <span className="text-3xl font-black" style={{ background: "linear-gradient(135deg, #D9668A, #5FAE7F)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>IKARUS</span>
-            <span className="text-3xl font-black text-black ml-1">REKLAM</span>
+            <Image src="/logo.png" alt="İkarus Reklam" width={206} height={70} priority className="h-[70px] w-auto mx-auto" />
           </Link>
           <p className="text-black/35 text-sm mt-2">Ücretsiz hesap oluşturun</p>
         </div>

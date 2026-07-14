@@ -3,11 +3,12 @@
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Eye, EyeOff, Mail, Sparkles } from "lucide-react";
+import { Eye, EyeOff, Mail } from "lucide-react";
 import { useAuth } from "@/lib/store/useAuth";
 
 
@@ -268,14 +269,8 @@ export default function GirisPage() {
       {/* Left Content Section */}
       <div className="relative hidden lg:flex flex-col justify-between bg-gradient-to-br from-[#5FAE7F]/90 via-[#5FAE7F] to-[#5FAE7F]/80 p-12 text-black">
         <div className="relative z-20">
-          <Link href="/" className="flex items-center gap-2 text-lg font-semibold cursor-none">
-            <div className="size-8 rounded-lg bg-black/10 backdrop-blur-sm flex items-center justify-center">
-              <Sparkles className="size-4" />
-            </div>
-            <span className="font-black">
-              <span style={{ background: "linear-gradient(135deg,#D9668A,#fff)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>IKARUS</span>
-              <span className="text-black ml-1">REKLAM</span>
-            </span>
+          <Link href="/" className="flex items-center cursor-none">
+            <Image src="/logo.png" alt="İkarus Reklam" width={147} height={50} priority className="h-11 w-auto" />
           </Link>
         </div>
 
@@ -448,13 +443,9 @@ export default function GirisPage() {
       <div className="flex items-center justify-center p-8 bg-[#FBF8F6]">
         <div className="w-full max-w-[420px]">
           {/* Mobile Logo */}
-          <div className="lg:hidden flex items-center justify-center gap-2 text-lg font-semibold mb-12">
-            <div className="size-8 rounded-lg bg-[#5FAE7F]/10 flex items-center justify-center">
-              <Sparkles className="size-4 text-[#5FAE7F]" />
-            </div>
-            <Link href="/" className="font-black cursor-none">
-              <span style={{ background: "linear-gradient(135deg,#D9668A,#5FAE7F)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>IKARUS</span>
-              <span className="text-black ml-1">REKLAM</span>
+          <div className="lg:hidden flex items-center justify-center mb-12">
+            <Link href="/" className="cursor-none">
+              <Image src="/logo.png" alt="İkarus Reklam" width={165} height={56} className="h-14 w-auto" />
             </Link>
           </div>
 

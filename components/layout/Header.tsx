@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import {
   Menu, X, ChevronDown, ShoppingBag, Heart, User, LogOut,
@@ -80,21 +81,18 @@ export function Header() {
     >
       <div className="max-w-screen-2xl mx-auto px-6 lg:px-8 flex items-center justify-between gap-6">
         {/* Logo */}
-        <Link href="/" className="flex items-center shrink-0 cursor-none">
-          <span
-            className="text-xl font-black tracking-tight"
-            style={{
-              backgroundImage: "linear-gradient(135deg, #FF6EC7, #00D4FF)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              filter: "drop-shadow(0 0 10px rgba(255,110,199,0.4))",
-            }}
-          >
-            IKARUS
-          </span>
-          <span className={cn("text-xl font-black tracking-tight ml-1", dark ? "text-white" : "text-black")}>
-            REKLAM
-          </span>
+        <Link href="/" className="flex items-center shrink-0 cursor-none lg:ml-24">
+          <Image
+            src="/logo.png"
+            alt="İkarus Reklam"
+            width={200}
+            height={68}
+            priority
+            className={cn(
+              "w-auto transition-all duration-500",
+              scrolled ? "h-12 -my-1" : "h-[68px] -my-3"
+            )}
+          />
         </Link>
 
         {/* Desktop Nav */}

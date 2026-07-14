@@ -36,7 +36,7 @@ export function WhyUs() {
             </p>
 
             <a
-              href={`https://wa.me/905001234567?text=${encodeURIComponent("Merhaba! Fiyat teklifi almak istiyorum.")}`}
+              href={`https://wa.me/905468156089?text=${encodeURIComponent("Merhaba! Fiyat teklifi almak istiyorum.")}`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-semibold text-sm text-black transition-all hover:scale-105 cursor-none"
