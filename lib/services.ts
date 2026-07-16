@@ -32,6 +32,7 @@ export interface ServiceGalleryItem {
   icon: string;
   label: string;
   alt: string;
+  productCode?: string;
 }
 
 export interface ServiceData {
@@ -152,14 +153,18 @@ export const SERVICES: ServiceData[] = [
       { icon: "CloudRain", title: "Hava Şartlarına Dayanıklılık", desc: "IP65 sertifikalı üretim ile her iklim koşulunda güvenle çalışır." },
     ],
     gallery: [
-      { icon: "Building2", label: "AVM Cephesi", alt: "AVM cephesinde üç boyutlu kutu harf tabela uygulaması" },
-      { icon: "Gem", label: "Paslanmaz Kutu Harf", alt: "Paslanmaz çelik kutu harf tabela yakın çekim detay" },
+      { icon: "Store", label: "Işıklı Kutu Harf", alt: "Pastane cephesinde ışıklı kutu harf tabela uygulaması" },
+      { icon: "Gem", label: "Krom Kutu Harf", alt: "Krom kaplama kutu harf tabela uygulaması" },
       { icon: "Moon", label: "Gece Görünümü", alt: "Gece LED ışıklı kutu harf tabela" },
-      { icon: "Store", label: "Mağaza Vitrini", alt: "Mağaza vitrini üzerinde kutu harf tabela" },
-      { icon: "Landmark", label: "Plaza Girişi", alt: "Plaza giriş cephesinde kutu harf logo tabelası" },
-      { icon: "UtensilsCrossed", label: "Restoran Logosu", alt: "Restoran cephesinde kutu harf logo tabela" },
+      { icon: "Sparkles", label: "Pleksi Kutu Harf", alt: "Mağaza cephesinde ışıklı pleksi kutu harf tabela" },
+      { icon: "Briefcase", label: "Ofis Logo Uygulaması", alt: "Ofis iç mekânında ışıklı kutu harf logo tabela" },
+      { icon: "UtensilsCrossed", label: "Restoran Cephesi", alt: "Restoran cephesinde ışıklı kutu harf tabela" },
       { icon: "Wrench", label: "Montaj Süreci", alt: "Kutu harf tabela montaj süreci vinç ile kurulum" },
       { icon: "Lightbulb", label: "LED Modül Detayı", alt: "Kutu harf içi LED modül ve trafo detay görüntüsü" },
+      { icon: "Gem", label: "Paslanmaz Krom Harf", alt: "Paslanmaz krom kutu harf tabela yakın çekim detay" },
+      { icon: "Store", label: "Işıklı Marka Logosu", alt: "Restoran cephesinde ışıklı kutu harf marka logosu" },
+      { icon: "Box", label: "Alüminyum Kutu Harf", alt: "Alüminyum statik boyalı kutu harf tabela" },
+      { icon: "Building2", label: "Krom Harf Cephe", alt: "Cephede krom kutu harf tabela uygulaması" },
     ],
     faq: [
       { q: "Kutu harf tabela nedir, nasıl üretilir?", a: "Kutu harf tabela, marka isminizin her bir harfinin ayrı ayrı üç boyutlu kutu formunda üretildiği tabela sistemidir. Pleksi, paslanmaz çelik veya alüminyum gövde içine yerleştirilen LED modüllerle aydınlatılır ve CNC lazer kesim teknolojisiyle şekillendirilir." },

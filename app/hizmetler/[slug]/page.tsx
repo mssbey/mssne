@@ -12,6 +12,7 @@ import { GallerySection } from "@/components/services/GallerySection";
 import { FaqSection } from "@/components/services/FaqSection";
 import { ServiceCTA } from "@/components/services/ServiceCTA";
 import { RelatedServices } from "@/components/services/RelatedServices";
+import { KutuHarfDesigner } from "@/components/services/KutuHarfDesigner";
 
 const SITE_URL = "https://www.ikarusreklam.com";
 
@@ -103,14 +104,15 @@ export default async function ServiceDetailPage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <ServiceHero service={service} />
+      <ServiceHero service={service} showGalleryLink={service.slug === "kutu-harf"} />
+      {service.slug === "kutu-harf" && <KutuHarfDesigner service={service} />}
       <ServiceIntro service={service} />
       <WhyUsSection service={service} />
       <UseCasesSection service={service} />
       <ProcessTimeline service={service} />
       <MaterialsSection service={service} />
       <AdvantagesSection service={service} />
-      <GallerySection service={service} />
+      {service.slug === "kutu-harf" && <GallerySection service={service} />}
       <FaqSection service={service} />
       <ServiceCTA service={service} />
       <RelatedServices services={others} />

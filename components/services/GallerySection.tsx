@@ -55,6 +55,11 @@ export function GallerySection({ service }: { service: ServiceData }) {
                 sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
                 className="object-cover transition-transform duration-500 group-hover:scale-110"
               />
+              {item.productCode && (
+                <span className="absolute left-3 top-3 rounded-full border border-white/20 bg-black/70 px-2.5 py-1 text-[10px] font-bold tracking-wider text-white backdrop-blur-sm">
+                  Ürün Kodu: {item.productCode}
+                </span>
+              )}
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
                 <div className="flex items-center gap-2 text-white">
                   <ZoomIn size={14} />
@@ -120,6 +125,11 @@ export function GallerySection({ service }: { service: ServiceData }) {
               />
               <div className="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/80 to-transparent">
                 <p className="text-white text-sm font-semibold">{active.label}</p>
+                {active.productCode && (
+                  <p className="mt-1 text-xs font-medium tracking-wide text-white/70">
+                    Ürün Kodu: {active.productCode}
+                  </p>
+                )}
               </div>
             </motion.div>
           </motion.div>

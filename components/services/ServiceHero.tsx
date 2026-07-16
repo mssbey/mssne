@@ -9,7 +9,13 @@ import type { ServiceData } from "@/lib/services";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-export function ServiceHero({ service }: { service: ServiceData }) {
+export function ServiceHero({
+  service,
+  showGalleryLink = true,
+}: {
+  service: ServiceData;
+  showGalleryLink?: boolean;
+}) {
   const Icon = getServiceIcon(service.heroIcon);
   const basePath = service.basePath ?? "hizmetler";
   const sectionLabel = service.sectionLabel ?? "Hizmetler";
@@ -104,12 +110,14 @@ export function ServiceHero({ service }: { service: ServiceData }) {
             >
               Ücretsiz Teklif Al
             </a>
-            <a
-              href="#galeri"
-              className="flex items-center gap-2 px-8 py-4 rounded-full text-base font-semibold text-black border border-black/15 bg-black/5 backdrop-blur-sm hover:bg-black/10 hover:border-black/25 transition-all cursor-none"
-            >
-              Örnek Çalışmalar
-            </a>
+            {showGalleryLink && (
+              <a
+                href="#galeri"
+                className="flex items-center gap-2 px-8 py-4 rounded-full text-base font-semibold text-black border border-black/15 bg-black/5 backdrop-blur-sm hover:bg-black/10 hover:border-black/25 transition-all cursor-none"
+              >
+                Örnek Çalışmalar
+              </a>
+            )}
           </motion.div>
         </div>
       </div>

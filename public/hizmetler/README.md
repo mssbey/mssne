@@ -9,15 +9,19 @@ ilgili klasöre eklediğinizde, görseller otomatik olarak devreye girer (kod de
 otomatik dönüştürür).
 
 ## kutu-harf/
-- `hero.jpg` — Sayfa üstü büyük hero görseli (örn. AVM cephesinde kutu harf)
-- `gallery-1.jpg` — AVM cephesinde üç boyutlu kutu harf tabela uygulaması
-- `gallery-2.jpg` — Paslanmaz çelik kutu harf tabela yakın çekim detay
+- `hero.jpg` — Sayfa üstü büyük hero görseli (krom kutu harf cephe)
+- `gallery-1.jpg` — Pastane cephesinde ışıklı kutu harf tabela uygulaması
+- `gallery-2.jpg` — Krom kaplama kutu harf tabela uygulaması
 - `gallery-3.jpg` — Gece LED ışıklı kutu harf tabela
-- `gallery-4.jpg` — Mağaza vitrini üzerinde kutu harf tabela
-- `gallery-5.jpg` — Plaza giriş cephesinde kutu harf logo tabelası
-- `gallery-6.jpg` — Restoran cephesinde kutu harf logo tabela
+- `gallery-4.jpg` — Mağaza cephesinde ışıklı pleksi kutu harf tabela
+- `gallery-5.jpg` — Ofis iç mekânında ışıklı kutu harf logo tabela
+- `gallery-6.jpg` — Restoran cephesinde ışıklı kutu harf tabela
 - `gallery-7.jpg` — Kutu harf tabela montaj süreci, vinç ile kurulum
 - `gallery-8.jpg` — Kutu harf içi LED modül ve trafo detay görüntüsü
+- `gallery-9.jpg` — Paslanmaz krom kutu harf tabela yakın çekim detay
+- `gallery-10.jpg` — Restoran cephesinde ışıklı kutu harf marka logosu
+- `gallery-11.jpg` — Alüminyum statik boyalı kutu harf tabela
+- `gallery-12.jpg` — Cephede krom kutu harf tabela uygulaması
 
 ## isikli-isiksiz-tabela/
 - `hero.jpg` — Sayfa üstü büyük hero görseli (örn. gece ışıklı tabela)
