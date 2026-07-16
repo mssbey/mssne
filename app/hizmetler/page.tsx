@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { SERVICES } from "@/lib/services";
@@ -9,6 +10,14 @@ export const metadata: Metadata = {
   description:
     "Kutu harf, ışıklı/ışıksız tabela, kompozit tabela, totem ve cephe giydirme hizmetlerimizi keşfedin. Kurumsal tabela imalatı ve montajında Türkiye geneli hizmet.",
   alternates: { canonical: "https://www.ikarusreklam.com/hizmetler" },
+};
+
+const SERVICE_IMAGES: Record<string, string> = {
+  "kutu-harf": "/hizmetler/kutu-harf/hero.jpg",
+  "isikli-isiksiz-tabela": "/hizmetler/isikli-isiksiz-tabela/hero.jpg",
+  "kompozit-tabela": "/hizmetler/kompozit-tabela/hero.jpg",
+  totem: "/hizmetler/totem/hero.jpg",
+  "cephe-giydirme": "/home/services/signage.webp",
 };
 
 export default function ServicesIndexPage() {
@@ -41,25 +50,34 @@ export default function ServicesIndexPage() {
               <Link
                 key={service.slug}
                 href={`/hizmetler/${service.slug}`}
-                className="group relative flex flex-col justify-between p-8 rounded-3xl border border-black/8 bg-[#FFFFFF] hover:border-black/20 transition-all overflow-hidden min-h-[280px] cursor-none"
+                className="group relative flex min-h-[320px] flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-[#0B0B0E] p-8 shadow-[0_20px_60px_rgba(17,12,15,0.08)] transition-all duration-500 hover:-translate-y-1 hover:border-white/25 hover:shadow-[0_28px_80px_rgba(17,12,15,0.18)] cursor-none"
               >
+                <Image
+                  src={SERVICE_IMAGES[service.slug] ?? "/home/services/signage.webp"}
+                  alt=""
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#09090C]/95 via-[#09090C]/55 to-[#09090C]/10" />
+                <div className="absolute inset-0 bg-gradient-to-r from-[#09090C]/65 via-transparent to-transparent" />
                 <div
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity"
+                  className="absolute inset-0 opacity-20 transition-opacity duration-500 group-hover:opacity-45"
                   style={{
-                    background: `radial-gradient(ellipse 80% 60% at 50% 0%, ${service.color}18 0%, transparent 70%)`,
+                    background: `radial-gradient(ellipse 80% 60% at 10% 0%, ${service.color}66 0%, transparent 70%)`,
                   }}
                 />
                 <div
-                  className="relative w-14 h-14 rounded-2xl flex items-center justify-center mb-8 transition-transform group-hover:scale-110"
-                  style={{ background: `${service.color}14` }}
+                  className="relative z-10 mb-8 flex h-14 w-14 items-center justify-center rounded-2xl border border-white/15 backdrop-blur-md transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-3"
+                  style={{ background: `${service.color}28`, boxShadow: `0 12px 35px ${service.color}22` }}
                 >
                   <Icon size={24} style={{ color: service.color }} />
                 </div>
-                <div className="relative">
-                  <h2 className="text-xl font-black text-black mb-2 tracking-[-0.5px]">
+                <div className="relative z-10">
+                  <h2 className="mb-2 text-xl font-black tracking-[-0.5px] text-white">
                     {service.shortTitle}
                   </h2>
-                  <p className="text-sm text-black/40 leading-relaxed mb-6">{service.tagline}</p>
+                  <p className="mb-6 max-w-[18rem] text-sm leading-relaxed text-white/65">{service.tagline}</p>
                   <span
                     className="inline-flex items-center gap-1.5 text-xs font-bold transition-transform group-hover:translate-x-1"
                     style={{ color: service.color }}

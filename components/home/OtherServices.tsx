@@ -1,17 +1,19 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, type LucideIcon } from "lucide-react";
 import { getServiceIcon } from "@/components/services/icon-map";
 
 interface OtherService {
   href: string;
   title: string;
   tagline: string;
-  icon?: string;
+  icon?: LucideIcon;
   emoji?: string;
   color: string;
+  image: string;
 }
 
 const OTHER_SERVICES: OtherService[] = [
@@ -19,29 +21,33 @@ const OTHER_SERVICES: OtherService[] = [
     href: "/hizmetler",
     title: "Tabela Sistemleri",
     tagline: "Kutu harf, ışıklı tabela, kompozit, totem ve cephe giydirme.",
-    icon: "CaseSensitive",
+    icon: getServiceIcon("CaseSensitive"),
     color: "#D9668A",
+    image: "/home/services/signage.webp",
   },
   {
     href: "/urunler",
     title: "Neon Tabela",
     tagline: "Kişiye özel LED neon tasarımları, online stüdyoda hazırla.",
-    icon: "Sparkles",
+    icon: getServiceIcon("Sparkles"),
     color: "#5FAE7F",
+    image: "/home/services/neon.webp",
   },
   {
     href: "/baski-matbaa",
     title: "Baskı ve Matbaa",
     tagline: "Kartvizit, broşür ve magnet baskı hizmeti.",
-    icon: "CreditCard",
+    icon: getServiceIcon("CreditCard"),
     color: "#F2B84B",
+    image: "/home/services/print.webp",
   },
   {
     href: "/acik-hava",
     title: "Açık Hava Reklamları",
     tagline: "Billboard, vinil germe ve araç giydirme çözümleri.",
-    icon: "Image",
+    icon: getServiceIcon("Image"),
     color: "#FF8F66",
+    image: "/home/services/outdoor.webp",
   },
   {
     href: "/davetiyeler",
@@ -49,18 +55,20 @@ const OTHER_SERVICES: OtherService[] = [
     tagline: "Düğün, nişan ve özel günler için davetiye koleksiyonu.",
     emoji: "💌",
     color: "#5FAE7F",
+    image: "/home/services/invitations.webp",
   },
   {
     href: "/promosyon",
     title: "Promosyon Ürünleri",
     tagline: "Termos, kupa, defter ve daha fazlası — logonuzla markanızı taşıyın.",
-    icon: "Gift",
+    icon: getServiceIcon("Gift"),
     color: "#D9668A",
+    image: "/home/services/promotional.webp",
   },
 ];
 
 function ServiceCard({ service, index }: { service: OtherService; index: number }) {
-  const Icon = service.icon ? getServiceIcon(service.icon) : null;
+  const Icon = service.icon;
 
   return (
     <motion.div
@@ -83,12 +91,23 @@ function ServiceCard({ service, index }: { service: OtherService; index: number 
         />
 
         {/* Card body */}
-        <div className="relative flex h-full min-h-[248px] flex-col justify-between overflow-hidden rounded-[27px] border border-black/8 bg-[#FFFFFF] p-7 transition-colors duration-500 group-hover:border-transparent">
+        <div className="relative flex h-full min-h-[280px] flex-col justify-between overflow-hidden rounded-[27px] border border-white/10 bg-[#0B0B0E] p-7 transition-colors duration-500 group-hover:border-transparent">
+          {/* Service photo background */}
+          <Image
+            src={service.image}
+            alt=""
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#08080B]/95 via-[#08080B]/75 to-[#08080B]/15" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#08080B]/95 via-[#08080B]/30 to-transparent" />
+
           {/* Ambient hover glow */}
           <div
-            className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+            className="absolute inset-0 opacity-20 group-hover:opacity-45 transition-opacity duration-500"
             style={{
-              background: `radial-gradient(ellipse 90% 60% at 15% 0%, ${service.color}20 0%, transparent 65%)`,
+              background: `radial-gradient(ellipse 90% 60% at 12% 0%, ${service.color}55 0%, transparent 65%)`,
             }}
           />
 
@@ -100,7 +119,7 @@ function ServiceCard({ service, index }: { service: OtherService; index: number 
 
           {/* Giant watermark icon */}
           <div
-            className="pointer-events-none absolute -right-4 -bottom-6 opacity-[0.05] transition-all duration-700 group-hover:opacity-[0.09] group-hover:-rotate-6"
+            className="pointer-events-none absolute -right-4 -bottom-6 opacity-[0.08] transition-all duration-700 group-hover:opacity-[0.14] group-hover:-rotate-6"
             aria-hidden="true"
           >
             {Icon ? (
@@ -111,15 +130,15 @@ function ServiceCard({ service, index }: { service: OtherService; index: number 
           </div>
 
           {/* Index badge */}
-          <span className="absolute top-6 right-7 text-[11px] font-black tracking-widest text-black/10 transition-colors duration-500 group-hover:text-black/25">
+          <span className="absolute top-6 right-7 z-10 text-[11px] font-black tracking-widest text-white/35 transition-colors duration-500 group-hover:text-white/60">
             {String(index + 1).padStart(2, "0")}
           </span>
 
           {/* Icon */}
           <div
-            className="relative z-10 mb-7 flex h-14 w-14 items-center justify-center rounded-2xl text-2xl transition-all duration-500 group-hover:scale-110 group-hover:-rotate-3"
+            className="relative z-10 mb-7 flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 text-2xl backdrop-blur-md transition-all duration-500 group-hover:scale-110 group-hover:-rotate-3"
             style={{
-              background: `${service.color}14`,
+              background: `${service.color}24`,
               boxShadow: `0 0 0px ${service.color}00`,
             }}
           >
@@ -136,10 +155,10 @@ function ServiceCard({ service, index }: { service: OtherService; index: number 
 
           {/* Text */}
           <div className="relative z-10">
-            <h3 className="mb-2 text-lg font-black tracking-[-0.3px] text-black">
+            <h3 className="mb-2 text-lg font-black tracking-[-0.3px] text-white">
               {service.title}
             </h3>
-            <p className="mb-6 text-xs leading-relaxed text-black/40">{service.tagline}</p>
+            <p className="mb-6 max-w-[19rem] text-xs leading-relaxed text-white/65">{service.tagline}</p>
 
             <span
               className="inline-flex items-center gap-1.5 text-xs font-bold"
