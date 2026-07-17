@@ -19,6 +19,13 @@ export function ServiceHero({
   const Icon = getServiceIcon(service.heroIcon);
   const basePath = service.basePath ?? "hizmetler";
   const sectionLabel = service.sectionLabel ?? "Hizmetler";
+  const vividHero =
+    service.slug === "isikli-isiksiz-tabela" ||
+    service.slug === "totem" ||
+    service.slug === "brosur" ||
+    service.slug === "billboard" ||
+    service.slug === "vinil-germe" ||
+    service.slug === "arac-giydirme";
 
   return (
     <section className="relative min-h-[86vh] flex flex-col justify-end overflow-hidden">
@@ -33,11 +40,19 @@ export function ServiceHero({
           fill
           priority
           sizes="100vw"
-          className="object-cover"
+          className={vividHero ? "object-cover saturate-[1.14] contrast-[1.06]" : "object-cover"}
         />
-        {/* Dark overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#FBF8F6] via-[#FBF8F6]/70 to-[#FBF8F6]/30" />
-        <div className="absolute inset-0 bg-[#FBF8F6]/35" />
+        {vividHero ? (
+          <>
+            <div className="absolute inset-0 bg-gradient-to-t from-[#FBF8F6]/90 via-[#FBF8F6]/20 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#FBF8F6]/72 via-[#FBF8F6]/18 to-transparent" />
+          </>
+        ) : (
+          <>
+            <div className="absolute inset-0 bg-gradient-to-t from-[#FBF8F6] via-[#FBF8F6]/70 to-[#FBF8F6]/30" />
+            <div className="absolute inset-0 bg-[#FBF8F6]/35" />
+          </>
+        )}
       </div>
 
       <div className="relative z-10 px-6 pb-16 pt-40">

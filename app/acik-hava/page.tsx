@@ -13,8 +13,8 @@ export const metadata: Metadata = {
 };
 
 const OUTDOOR_IMAGES: Record<string, string> = {
-  billboard: "/home/services/outdoor.webp",
-  "vinil-germe": "/home/services/outdoor.webp",
+  billboard: "/acik-hava/billboard/hero.jpg",
+  "vinil-germe": "/acik-hava/vinil-germe/hero.jpg",
   "arac-giydirme": "/acik-hava/arac-giydirme/hero.jpg",
 };
 
