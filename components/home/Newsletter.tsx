@@ -21,7 +21,7 @@ export function Newsletter() {
         alt=""
         fill
         sizes="100vw"
-        className="object-cover object-center"
+        className="object-cover object-center opacity-45"
       />
       <div className="absolute inset-0 bg-black/25" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(5,6,12,0.12)_45%,rgba(5,6,12,0.55)_100%)]" />

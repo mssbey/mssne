@@ -298,6 +298,10 @@ export const BASKI_MATBAA: ServiceData[] = [
       { icon: "Magnet", label: "9'lu Fotoğraf Magneti", alt: "Dokuz adet dikdörtgen fotoğraf baskılı buzdolabı magneti" },
       { icon: "Sparkles", label: "Magnet Açacak", alt: "Fotoğraf baskılı kişiye özel kapak görünümlü magnet açacak" },
       { icon: "Image", label: "18'li Fotoğraf Magneti", alt: "On sekiz adet dikdörtgen fotoğraf baskılı buzdolabı magneti" },
+      { icon: "Sparkles", label: "Fotoğraf Magnet Kolajı", alt: "Retro buzdolabında kare ve yuvarlak fotoğraf magnetlerinden kolaj" },
+      { icon: "Magnet", label: "Yuvarlak Fotoğraf Magnetleri", alt: "Beyaz retro buzdolabında yuvarlak fotoğraf baskılı magnetler" },
+      { icon: "Gift", label: "Daire Kesim Magnet", alt: "Buzdolabına yerleştirilen daire kesim fotoğraf magneti" },
+      { icon: "Image", label: "4'lü Kare Fotoğraf Magneti", alt: "Dört adet kare fotoğraf baskılı buzdolabı magneti" },
     ],
     faq: [
       { q: "Magnet hangi ölçülerde üretilebilir?", a: "Standart olarak 6x9cm, 9x9cm ve A5 gibi ölçülerde üretim yapıyoruz; özel kesim taleplerinde logonuza uygun serbest ölçü de mümkündür." },

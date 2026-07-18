@@ -6,7 +6,13 @@ import { X, ZoomIn, ChevronLeft, ChevronRight } from "lucide-react";
 import { ServiceImage } from "./ServiceImage";
 import type { ServiceData } from "@/lib/services";
 
-export function GallerySection({ service }: { service: ServiceData }) {
+export function GallerySection({
+  service,
+  heading,
+}: {
+  service: ServiceData;
+  heading?: string;
+}) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   const close = () => setActiveIndex(null);
@@ -28,7 +34,7 @@ export function GallerySection({ service }: { service: ServiceData }) {
             Galeri
           </span>
           <h2 className="text-[clamp(28px,4vw,44px)] font-black tracking-[-1.5px] leading-tight text-black">
-            Tamamlanan {service.shortTitle} Projelerimizden
+            {heading ?? `Tamamlanan ${service.shortTitle} Projelerimizden`}
           </h2>
         </div>
 

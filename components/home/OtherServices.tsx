@@ -98,7 +98,7 @@ function ServiceCard({ service, index }: { service: OtherService; index: number 
             alt=""
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+            className="object-cover opacity-40 transition-transform duration-700 ease-out group-hover:scale-[1.04]"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#08080B]/95 via-[#08080B]/75 to-[#08080B]/15" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#08080B]/95 via-[#08080B]/30 to-transparent" />

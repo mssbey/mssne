@@ -58,6 +58,8 @@ export default async function BaskiMatbaaDetailPage({ params }: Props) {
 
   const others = getOtherBaskiMatbaa(service.slug, 4);
   const url = `${SITE_URL}/baski-matbaa/${service.slug}`;
+  // Kartvizit sayfasında galeri, "Kartvizit Örnekleri" başlığıyla sayfanın en üstünde gösterilir.
+  const galleryOnTop = service.slug === "kartvizit";
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -104,13 +106,14 @@ export default async function BaskiMatbaaDetailPage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <ServiceHero service={service} />
+      {galleryOnTop && <GallerySection service={service} heading="Kartvizit Örnekleri" />}
       <ServiceIntro service={service} />
       <WhyUsSection service={service} />
       <UseCasesSection service={service} />
       <ProcessTimeline service={service} />
       <MaterialsSection service={service} />
       <AdvantagesSection service={service} />
-      <GallerySection service={service} />
+      {!galleryOnTop && <GallerySection service={service} />}
       <FaqSection service={service} />
       <ServiceCTA service={service} />
       <RelatedServices

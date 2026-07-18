@@ -72,11 +72,14 @@ export function ServiceHero({
           }
         />
         {vividHero ? (
-          <div className="absolute inset-0 bg-gradient-to-t from-[#FBF8F6]/62 from-0% via-[#FBF8F6]/6 via-26% to-transparent" />
+          <>
+            <div className="absolute inset-0 bg-gradient-to-t from-[#FBF8F6]/62 from-0% via-[#FBF8F6]/6 via-26% to-transparent" />
+            <div className="absolute inset-0 bg-[#FBF8F6]/30" />
+          </>
         ) : (
           <>
             <div className="absolute inset-0 bg-gradient-to-t from-[#FBF8F6] via-[#FBF8F6]/70 to-[#FBF8F6]/30" />
-            <div className="absolute inset-0 bg-[#FBF8F6]/35" />
+            <div className="absolute inset-0 bg-[#FBF8F6]/55" />
           </>
         )}
       </div>
