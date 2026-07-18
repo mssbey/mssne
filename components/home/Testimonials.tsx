@@ -2,12 +2,16 @@
 
 import { motion } from "framer-motion";
 import { TESTIMONIALS } from "@/lib/data";
-import { Star } from "lucide-react";
+import { Star, Quote } from "lucide-react";
 
 export function Testimonials() {
   return (
-    <section className="py-28 px-6 bg-[#F3EDEA]">
-      <div className="max-w-7xl mx-auto">
+    <section className="relative overflow-hidden py-28 px-6 bg-[#F3EDEA]">
+      {/* Decorative glow */}
+      <div className="pointer-events-none absolute -left-32 top-0 h-72 w-72 rounded-full bg-[#D9668A] opacity-[0.08] blur-[100px]" />
+      <div className="pointer-events-none absolute -right-32 bottom-0 h-72 w-72 rounded-full bg-[#F2B84B] opacity-[0.08] blur-[100px]" />
+
+      <div className="relative max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -40,13 +44,15 @@ export function Testimonials() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className="group p-6 rounded-2xl border border-black/8 bg-[#FFFFFF] hover:border-black/15 transition-all relative overflow-hidden"
+              className="group relative p-7 rounded-2xl border border-black/8 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.04)] transition-all duration-300 hover:-translate-y-1.5 hover:border-black/15 hover:shadow-[0_18px_40px_rgba(0,0,0,0.08)] overflow-hidden"
             >
-              {/* Glow */}
+              {/* Top accent */}
               <div
-                className="absolute inset-x-0 bottom-0 h-px opacity-40"
-                style={{ background: `linear-gradient(90deg, transparent, ${t.color}, transparent)` }}
+                className="absolute inset-x-0 top-0 h-1"
+                style={{ background: `linear-gradient(90deg, ${t.color}, transparent)` }}
               />
+
+              <Quote size={26} className="mb-3 opacity-[0.14]" style={{ color: t.color }} fill={t.color} />
 
               {/* Stars */}
               <div className="flex gap-1 mb-4">
@@ -55,20 +61,20 @@ export function Testimonials() {
                 ))}
               </div>
 
-              <p className="text-sm text-black/55 leading-relaxed mb-6 italic">
+              <p className="text-sm text-black/60 leading-relaxed mb-6 italic">
                 &ldquo;{t.text}&rdquo;
               </p>
 
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 pt-5 border-t border-black/5">
                 <div
-                  className="w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold"
-                  style={{ background: `${t.color}20`, color: t.color }}
+                  className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold"
+                  style={{ background: `${t.color}20`, color: t.color, boxShadow: `0 0 0 3px ${t.color}15` }}
                 >
                   {t.name[0]}
                 </div>
                 <div>
                   <p className="text-sm font-semibold text-black">{t.name}</p>
-                  <p className="text-xs text-black/30">{t.role}</p>
+                  <p className="text-xs text-black/35">{t.role}</p>
                 </div>
               </div>
             </motion.div>

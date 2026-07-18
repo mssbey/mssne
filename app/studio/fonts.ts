@@ -15,6 +15,12 @@ import {
   Permanent_Marker,
   Monoton,
   Sacramento,
+  Bungee,
+  Cinzel,
+  Courgette,
+  Fredoka,
+  Playfair_Display,
+  Poppins,
 } from "next/font/google";
 
 const pacifico = Pacifico({ weight: "400", subsets: ["latin-ext"], display: "swap" });
@@ -31,6 +37,12 @@ const satisfy = Satisfy({ weight: "400", subsets: ["latin"], display: "swap" });
 const marker = Permanent_Marker({ weight: "400", subsets: ["latin"], display: "swap" });
 const monoton = Monoton({ weight: "400", subsets: ["latin"], display: "swap" });
 const sacramento = Sacramento({ weight: "400", subsets: ["latin"], display: "swap" });
+const bungee = Bungee({ weight: "400", subsets: ["latin-ext"], display: "swap" });
+const cinzel = Cinzel({ weight: "700", subsets: ["latin-ext"], display: "swap" });
+const courgette = Courgette({ weight: "400", subsets: ["latin-ext"], display: "swap" });
+const fredoka = Fredoka({ weight: "600", subsets: ["latin-ext"], display: "swap" });
+const playfair = Playfair_Display({ weight: "700", subsets: ["latin-ext"], display: "swap" });
+const poppins = Poppins({ weight: "700", subsets: ["latin-ext"], display: "swap" });
 
 export interface StudioFont {
   key: string;
@@ -54,6 +66,12 @@ export const STUDIO_FONTS: StudioFont[] = [
   { key: "amatic", label: "Amatic SC", style: "İnce", family: amatic.style.fontFamily },
   { key: "marker", label: "Marker", style: "Sokak", family: marker.style.fontFamily },
   { key: "monoton", label: "Monoton", style: "Klasik Neon", family: monoton.style.fontFamily },
+  { key: "bungee", label: "Bungee", style: "Güçlü", family: bungee.style.fontFamily },
+  { key: "cinzel", label: "Cinzel", style: "Klasik", family: cinzel.style.fontFamily },
+  { key: "courgette", label: "Courgette", style: "Yumuşak Kursif", family: courgette.style.fontFamily },
+  { key: "fredoka", label: "Fredoka", style: "Yuvarlak", family: fredoka.style.fontFamily },
+  { key: "playfair", label: "Playfair", style: "Editoryal", family: playfair.style.fontFamily },
+  { key: "poppins", label: "Poppins", style: "Geometrik", family: poppins.style.fontFamily },
 ];
 
 export function getStudioFont(key: string) {

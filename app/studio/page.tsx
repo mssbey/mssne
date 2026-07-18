@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import { motion } from "framer-motion";
-import { MessageCircle, RefreshCw, ImagePlus, Download, X } from "lucide-react";
+import { MessageCircle, ImagePlus, Download, X } from "lucide-react";
 import { STUDIO_FONTS, getStudioFont } from "./fonts";
 import { CONTACT } from "@/lib/data";
 
@@ -15,6 +15,14 @@ const COLORS = [
   { hex: "#39FF14", name: "Neon Yeşil" },
   { hex: "#FFD700", name: "Altın" },
   { hex: "#FF3131", name: "Kırmızı" },
+  { hex: "#FF5F8F", name: "Gül Pembe" },
+  { hex: "#7DF9FF", name: "Buz Mavi" },
+  { hex: "#006BFF", name: "Elektrik Mavi" },
+  { hex: "#00FFA3", name: "Mint" },
+  { hex: "#B6FF00", name: "Limon" },
+  { hex: "#FFB347", name: "Amber" },
+  { hex: "#FF6B35", name: "Mercan" },
+  { hex: "#D8B4FE", name: "Lavanta" },
 ];
 
 // Boyut seçimi önizlemedeki yazıyı da ölçekler
@@ -60,7 +68,7 @@ export default function StudioPage() {
   const [color, setColor] = useState(COLORS[0].hex);
   const [size, setSize] = useState(SIZES[2]);
   const [env, setEnv] = useState(ENVS[0]);
-  const [flicker, setFlicker] = useState(false);
+  const [isNeonOn, setIsNeonOn] = useState(true);
 
   const [bgImage, setBgImage] = useState<string | null>(null);
   const [textPos, setTextPos] = useState({ x: 0, y: 0 });
@@ -170,14 +178,19 @@ export default function StudioPage() {
           ctx.textAlign = "center";
           ctx.textBaseline = "middle";
 
-          [80, 40, 20, 8].forEach((blur) => {
-            ctx.save();
-            ctx.shadowColor = color;
-            ctx.shadowBlur = blur;
+          if (!isNeonOn) {
             ctx.fillStyle = color;
             ctx.fillText(text || "Neonunuz", tx, ty, W - 48);
-            ctx.restore();
-          });
+          } else {
+            [30, 13, 4].forEach((blur) => {
+              ctx.save();
+              ctx.shadowColor = color;
+              ctx.shadowBlur = blur;
+              ctx.fillStyle = "#FFFFFF";
+              ctx.fillText(text || "Neonunuz", tx, ty, W - 48);
+              ctx.restore();
+            });
+          }
 
           resolve(canvas);
         });
@@ -199,17 +212,19 @@ export default function StudioPage() {
       } else {
         ctx.fillStyle = "#090909";
         ctx.fillRect(0, 0, W, H);
-        const grad = ctx.createRadialGradient(W / 2, H / 2, 0, W / 2, H / 2, W * 0.5);
-        grad.addColorStop(0, hexToRgba(color, 0.08));
-        grad.addColorStop(1, "transparent");
-        ctx.fillStyle = grad;
-        ctx.fillRect(0, 0, W, H);
+        if (isNeonOn) {
+          const grad = ctx.createRadialGradient(W / 2, H / 2, 0, W / 2, H / 2, W * 0.5);
+          grad.addColorStop(0, hexToRgba(color, 0.07));
+          grad.addColorStop(1, "transparent");
+          ctx.fillStyle = grad;
+          ctx.fillRect(0, 0, W, H);
+        }
         applyEnvOverlay(ctx, W, H);
         drawText();
       }
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [text, font, color, env, bgImage, textPos, fontSize]);
+  }, [text, font, color, env, bgImage, textPos, fontSize, isNeonOn]);
 
   const handleDownload = async () => {
     setIsDownloading(true);
@@ -239,6 +254,7 @@ export default function StudioPage() {
       `🎨 Renk: ${color}\n` +
       `📐 Boyut: ${size.label} — ${size.cm}\n` +
       `🌙 Ortam: ${env}\n\n` +
+      `💡 Neon: ${isNeonOn ? "Açık" : "Kapalı"}\n\n` +
       `Tasarım görselini de sohbete ekleyeceğim. Fiyat teklifi almak istiyorum.`;
 
     setTimeout(() => {
@@ -253,7 +269,11 @@ export default function StudioPage() {
 
   const bgStyle: React.CSSProperties = bgImage
     ? { backgroundImage: `url(${bgImage})`, backgroundSize: "cover", backgroundPosition: "center" }
-    : { background: `radial-gradient(ellipse 80% 80% at 50% 50%, ${hexToRgba(color, 0.08)} 0%, transparent 70%), #090909` };
+    : {
+        background: isNeonOn
+          ? `radial-gradient(ellipse 80% 80% at 50% 50%, ${hexToRgba(color, 0.07)} 0%, transparent 70%), #090909`
+          : "#090909",
+      };
 
   return (
     <>
@@ -308,9 +328,12 @@ export default function StudioPage() {
                   style={{
                     fontFamily: font.family,
                     fontSize: `${fontSize}px`,
-                    color: color,
-                    textShadow: `0 0 6px ${color}, 0 0 20px ${color}, 0 0 42px ${color}80, 0 0 80px ${color}30`,
-                    animation: flicker ? "flicker 3s ease-in-out infinite" : "none",
+                    color: isNeonOn ? "#FFFFFF" : color,
+                    opacity: isNeonOn ? 1 : 0.78,
+                    textShadow: isNeonOn
+                      ? `0 0 3px #FFFFFF, 0 0 10px ${color}D9, 0 0 24px ${color}66`
+                      : "none",
+                    transition: "color 220ms ease, opacity 220ms ease, text-shadow 220ms ease",
                     left: "50%",
                     top: "50%",
                     transform: `translate(calc(-50% + ${textPos.x}px), calc(-50% + ${textPos.y}px))`,
@@ -321,8 +344,41 @@ export default function StudioPage() {
                   {text || "Neonunuz"}
                 </p>
 
+                {/* İndirme ve neon aç/kapat kontrolleri */}
+                <div className="absolute top-4 right-4 z-20 flex items-center gap-2">
+                  <button
+                    onClick={handleDownload}
+                    disabled={isDownloading}
+                    aria-label="Tasarımı PNG olarak indir"
+                    title="PNG indir"
+                    className="w-10 h-10 rounded-full bg-white/10 border border-white/10 backdrop-blur-md flex items-center justify-center text-white/80 hover:bg-white/15 hover:text-white transition-all cursor-none disabled:opacity-40"
+                  >
+                    <Download size={17} />
+                  </button>
+                  <button
+                    type="button"
+                    role="switch"
+                    aria-checked={isNeonOn}
+                    aria-label={`Neonu ${isNeonOn ? "kapat" : "aç"}`}
+                    onClick={() => setIsNeonOn((current) => !current)}
+                    className="relative w-[62px] h-10 rounded-full border border-white/10 transition-colors duration-200 cursor-none"
+                    style={{ background: isNeonOn ? color : "rgba(255,255,255,0.22)" }}
+                  >
+                    <span
+                      className="absolute top-1 w-8 h-8 rounded-full bg-white shadow-md transition-transform duration-200"
+                      style={{ transform: `translateX(${isNeonOn ? 25 : 3}px)` }}
+                    />
+                    <span
+                      className="absolute top-1/2 -translate-y-1/2 text-[8px] font-black text-white"
+                      style={{ left: isNeonOn ? 8 : 35 }}
+                    >
+                      {isNeonOn ? "ON" : "OFF"}
+                    </span>
+                  </button>
+                </div>
+
                 {/* ENV etiketi */}
-                <span className="absolute top-4 right-4 z-20 text-xs text-white/30 px-3 py-1 rounded-full border border-white/8 pointer-events-none">
+                <span className="absolute bottom-4 right-4 z-20 text-xs text-white/30 px-3 py-1 rounded-full border border-white/8 pointer-events-none">
                   {env} · {size.label} ({size.cm})
                 </span>
 
@@ -365,27 +421,8 @@ export default function StudioPage() {
                 </button>
               </div>
 
-              {/* Eylem butonları */}
-              <div className="flex gap-3 mt-3">
-                <button
-                  onClick={() => setFlicker(!flicker)}
-                  className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl border border-black/10 text-sm text-black/50 hover:text-black hover:border-black/20 transition-all cursor-none"
-                >
-                  <RefreshCw size={14} />
-                  {flicker ? "Yanıp Sönmeyi Durdur" : "Yanıp Sönme Efekti"}
-                </button>
-                <button
-                  onClick={handleDownload}
-                  disabled={isDownloading}
-                  className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl border border-black/10 text-sm text-black/50 hover:text-black hover:border-black/20 transition-all cursor-none disabled:opacity-40"
-                >
-                  <Download size={14} />
-                  {isDownloading ? "İndiriliyor…" : "PNG İndir"}
-                </button>
-              </div>
-
               <p className="text-xs text-black/20 text-center mt-2">
-                ✦ Yazıyı fare ile sürükleyerek konumlandırabilirsiniz
+                ✦ Yazıyı sürükleyerek konumlandırabilir, sağ üstten neon ışığını açıp kapatabilirsiniz
               </p>
 
               {/* Hazır tasarımlar */}
@@ -408,7 +445,7 @@ export default function StudioPage() {
                           style={{
                             fontFamily: tf.family,
                             color: t.color,
-                            textShadow: `0 0 5px ${t.color}, 0 0 14px ${t.color}80`,
+                            textShadow: `0 0 3px ${t.color}, 0 0 9px ${t.color}70`,
                           }}
                         >
                           {t.label}
@@ -466,7 +503,7 @@ export default function StudioPage() {
               {/* Renk */}
               <div className="p-6 rounded-2xl border border-black/8 bg-[#FFFFFF]">
                 <label className="text-xs font-bold uppercase tracking-wider text-black/30 mb-4 block">
-                  Renk
+                  Renk Seçimi — {COLORS.length} renk
                 </label>
                 <div className="grid grid-cols-4 gap-3">
                   {COLORS.map((c) => (

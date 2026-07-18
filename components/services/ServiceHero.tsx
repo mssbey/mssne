@@ -25,12 +25,35 @@ export function ServiceHero({
     service.slug === "brosur" ||
     service.slug === "billboard" ||
     service.slug === "vinil-germe" ||
-    service.slug === "arac-giydirme";
+    service.slug === "arac-giydirme" ||
+    service.slug === "kompozit-tabela" ||
+    service.slug === "cephe-giydirme";
+  // These source photos are lower resolution than the viewport, so a full-bleed
+  // object-cover forces a heavy upscale + crop that reads as "too zoomed in".
+  // Show them uncropped instead, with a blurred copy filling the edges.
+  const containHero =
+    service.slug === "isikli-isiksiz-tabela" ||
+    service.slug === "kompozit-tabela" ||
+    service.slug === "cephe-giydirme";
 
   return (
     <section className="relative min-h-[86vh] flex flex-col justify-end overflow-hidden">
       {/* Background visual */}
       <div className="absolute inset-0">
+        {containHero && (
+          <ServiceImage
+            src={`/${basePath}/${service.slug}/hero.jpg`}
+            alt=""
+            aria-hidden="true"
+            label=""
+            icon={service.heroIcon}
+            color={service.color}
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover scale-110 blur-2xl saturate-[1.15] opacity-95"
+          />
+        )}
         <ServiceImage
           src={`/${basePath}/${service.slug}/hero.jpg`}
           alt={`${service.title} — Ikarus Reklam`}
@@ -40,13 +63,16 @@ export function ServiceHero({
           fill
           priority
           sizes="100vw"
-          className={vividHero ? "object-cover saturate-[1.14] contrast-[1.06]" : "object-cover"}
+          className={
+            containHero
+              ? "object-contain saturate-[1.14] contrast-[1.06]"
+              : vividHero
+                ? "object-cover saturate-[1.14] contrast-[1.06]"
+                : "object-cover"
+          }
         />
         {vividHero ? (
-          <>
-            <div className="absolute inset-0 bg-gradient-to-t from-[#FBF8F6]/90 via-[#FBF8F6]/20 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#FBF8F6]/72 via-[#FBF8F6]/18 to-transparent" />
-          </>
+          <div className="absolute inset-0 bg-gradient-to-t from-[#FBF8F6]/62 from-0% via-[#FBF8F6]/6 via-26% to-transparent" />
         ) : (
           <>
             <div className="absolute inset-0 bg-gradient-to-t from-[#FBF8F6] via-[#FBF8F6]/70 to-[#FBF8F6]/30" />
@@ -96,7 +122,7 @@ export function ServiceHero({
             initial={{ opacity: 0, y: 32 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.15, ease: EASE }}
-            className="text-[clamp(40px,7vw,86px)] font-black leading-[0.95] tracking-[-3px] text-black mb-6 max-w-4xl"
+            className="text-[clamp(40px,7vw,86px)] font-black leading-[0.95] tracking-[-3px] text-black mb-6 max-w-4xl [text-shadow:0_4px_28px_rgba(251,248,246,0.85)]"
           >
             {service.title}
           </motion.h1>
@@ -105,7 +131,7 @@ export function ServiceHero({
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.25, ease: EASE }}
-            className="text-[clamp(16px,2vw,22px)] text-black/65 max-w-xl leading-relaxed mb-10"
+            className="text-[clamp(16px,2vw,22px)] text-black/65 max-w-xl leading-relaxed mb-10 [text-shadow:0_2px_16px_rgba(251,248,246,0.9)]"
           >
             {service.tagline}
           </motion.p>

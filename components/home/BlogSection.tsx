@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { BLOG_POSTS } from "@/lib/data";
-import { ArrowRight, Clock } from "lucide-react";
+import { ArrowRight, Clock, BookOpen } from "lucide-react";
 
 export function BlogSection() {
   return (
@@ -33,13 +33,14 @@ export function BlogSection() {
           </div>
           <Link
             href="/blog"
-            className="text-sm text-black/40 hover:text-black transition-colors cursor-none"
+            className="group inline-flex items-center gap-2 text-sm font-medium text-black/50 hover:text-black transition-colors cursor-none"
           >
-            Tümünü Gör →
+            Tümünü Gör
+            <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {BLOG_POSTS.map((post, i) => (
             <motion.article
               key={post.title}
@@ -47,13 +48,19 @@ export function BlogSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="group relative rounded-2xl border border-black/8 bg-[#FFFFFF] overflow-hidden hover:border-black/15 transition-all cursor-none hover:-translate-y-1 duration-300"
+              className="group relative rounded-2xl border border-black/8 bg-white overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.04)] hover:border-black/15 transition-all duration-300 cursor-none hover:-translate-y-1.5 hover:shadow-[0_18px_40px_rgba(0,0,0,0.08)]"
             >
-              {/* Color strip */}
+              {/* Decorative header */}
               <div
-                className="h-1"
-                style={{ background: `linear-gradient(90deg, ${post.color}, transparent)` }}
-              />
+                className="relative h-28 flex items-center justify-center overflow-hidden"
+                style={{ background: `linear-gradient(135deg, ${post.color}22, ${post.color}05)` }}
+              >
+                <div
+                  className="absolute -right-8 -top-8 h-28 w-28 rounded-full opacity-30 blur-2xl transition-transform duration-500 group-hover:scale-125"
+                  style={{ background: post.color }}
+                />
+                <BookOpen size={30} strokeWidth={1.5} style={{ color: post.color }} className="relative" />
+              </div>
 
               <div className="p-7">
                 <div className="flex items-center gap-3 text-xs text-black/30 mb-5">
@@ -69,10 +76,11 @@ export function BlogSection() {
                 </h3>
                 <p className="text-sm text-black/40 leading-relaxed mb-6">{post.excerpt}</p>
                 <span
-                  className="inline-flex items-center gap-1 text-xs font-medium"
+                  className="inline-flex items-center gap-1 text-xs font-semibold"
                   style={{ color: post.color }}
                 >
-                  Devamını Oku <ArrowRight size={12} />
+                  Devamını Oku
+                  <ArrowRight size={12} className="transition-transform duration-300 group-hover:translate-x-1" />
                 </span>
               </div>
             </motion.article>
