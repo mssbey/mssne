@@ -92,6 +92,15 @@ export const BASKI_MATBAA: ServiceData[] = [
       { icon: "Hospital", label: "Modern Eczane Kartviziti", alt: "Turkuaz ve lacivert modern eczane kartviziti şablonu", productCode: "ECZ-1002" },
       { icon: "Building2", label: "Mimarlık Stüdyosu", alt: "Bakır yaldızlı premium mimarlık kartviziti şablonu", productCode: "MIM-1001" },
       { icon: "Coffee", label: "Modern Kafe Kartviziti", alt: "Mercan ve mavi renkli modern kafe kartviziti şablonu", productCode: "KFE-1001" },
+      { icon: "Hospital", label: "Selefonlu Eczane Kartviziti", alt: "Yeşil beyaz renklerde parlak selefonlu eczane kartviziti", productCode: "ECZ-1003" },
+      { icon: "Hospital", label: "3D Yılan Logolu Eczane Kartviziti", alt: "Üç boyutlu yılan logosuna sahip eczane kartviziti", productCode: "ECZ-47" },
+      { icon: "Languages", label: "Çok Dilli Eczane Kartviziti", alt: "Birden fazla dilde hazırlanmış eczane kartviziti", productCode: "ECZ-43" },
+      { icon: "Circle", label: "Yarı Daire Tasarımlı Eczane Kartviziti", alt: "Kırmızı beyaz yarı daire formlu eczane kartviziti", productCode: "ECZ-51" },
+      { icon: "Hospital", label: "Kırmızı Beyaz Eczane Kartviziti", alt: "Kırmızı ve beyaz kurumsal eczane kartviziti", productCode: "ECZ-50" },
+      { icon: "QrCode", label: "QR Kodlu Siyah Eczane Kartviziti", alt: "QR kod alanına sahip siyah eczane kartviziti", productCode: "ECZ-45" },
+      { icon: "CreditCard", label: "Siyah Kırmızı Eczane Kartviziti", alt: "Siyah ve kırmızı renkli modern eczane kartviziti", productCode: "ECZ-49" },
+      { icon: "Pill", label: "Mor Kapsül Eczane Kartviziti", alt: "Mor kapsül temalı eczane kartviziti", productCode: "ECZ-05" },
+      { icon: "Pill", label: "Kapsül Eczane Kartviziti", alt: "İlaç kapsülü temalı eczane kartviziti", productCode: "ECZ-01" },
     ],
     faq: [
       { q: "Kartvizit için hangi kağıt türünü seçmeliyim?", a: "Kurumsal ve klasik bir görünüm için kuşe veya bristol, premium ve butik bir his için metalize veya kraft kağıt önerilir. İhtiyacınıza göre örnek gönderebiliriz." },
@@ -302,6 +311,7 @@ export const BASKI_MATBAA: ServiceData[] = [
       { icon: "Magnet", label: "Yuvarlak Fotoğraf Magnetleri", alt: "Beyaz retro buzdolabında yuvarlak fotoğraf baskılı magnetler" },
       { icon: "Gift", label: "Daire Kesim Magnet", alt: "Buzdolabına yerleştirilen daire kesim fotoğraf magneti" },
       { icon: "Image", label: "4'lü Kare Fotoğraf Magneti", alt: "Dört adet kare fotoğraf baskılı buzdolabı magneti" },
+      { icon: "Magnet", label: "Özel Kesim Reklam Magnetleri", alt: "Farklı şekil ve ölçülerde özgün reklam ve fotoğraf magnetleri" },
     ],
     faq: [
       { q: "Magnet hangi ölçülerde üretilebilir?", a: "Standart olarak 6x9cm, 9x9cm ve A5 gibi ölçülerde üretim yapıyoruz; özel kesim taleplerinde logonuza uygun serbest ölçü de mümkündür." },
