@@ -55,6 +55,10 @@ import {
   Printer,
   Gift,
   BookOpen,
+  Pill,
+  Languages,
+  QrCode,
+  Circle,
   type LucideIcon,
 } from "lucide-react";
 
@@ -114,6 +118,10 @@ export const SERVICE_ICONS: Record<string, LucideIcon> = {
   Printer,
   Gift,
   BookOpen,
+  Pill,
+  Languages,
+  QrCode,
+  Circle,
 };
 
 export function getServiceIcon(name: string): LucideIcon {

@@ -11,4 +11,14 @@
 - gallery-20.jpg — https://www.eczanekartvizit.com/mor-eczane-kartvizit-05
 - gallery-21.jpg — https://www.eczanekartvizit.com/eczane-kartvizit-ilac-kapsulu-ecz1
 
+`gallery-22.jpg` ile `gallery-26.jpg` arasındaki ürün görselleri, kullanıcının isteği üzerine 21 Temmuz 2026 tarihinde Baskimo (baskimo.com) ürün kataloğundan alınmıştır:
+
+- gallery-22.jpg (KV-101, Kare Kartvizit) — https://d3v85gmohv94ja.cloudfront.net/images/product/baskimo-kare-kartvizit.png
+- gallery-23.jpg (KV-102, Standart Kartvizit) — https://d3v85gmohv94ja.cloudfront.net/images/product/standart-kartvizit.png
+- gallery-24.jpg (KV-103, Kabartma Laklı Kartvizit) — https://d3v85gmohv94ja.cloudfront.net/images/product/kabartma-lakli-kartvizit.png
+- gallery-25.jpg (KV-104, Sıvama Kartvizit 700gr) — https://d3v85gmohv94ja.cloudfront.net/images/product/sivama-kartvizit-700gr.jpg
+- gallery-26.jpg (KV-105, Mıknatıslı Kartvizit) — https://d3v85gmohv94ja.cloudfront.net/images/product/m_knat_sl_-kartvizit.png
+
+Kaynak sayfa: https://www.baskimo.com/kartvizit-kart-baski/kartvizit-cesitleri/products/
+
 Görsellerin kullanım ve yayın hakları kaynak site sahibine ait olabilir. Yayına almadan önce kullanım izni doğrulanmalıdır.

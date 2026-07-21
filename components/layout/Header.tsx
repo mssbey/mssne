@@ -28,6 +28,7 @@ import { useCart } from "@/lib/store/useCart";
 import { useFavorites } from "@/lib/store/useFavorites";
 import { useAuth } from "@/lib/store/useAuth";
 import { cn } from "@/lib/utils";
+import { SearchButton } from "./SearchButton";
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -151,6 +152,9 @@ export function Header() {
 
         {/* Right actions */}
         <div className="hidden lg:flex items-center gap-0.5">
+          {/* Search */}
+          <SearchButton dark={dark} hotkey />
+
           {/* Favorites */}
           <Link
             href="/favoriler"
@@ -251,6 +255,7 @@ export function Header() {
 
         {/* Mobile right */}
         <div className="flex lg:hidden items-center gap-2">
+          <SearchButton dark={dark} mobile />
           <button onClick={openCart} className={cn("relative p-2 cursor-auto", dark ? "text-white/70" : "text-black/60")}>
             <ShoppingBag size={18} />
             {cartCount > 0 && (

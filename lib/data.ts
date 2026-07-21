@@ -80,7 +80,7 @@ export const CONTACT = {
   phone2Href: "tel:+905425711321",
   whatsapp: "905468156089",
   email: "ikarusreklam@outlook.com",
-  address: "Sanayi Mah. Reklamcılar Cad. No: 12/A, Kadıköy / İstanbul",
+  address: "Zübeyde Hanım Mah. Sebze Bahçeleri Cad. Yapıcı İşhanı No: 92, Altındağ / Ankara",
   workingHours: "Pzt – Cmt: 09.00 – 17.00",
 };
 
