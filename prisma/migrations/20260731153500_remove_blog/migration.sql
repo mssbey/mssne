@@ -1,2 +1,0 @@
-DROP TABLE IF EXISTS "BlogPost";
-DROP TABLE IF EXISTS "BlogCategory";
