@@ -2,23 +2,36 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, MessageCircle } from "lucide-react";
-import { PROMO_CATEGORIES } from "@/lib/promosyon";
-import { CONTACT } from "@/lib/data";
+import { getCmsPromoCategories } from "@/lib/cms/promotions";
+import { getPublicSettings } from "@/lib/cms/settings";
+import { notFound } from "next/navigation";
+import { ManagedPageContent } from "@/components/cms/ManagedPageContent";
+import { getManagedPage, getManagedPageMetadata } from "@/lib/cms/pages";
 
-export const metadata: Metadata = {
+const fallbackMetadata: Metadata = {
   title: "Promosyon Ürünleri — Ikarus Reklam",
   description:
     "Kişiye özel termos, kupa, defter, kalem, powerbank ve daha fazlası. Logonuzla markanızı her yere taşıyın.",
 };
 
-export default function PromosyonPage() {
+export async function generateMetadata(): Promise<Metadata> {
+  return getManagedPageMetadata("promosyon", fallbackMetadata);
+}
+
+export default async function PromosyonPage() {
+  const [categories, settings, page] = await Promise.all([
+    getCmsPromoCategories(),
+    getPublicSettings(),
+    getManagedPage("promosyon").catch(() => null),
+  ]);
+  if (page && (page.deletedAt || page.status !== "PUBLISHED")) notFound();
   return (
     <div className="min-h-screen pt-24 pb-20 px-6 bg-[#FBF8F6]">
       <div className="max-w-7xl mx-auto">
         {/* Hero */}
         <div className="relative rounded-3xl overflow-hidden mb-14 border border-black/8">
           <Image
-            src="/promosyon/hero.jpg"
+            src={page?.coverImage || "/promosyon/hero.jpg"}
             alt="Promosyon ürünleri"
             width={1400}
             height={480}
@@ -31,19 +44,19 @@ export default function PromosyonPage() {
                 Kurumsal Hediye & Promosyon
               </span>
               <h1 className="text-[clamp(28px,4.5vw,52px)] font-black tracking-[-1.5px] text-white leading-tight mb-4">
-                Promosyon Ürünleri
+                {page?.name || "Promosyon Ürünleri"}
               </h1>
               <p className="text-white/70 text-sm md:text-base leading-relaxed">
-                Termos&apos;tan kupaya, defterden powerbank&apos;e — logonuzu taşıyan
-                15 farklı ürün kategorisi. Tasarım desteği bizden.
+                {page?.excerpt || "Termos'tan kupaya, defterden powerbank'e — logonuzu taşıyan 15 farklı ürün kategorisi. Tasarım desteği bizden."}
               </p>
             </div>
           </div>
         </div>
+        <ManagedPageContent content={page?.content} />
 
         {/* Kategoriler */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 mb-16">
-          {PROMO_CATEGORIES.map((cat) => (
+          {categories.map((cat) => (
             <Link
               key={cat.slug}
               href={`/promosyon/${cat.slug}`}
@@ -86,7 +99,7 @@ export default function PromosyonPage() {
             Logonuzu gönderin, ücretsiz görsel taslak hazırlayalım.
           </p>
           <a
-            href={`https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(
+            href={`https://wa.me/${settings.contact.whatsapp}?text=${encodeURIComponent(
               "Merhaba! Promosyon ürünleri için teklif almak istiyorum."
             )}`}
             target="_blank"

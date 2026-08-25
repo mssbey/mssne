@@ -18,6 +18,7 @@ export function ServiceHero({
 }) {
   const Icon = getServiceIcon(service.heroIcon);
   const basePath = service.basePath ?? "hizmetler";
+  const heroImage = service.coverImage || `/${basePath}/${service.slug}/hero.jpg`;
   const sectionLabel = service.sectionLabel ?? "Hizmetler";
   const vividHero =
     service.slug === "isikli-isiksiz-tabela" ||
@@ -42,7 +43,7 @@ export function ServiceHero({
       <div className="absolute inset-0">
         {containHero && (
           <ServiceImage
-            src={`/${basePath}/${service.slug}/hero.jpg`}
+            src={heroImage}
             alt=""
             aria-hidden="true"
             label=""
@@ -55,9 +56,9 @@ export function ServiceHero({
           />
         )}
         <ServiceImage
-          src={`/${basePath}/${service.slug}/hero.jpg`}
+          src={heroImage}
           alt={`${service.title} — Ikarus Reklam`}
-          label={`${service.title} hero görseli — public/${basePath}/${service.slug}/hero.jpg`}
+          label={`${service.title} hero görseli`}
           icon={service.heroIcon}
           color={service.color}
           fill

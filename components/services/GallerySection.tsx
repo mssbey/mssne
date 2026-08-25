@@ -22,6 +22,7 @@ export function GallerySection({
     setActiveIndex((i) => (i === null ? null : (i + 1) % service.gallery.length));
 
   const active = activeIndex !== null ? service.gallery[activeIndex] : null;
+  const squareGallery = service.slug === "kartvizit";
 
   return (
     <section id="galeri" className="py-24 px-6 bg-[#FBF8F6]">
@@ -49,7 +50,7 @@ export function GallerySection({
               viewport={{ once: true }}
               transition={{ delay: (i % 4) * 0.08 }}
               className="group relative w-full mb-4 rounded-2xl overflow-hidden border border-black/8 hover:border-black/20 transition-all block cursor-none text-left"
-              style={{ breakInside: "avoid", aspectRatio: i % 5 === 0 ? "3/4" : "4/5" }}
+              style={{ breakInside: "avoid", aspectRatio: squareGallery ? "1/1" : i % 5 === 0 ? "3/4" : "4/5" }}
             >
               <ServiceImage
                 src={`/${service.basePath ?? "hizmetler"}/${service.slug}/gallery-${i + 1}.jpg`}
@@ -117,7 +118,7 @@ export function GallerySection({
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-3xl aspect-[4/3] rounded-2xl overflow-hidden border border-black/10"
+              className={`relative w-full ${squareGallery ? "max-w-2xl aspect-square" : "max-w-3xl aspect-[4/3]"} rounded-2xl overflow-hidden border border-black/10`}
             >
               <ServiceImage
                 src={`/${service.basePath ?? "hizmetler"}/${service.slug}/gallery-${(activeIndex ?? 0) + 1}.jpg`}

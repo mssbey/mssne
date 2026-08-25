@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { SERVICES, getServiceBySlug, getOtherServices } from "@/lib/services";
+import { SERVICES } from "@/lib/services";
+import { getCmsService, getCmsServices } from "@/lib/cms/services";
 import { ServiceHero } from "@/components/services/ServiceHero";
 import { ServiceIntro } from "@/components/services/ServiceIntro";
 import { WhyUsSection } from "@/components/services/WhyUsSection";
@@ -26,7 +27,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const service = getServiceBySlug(slug);
+  const service = await getCmsService(slug);
   if (!service) return {};
 
   const url = `${SITE_URL}/hizmetler/${service.slug}`;
@@ -54,10 +55,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ServiceDetailPage({ params }: Props) {
   const { slug } = await params;
-  const service = getServiceBySlug(slug);
+  const service = await getCmsService(slug);
   if (!service) notFound();
 
-  const others = getOtherServices(service.slug, 4);
+  const others = (await getCmsServices()).filter((item) => item.slug !== service.slug).slice(0, 4);
   const url = `${SITE_URL}/hizmetler/${service.slug}`;
 
   const jsonLd = {

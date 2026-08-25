@@ -4,13 +4,20 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { BASKI_MATBAA } from "@/lib/baski-matbaa";
 import { getServiceIcon } from "@/components/services/icon-map";
+import { notFound } from "next/navigation";
+import { ManagedPageContent } from "@/components/cms/ManagedPageContent";
+import { getManagedPage, getManagedPageMetadata } from "@/lib/cms/pages";
 
-export const metadata: Metadata = {
+const fallbackMetadata: Metadata = {
   title: "Baskı ve Matbaa Hizmetleri | Ikarus Reklam",
   description:
     "Kartvizit, broşür, magnet ve davetiye baskı hizmetlerimizi keşfedin. Kurumsal kimliğinize uygun kaliteli baskı ve tasarım çözümleri.",
   alternates: { canonical: "https://www.ikarusreklam.com/baski-matbaa" },
 };
+
+export async function generateMetadata(): Promise<Metadata> {
+  return getManagedPageMetadata("baski-matbaa", fallbackMetadata);
+}
 
 const PRINT_IMAGES: Record<string, string> = {
   kartvizit: "/baski-matbaa/kartvizit/hero.jpg",
@@ -18,7 +25,9 @@ const PRINT_IMAGES: Record<string, string> = {
   magnet: "/baski-matbaa/magnet/hero.jpg",
 };
 
-export default function BaskiMatbaaIndexPage() {
+export default async function BaskiMatbaaIndexPage() {
+  const page = await getManagedPage("baski-matbaa");
+  if (page && (page.deletedAt || page.status !== "PUBLISHED")) notFound();
   return (
     <div className="min-h-screen pt-40 pb-24 px-6 bg-[#FBF8F6]">
       <div className="max-w-7xl mx-auto">
@@ -34,12 +43,13 @@ export default function BaskiMatbaaIndexPage() {
           Baskı ve Matbaa
         </span>
         <h1 className="text-[clamp(36px,6vw,64px)] font-black tracking-[-2px] leading-[1.02] text-black mb-6 max-w-3xl">
-          Kurumsal Baskı ve Tanıtım Materyalleri
+          {page?.name || "Kurumsal Baskı ve Tanıtım Materyalleri"}
         </h1>
         <p className="text-black/50 text-base max-w-2xl leading-relaxed mb-16">
-          Tasarımdan baskıya, kesimden teslimata kadar tüm süreci kendi matbaamızda yürütüyoruz.
-          İhtiyacınıza uygun hizmeti seçin, projenizi birlikte hayata geçirelim.
+          {page?.excerpt || "Tasarımdan baskıya, kesimden teslimata kadar tüm süreci kendi matbaamızda yürütüyoruz. İhtiyacınıza uygun hizmeti seçin, projenizi birlikte hayata geçirelim."}
         </p>
+        {page?.coverImage && <div className="managed-page-cover"><Image src={page.coverImage} alt={page.name} fill sizes="(max-width: 900px) 100vw, 1200px" priority /></div>}
+        <ManagedPageContent content={page?.content} />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {BASKI_MATBAA.map((service) => {

@@ -4,13 +4,20 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { ACIK_HAVA } from "@/lib/acik-hava";
 import { getServiceIcon } from "@/components/services/icon-map";
+import { notFound } from "next/navigation";
+import { ManagedPageContent } from "@/components/cms/ManagedPageContent";
+import { getManagedPage, getManagedPageMetadata } from "@/lib/cms/pages";
 
-export const metadata: Metadata = {
+const fallbackMetadata: Metadata = {
   title: "Açık Hava Reklamları | Ikarus Reklam",
   description:
     "Billboard, vinil germe ve araç giydirme hizmetlerimizi keşfedin. Yüksek trafikli lokasyonlarda ve hareket halinde markanızı görünür kılan açık hava reklam çözümleri.",
   alternates: { canonical: "https://www.ikarusreklam.com/acik-hava" },
 };
+
+export async function generateMetadata(): Promise<Metadata> {
+  return getManagedPageMetadata("acik-hava", fallbackMetadata);
+}
 
 const OUTDOOR_IMAGES: Record<string, string> = {
   billboard: "/acik-hava/billboard/hero.jpg",
@@ -18,7 +25,9 @@ const OUTDOOR_IMAGES: Record<string, string> = {
   "arac-giydirme": "/acik-hava/arac-giydirme/hero.jpg",
 };
 
-export default function AcikHavaIndexPage() {
+export default async function AcikHavaIndexPage() {
+  const page = await getManagedPage("acik-hava");
+  if (page && (page.deletedAt || page.status !== "PUBLISHED")) notFound();
   return (
     <div className="min-h-screen pt-40 pb-24 px-6 bg-[#FBF8F6]">
       <div className="max-w-7xl mx-auto">
@@ -34,12 +43,13 @@ export default function AcikHavaIndexPage() {
           Açık Hava Reklamları
         </span>
         <h1 className="text-[clamp(36px,6vw,64px)] font-black tracking-[-2px] leading-[1.02] text-black mb-6 max-w-3xl">
-          Şehirde ve Yolda Görünürlük Sağlayan Reklam Çözümleri
+          {page?.name || "Şehirde ve Yolda Görünürlük Sağlayan Reklam Çözümleri"}
         </h1>
         <p className="text-black/50 text-base max-w-2xl leading-relaxed mb-16">
-          Baskıdan montaja kadar tüm süreci kendi ekibimizle yürütüyoruz. İhtiyacınıza uygun
-          hizmeti seçin, projenizi birlikte hayata geçirelim.
+          {page?.excerpt || "Baskıdan montaja kadar tüm süreci kendi ekibimizle yürütüyoruz. İhtiyacınıza uygun hizmeti seçin, projenizi birlikte hayata geçirelim."}
         </p>
+        {page?.coverImage && <div className="managed-page-cover"><Image src={page.coverImage} alt={page.name} fill sizes="(max-width: 900px) 100vw, 1200px" priority /></div>}
+        <ManagedPageContent content={page?.content} />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {ACIK_HAVA.map((service) => {

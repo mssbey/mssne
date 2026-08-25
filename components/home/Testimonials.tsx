@@ -4,7 +4,9 @@ import { motion } from "framer-motion";
 import { TESTIMONIALS } from "@/lib/data";
 import { Star, Quote } from "lucide-react";
 
-export function Testimonials() {
+type TestimonialItem = { name: string; role: string; text: string; rating: number; color: string };
+
+export function Testimonials({ items = TESTIMONIALS }: { items?: TestimonialItem[] }) {
   return (
     <section className="relative overflow-hidden py-28 px-6 bg-[#F3EDEA]">
       {/* Decorative glow */}
@@ -37,7 +39,7 @@ export function Testimonials() {
         </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {TESTIMONIALS.map((t, i) => (
+          {items.map((t, i) => (
             <motion.div
               key={t.name}
               initial={{ opacity: 0, y: 32 }}

@@ -165,7 +165,7 @@ export default function SepetPage() {
               </div>
 
               <div className="p-4 rounded-xl border border-black/5 bg-black/2 space-y-2">
-                {["🛡️ 2 Yıl Garanti", "🚀 Hızlı Kargo", "✅ Ücretsiz Montaj Seti", "↩️ 30 Gün İade"].map((f) => (
+                {["🛡️ 2 Yıl Garanti", "🚀 Hızlı Kargo", "✅ Ücretsiz Montaj Seti", "↩️ İade Desteği"].map((f) => (
                   <p key={f} className="text-xs text-black/30">{f}</p>
                 ))}
               </div>

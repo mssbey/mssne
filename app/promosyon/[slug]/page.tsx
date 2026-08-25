@@ -3,8 +3,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { ArrowLeft, Check, MessageCircle } from "lucide-react";
-import { PROMO_CATEGORIES, getPromoCategory } from "@/lib/promosyon";
-import { CONTACT } from "@/lib/data";
+import { PROMO_CATEGORIES } from "@/lib/promosyon";
+import { getCmsPromoCategories, getCmsPromoCategory } from "@/lib/cms/promotions";
+import { getPublicSettings } from "@/lib/cms/settings";
 
 export function generateStaticParams() {
   return PROMO_CATEGORIES.map((c) => ({ slug: c.slug }));
@@ -14,7 +15,7 @@ interface Props { params: Promise<{ slug: string }> }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const cat = getPromoCategory(slug);
+  const cat = await getCmsPromoCategory(slug);
   if (!cat) return {};
   return {
     title: `${cat.title} — Promosyon Ürünleri | Ikarus Reklam`,
@@ -24,10 +25,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function PromoCategoryPage({ params }: Props) {
   const { slug } = await params;
-  const cat = getPromoCategory(slug);
+  const cat = await getCmsPromoCategory(slug);
   if (!cat) notFound();
 
-  const others = PROMO_CATEGORIES.filter((c) => c.slug !== cat.slug).slice(0, 5);
+  const [categories, settings] = await Promise.all([getCmsPromoCategories(), getPublicSettings()]);
+  const others = categories.filter((c) => c.slug !== cat.slug).slice(0, 5);
 
   return (
     <div className="min-h-screen pt-24 pb-20 px-6 bg-[#FBF8F6]">
@@ -55,7 +57,7 @@ export default async function PromoCategoryPage({ params }: Props) {
             </h1>
             <p className="text-black/50 text-base leading-relaxed mb-6">{cat.desc}</p>
             <a
-              href={`https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(
+              href={`https://wa.me/${settings.contact.whatsapp}?text=${encodeURIComponent(
                 `Merhaba! "${cat.title}" kategorisinde promosyon ürünü yaptırmak istiyorum. Teklif alabilir miyim?`
               )}`}
               target="_blank"
@@ -84,19 +86,23 @@ export default async function PromoCategoryPage({ params }: Props) {
           {cat.products.map((p) => (
             <div
               key={p.slug}
-              className="rounded-2xl border border-black/8 bg-white overflow-hidden flex flex-col hover:border-black/18 transition-all"
+              className="h-full rounded-2xl border border-black/8 bg-white overflow-hidden flex flex-col hover:border-black/18 hover:shadow-[0_16px_45px_rgba(31,20,25,0.07)] transition-all"
             >
-              <div className="relative h-40 overflow-hidden">
+              <Link
+                href={`/promosyon/${cat.slug}/${p.slug}`}
+                className="relative block aspect-[4/3] overflow-hidden border-b border-black/5 bg-[#F7F4F2]"
+              >
                 <Image
                   src={p.image}
                   alt={p.name}
                   width={400}
                   height={280}
-                  className="w-full h-full object-cover"
+                  sizes="(max-width: 767px) calc(100vw - 48px), (max-width: 1023px) 50vw, 33vw"
+                  className="w-full h-full object-contain p-3 sm:p-4"
                 />
-              </div>
+              </Link>
               <div className="p-6 flex flex-col flex-1">
-                <h3 className="text-sm font-bold text-black leading-snug mb-3">{p.name}</h3>
+                <Link href={`/promosyon/${cat.slug}/${p.slug}`} className="text-sm font-bold text-black leading-snug mb-3 hover:text-[#D9668A]">{p.name}</Link>
                 <p className="text-sm text-black/45 leading-relaxed mb-4 flex-1">{p.description}</p>
                 <ul className="space-y-1.5 mb-5">
                   {p.features.map((f) => (
@@ -108,7 +114,7 @@ export default async function PromoCategoryPage({ params }: Props) {
                 <div className="flex items-center justify-between pt-4 border-t border-black/5">
                   <span className="text-xs text-black/35">Min. {p.minQty} adet</span>
                   <a
-                    href={`https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(
+                    href={`https://wa.me/${settings.contact.whatsapp}?text=${encodeURIComponent(
                       `Merhaba! "${p.name}" için teklif almak istiyorum.`
                     )}`}
                     target="_blank"

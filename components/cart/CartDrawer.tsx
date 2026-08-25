@@ -6,7 +6,7 @@ import { X, Plus, Minus, Trash2, ShoppingBag, MessageCircle } from "lucide-react
 import { useCart } from "@/lib/store/useCart";
 
 export function CartDrawer() {
-  const { items, isOpen, closeCart, removeItem, updateQuantity, total, itemCount, buildWhatsAppMessage } = useCart();
+  const { items, isOpen, closeCart, removeItem, updateQuantity, itemCount, buildWhatsAppMessage } = useCart();
 
   useEffect(() => {
     if (isOpen) document.body.style.overflow = "hidden";

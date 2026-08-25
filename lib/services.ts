@@ -44,6 +44,8 @@ export interface ServiceData {
   heroIcon: string;
   category: string;
   color: string;
+  /** Admin tarafından seçilebilen kapak görseli. */
+  coverImage?: string;
   /** Route segment the detail pages live under, e.g. "hizmetler" or "baski-matbaa". Defaults to "hizmetler". */
   basePath?: string;
   /** Breadcrumb / section label shown above the title. Defaults to "Hizmetler". */

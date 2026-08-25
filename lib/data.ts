@@ -223,30 +223,6 @@ export const TESTIMONIALS = [
   },
 ];
 
-export const BLOG_POSTS = [
-  {
-    title: "Kutu Harf mi, Işıklı Tabela mı? Doğru Seçimi Yapmak",
-    excerpt: "Cephe tabelanızda hangi sistem işletmenize daha çok yakışır? Avantaj ve maliyetleri karşılaştırdık.",
-    date: "9 Şubat 2026",
-    readTime: "5 dk",
-    color: "#D9668A",
-  },
-  {
-    title: "Araç Giydirme ile Markanızı Sokaklara Taşıyın",
-    excerpt: "Filo araçlarınız gezici bir reklam panosuna dönüşsün. Süreç nasıl işliyor, nelere dikkat etmeli?",
-    date: "6 Şubat 2026",
-    readTime: "4 dk",
-    color: "#5FAE7F",
-  },
-  {
-    title: "Neon Tabela Seçerken Dikkat Edilmesi Gerekenler",
-    excerpt: "LED neon mi, gerçek neon mu? İşletmeniz için doğru tercihi nasıl yaparsınız?",
-    date: "30 Ocak 2026",
-    readTime: "6 dk",
-    color: "#F2B84B",
-  },
-];
-
 export const STATS = [
   { value: 10000, suffix: "+", label: "Üretim Tamamlandı", color: "#D9668A" },
   { value: 2000, suffix: "+", label: "Mutlu İşletme", color: "#F2B84B" },

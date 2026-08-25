@@ -4,8 +4,9 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { TubesBackground } from "@/components/ui/TubesBackground";
 import { ArrowRight, ChevronDown } from "lucide-react";
+import { defaultHero } from "@/lib/cms/defaults";
 
-export function HeroSection() {
+export function HeroSection({ content = defaultHero }: { content?: typeof defaultHero }) {
   return (
     <TubesBackground
       className="min-h-screen"
@@ -24,7 +25,7 @@ export function HeroSection() {
             style={{ background: "#FF6EC7", boxShadow: "0 0 8px #FF6EC7" }}
           />
           <span className="text-xs font-semibold tracking-widest uppercase text-[#FF6EC7]">
-            Tabela · Baskı · Açık Hava · Neon — Tek Adres
+            {content.eyebrow}
           </span>
         </motion.div>
 
@@ -43,10 +44,7 @@ export function HeroSection() {
               backgroundClip: "text",
             }}
           >
-            Tasarla.
-            <br />
-            Üretelim.
-            <br />
+            {content.title.split("\n").map((line) => <span key={line}>{line}<br /></span>)}
           </span>
           <span
             style={{
@@ -57,7 +55,7 @@ export function HeroSection() {
               filter: "drop-shadow(0 0 30px rgba(255,110,199,0.45))",
             }}
           >
-            Parlatalım.
+            {content.highlightedTitle}
           </span>
         </motion.h1>
 
@@ -68,8 +66,7 @@ export function HeroSection() {
           transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           className="max-w-xl text-[clamp(16px,2vw,20px)] text-white/60 font-normal leading-relaxed mb-12 tracking-[-0.2px]"
         >
-          Tabela sistemlerinden baskı ve matbaaya, açık hava reklamlarından kişiye özel
-          neon tasarıma kadar markanızın ihtiyaç duyduğu her şeyi tek çatı altında üretiyoruz.
+          {content.description}
         </motion.p>
 
         {/* CTAs */}
@@ -80,21 +77,21 @@ export function HeroSection() {
           className="flex flex-col sm:flex-row gap-4 justify-center"
         >
           <Link
-            href="/hizmetler"
+            href={content.primaryButtonUrl}
             className="group flex items-center gap-2 px-8 py-4 rounded-full text-base font-bold text-black transition-all hover:scale-105 cursor-none"
             style={{
               background: "#FF6EC7",
               boxShadow: "0 0 40px rgba(255,110,199,0.5)",
             }}
           >
-            ✦ Hizmetlerimizi Keşfet
+            {content.primaryButtonText}
             <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
           </Link>
           <Link
-            href="/studio"
+            href={content.secondaryButtonUrl}
             className="flex items-center gap-2 px-8 py-4 rounded-full text-base font-semibold text-white border border-white/20 bg-white/5 backdrop-blur-sm hover:bg-white/10 hover:border-white/35 transition-all cursor-none"
           >
-            Kendi Neonunu Tasarla
+            {content.secondaryButtonText}
           </Link>
         </motion.div>
 

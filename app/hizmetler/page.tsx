@@ -2,15 +2,22 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { SERVICES } from "@/lib/services";
+import { getCmsServices } from "@/lib/cms/services";
 import { getServiceIcon } from "@/components/services/icon-map";
+import { notFound } from "next/navigation";
+import { ManagedPageContent } from "@/components/cms/ManagedPageContent";
+import { getManagedPage, getManagedPageMetadata } from "@/lib/cms/pages";
 
-export const metadata: Metadata = {
+const fallbackMetadata: Metadata = {
   title: "Tabela Sistemleri ve Cephe Çözümleri | Ikarus Reklam",
   description:
     "Kutu harf, ışıklı/ışıksız tabela, kompozit tabela, totem ve cephe giydirme hizmetlerimizi keşfedin. Kurumsal tabela imalatı ve montajında Türkiye geneli hizmet.",
   alternates: { canonical: "https://www.ikarusreklam.com/hizmetler" },
 };
+
+export async function generateMetadata(): Promise<Metadata> {
+  return getManagedPageMetadata("hizmetler", fallbackMetadata);
+}
 
 const SERVICE_IMAGES: Record<string, string> = {
   "kutu-harf": "/hizmetler/kutu-harf/hero.jpg",
@@ -20,7 +27,12 @@ const SERVICE_IMAGES: Record<string, string> = {
   "cephe-giydirme": "/home/services/signage.webp",
 };
 
-export default function ServicesIndexPage() {
+export default async function ServicesIndexPage() {
+  const [services, page] = await Promise.all([
+    getCmsServices(),
+    getManagedPage("hizmetler"),
+  ]);
+  if (page && (page.deletedAt || page.status !== "PUBLISHED")) notFound();
   return (
     <div className="min-h-screen pt-40 pb-24 px-6 bg-[#FBF8F6]">
       <div className="max-w-7xl mx-auto">
@@ -36,15 +48,20 @@ export default function ServicesIndexPage() {
           Tabela Sistemleri
         </span>
         <h1 className="text-[clamp(36px,6vw,64px)] font-black tracking-[-2px] leading-[1.02] text-black mb-6 max-w-3xl">
-          Kurumsal Tabela ve Cephe Çözümlerimiz
+          {page?.name || "Kurumsal Tabela ve Cephe Çözümlerimiz"}
         </h1>
         <p className="text-black/50 text-base max-w-2xl leading-relaxed mb-16">
-          Keşiften montaja kadar tüm süreci kendi mühendislik ve üretim ekibimizle yürütüyoruz.
-          İhtiyacınıza uygun hizmeti seçin, projenizi birlikte hayata geçirelim.
+          {page?.excerpt || "Keşiften montaja kadar tüm süreci kendi mühendislik ve üretim ekibimizle yürütüyoruz. İhtiyacınıza uygun hizmeti seçin, projenizi birlikte hayata geçirelim."}
         </p>
+        {page?.coverImage && (
+          <div className="managed-page-cover">
+            <Image src={page.coverImage} alt="Hizmetler" fill sizes="(max-width: 900px) 100vw, 1200px" priority />
+          </div>
+        )}
+        <ManagedPageContent content={page?.content} />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {SERVICES.map((service) => {
+          {services.map((service) => {
             const Icon = getServiceIcon(service.heroIcon);
             return (
               <Link
@@ -53,7 +70,7 @@ export default function ServicesIndexPage() {
                 className="group relative flex min-h-[320px] flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-[#0B0B0E] p-8 shadow-[0_20px_60px_rgba(17,12,15,0.08)] transition-all duration-500 hover:-translate-y-1 hover:border-white/25 hover:shadow-[0_28px_80px_rgba(17,12,15,0.18)] cursor-none"
               >
                 <Image
-                  src={SERVICE_IMAGES[service.slug] ?? "/home/services/signage.webp"}
+                  src={service.coverImage || SERVICE_IMAGES[service.slug] || "/home/services/signage.webp"}
                   alt=""
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"

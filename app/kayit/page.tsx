@@ -79,8 +79,8 @@ export default function KayitPage() {
             <label className="flex items-start gap-3 cursor-auto mt-2">
               <input type="checkbox" checked={agreed} onChange={(e) => setAgreed(e.target.checked)} className="mt-0.5 accent-[#D9668A] cursor-auto" />
               <span className="text-xs text-black/35 leading-relaxed">
-                <Link href="#" className="text-[#D9668A] hover:underline cursor-none">Kullanım Koşulları</Link>&apos;nı ve{" "}
-                <Link href="#" className="text-[#D9668A] hover:underline cursor-none">Gizlilik Politikası</Link>&apos;nı okudum, kabul ediyorum.
+                <Link href="/satis-sozlesmesi" className="text-[#D9668A] hover:underline cursor-none">Satış Sözleşmesi</Link>&apos;ni ve{" "}
+                <Link href="/gizlilik-politikasi" className="text-[#D9668A] hover:underline cursor-none">Gizlilik Politikası</Link>&apos;nı okudum, kabul ediyorum.
               </span>
             </label>
 

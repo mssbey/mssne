@@ -30,7 +30,14 @@ import { useAuth } from "@/lib/store/useAuth";
 import { cn } from "@/lib/utils";
 import { SearchButton } from "./SearchButton";
 
-export function Header() {
+type SimpleMenuItem = {
+  label: string;
+  href: string;
+  wide?: boolean;
+  children?: Array<{ label: string; href: string; icon: string }>;
+};
+
+export function Header({ menuItems, logo = "/logo.png" }: { menuItems?: SimpleMenuItem[]; logo?: string }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
@@ -42,7 +49,9 @@ export function Header() {
   const { user, logout } = useAuth();
 
   // Ana sayfa hero'su koyu — header orada dark cam, diğer sayfalarda açık tema
-  const dark = usePathname() === "/";
+  const pathname = usePathname();
+  const dark = pathname === "/";
+  const navigation = menuItems?.length ? menuItems : NAV_ITEMS;
 
   useEffect(() => {
     setHydrated(true);
@@ -67,6 +76,8 @@ export function Header() {
     ? "text-white/55 hover:text-white hover:bg-white/5"
     : "text-black/55 hover:text-black hover:bg-black/5";
 
+  if (pathname.startsWith("/admin")) return null;
+
   return (
     <header
       className={cn(
@@ -84,7 +95,7 @@ export function Header() {
         {/* Logo */}
         <Link href="/" className="flex items-center shrink-0 cursor-none lg:ml-24">
           <Image
-            src="/logo.png"
+            src={logo}
             alt="İkarus Reklam"
             width={200}
             height={68}
@@ -98,7 +109,7 @@ export function Header() {
 
         {/* Desktop Nav */}
         <nav className="hidden lg:flex items-center gap-0.5 flex-1 justify-center">
-          {NAV_ITEMS.map((item) => (
+          {navigation.map((item) => (
             <div
               key={item.label}
               className="relative"
@@ -279,7 +290,7 @@ export function Header() {
           )}
         >
           <nav className="flex flex-col gap-1">
-            {NAV_ITEMS.map((item) => (
+            {navigation.map((item) => (
               <div key={item.label}>
                 <Link
                   href={item.href}
