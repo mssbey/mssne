@@ -49,7 +49,7 @@ export const defaultSettings = {
     phone2: "0352 320 20 26",
     whatsapp: "905468156089",
     email: "info@ikarusreklam.com",
-    address: "Kayseri, Türkiye",
+    address: "Zübeyde Hanım Mah. Sebze Bahçeleri Cd. Yapıcı İş Hanı No: 74/92, 06050 Altındağ / Ankara",
     workingHours: "Pzt–Cmt 09:00–18:00",
     mapEmbed: "",
   } satisfies ContactSettings,

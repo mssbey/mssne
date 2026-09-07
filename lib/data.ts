@@ -80,7 +80,7 @@ export const CONTACT = {
   phone2Href: "tel:+905425711321",
   whatsapp: "905468156089",
   email: "ikarusreklam@outlook.com",
-  address: "Zübeyde Hanım Mah. Sebze Bahçeleri Cad. Yapıcı İşhanı No: 92, Altındağ / Ankara",
+  address: "Zübeyde Hanım Mah. Sebze Bahçeleri Cd. Yapıcı İş Hanı No: 74/92, 06050 Altındağ / Ankara",
   workingHours: "Pzt – Cmt: 09.00 – 17.00",
 };
 
