@@ -76,7 +76,7 @@ export const NAV_ITEMS: NavItem[] = [
 export const CONTACT = {
   phone: "0546 815 6089",
   phoneHref: "tel:+905468156089",
-  phone2: "0542 571 1321",
+  phone2: "0542 571 13 21",
   phone2Href: "tel:+905425711321",
   whatsapp: "905468156089",
   email: "ikarusreklam@outlook.com",

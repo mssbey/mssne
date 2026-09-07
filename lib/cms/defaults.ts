@@ -46,7 +46,7 @@ export const defaultSettings = {
   } satisfies BrandSettings,
   contact: {
     phone: "0546 815 60 89",
-    phone2: "0352 320 20 26",
+    phone2: "0542 571 13 21",
     whatsapp: "905468156089",
     email: "info@ikarusreklam.com",
     address: "Zübeyde Hanım Mah. Sebze Bahçeleri Cd. Yapıcı İş Hanı No: 74/92, 06050 Altındağ / Ankara",
