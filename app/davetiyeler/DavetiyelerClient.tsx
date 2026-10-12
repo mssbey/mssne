@@ -6,10 +6,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, X, Search, ChevronLeft, ChevronRight } from "lucide-react";
 import { DAVETIYE_NUMARALARI } from "@/lib/davetiyeler";
 import { ManagedPageContent, type ManagedPageProps } from "@/components/cms/ManagedPageContent";
+import { useSiteContact } from "@/components/layout/SiteContactProvider";
 
 const ACCENT = "#D9668A";
 
 export default function DavetiyelerClient({ title, description, coverImage, content }: ManagedPageProps) {
+  const { whatsapp } = useSiteContact();
   const [query, setQuery] = useState("");
   const [selected, setSelected] = useState<string | null>(null);
 
@@ -131,7 +133,7 @@ export default function DavetiyelerClient({ title, description, coverImage, cont
         >
           <p className="text-black/40 mb-6">Aradığınız tarzda davetiye bulamadınız mı?</p>
           <a
-            href={`https://wa.me/905468156089?text=${encodeURIComponent("Merhaba! Özel tasarım davetiye yaptırmak istiyorum.")}`}
+            href={`https://wa.me/${whatsapp}?text=${encodeURIComponent("Merhaba! Özel tasarım davetiye yaptırmak istiyorum.")}`}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-3 px-8 py-4 rounded-full font-bold text-black cursor-none hover:scale-105 transition-all"
@@ -205,7 +207,7 @@ export default function DavetiyelerClient({ title, description, coverImage, cont
                   </p>
                 </div>
                 <a
-                  href={`https://wa.me/905468156089?text=${encodeURIComponent(`Merhaba! ${selected} numaralı davetiye modelini sipariş etmek istiyorum. Bilgi alabilir miyim?`)}`}
+                  href={`https://wa.me/${whatsapp}?text=${encodeURIComponent(`Merhaba! ${selected} numaralı davetiye modelini sipariş etmek istiyorum. Bilgi alabilir miyim?`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-bold text-black cursor-none whitespace-nowrap"

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { getPublicSettings } from "@/lib/cms/settings";
 import { BASKI_MATBAA, getBaskiMatbaaBySlug, getOtherBaskiMatbaa } from "@/lib/baski-matbaa";
 import { ServiceHero } from "@/components/services/ServiceHero";
 import { ServiceIntro } from "@/components/services/ServiceIntro";
@@ -57,6 +58,7 @@ export default async function BaskiMatbaaDetailPage({ params }: Props) {
   if (!service) notFound();
 
   const others = getOtherBaskiMatbaa(service.slug, 4);
+  const { contact } = await getPublicSettings();
   const url = `${SITE_URL}/baski-matbaa/${service.slug}`;
   // Kartvizit sayfasında galeri, "Kartvizit Örnekleri" başlığıyla sayfanın en üstünde gösterilir.
   const galleryOnTop = service.slug === "kartvizit";
@@ -76,8 +78,8 @@ export default async function BaskiMatbaaDetailPage({ params }: Props) {
           "@type": "Organization",
           name: "Ikarus Reklam",
           url: SITE_URL,
-          telephone: "+905468156089",
-          email: "ikarusreklam@outlook.com",
+          telephone: `+${contact.whatsapp}`,
+          email: contact.email,
         },
       },
       {

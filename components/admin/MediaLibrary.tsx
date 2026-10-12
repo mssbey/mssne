@@ -14,9 +14,10 @@ export function MediaLibrary({ rows, canEdit }: { rows: AdminRow[]; canEdit: boo
   async function upload(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setBusy(true); setMessage("");
-    const response = await fetch("/api/admin/media", { method: "POST", body: new FormData(event.currentTarget) });
-    const result = await response.json() as { ok: boolean; error?: string };
+    const response = await fetch("/api/admin/media", { method: "POST", body: new FormData(event.currentTarget) }).catch(() => null);
+    const result = await response?.json().catch(() => null) as { ok: boolean; error?: string } | null;
     setBusy(false);
+    if (!result) return setMessage(response?.status === 413 ? "Dosya çok büyük. Lütfen 4 MB altında bir dosya yükleyin." : "Yükleme başarısız.");
     if (!result.ok) return setMessage(result.error || "Yükleme başarısız.");
     form.current?.reset();
     setMessage("Dosya güvenli şekilde yüklendi.");

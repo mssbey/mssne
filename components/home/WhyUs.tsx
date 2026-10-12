@@ -2,8 +2,10 @@
 
 import { motion } from "framer-motion";
 import { WHY_US } from "@/lib/data";
+import { useSiteContact } from "@/components/layout/SiteContactProvider";
 
 export function WhyUs() {
+  const { whatsapp } = useSiteContact();
   return (
     <section className="py-28 px-6 bg-[#F3EDEA]">
       <div className="max-w-7xl mx-auto">
@@ -36,7 +38,7 @@ export function WhyUs() {
             </p>
 
             <a
-              href={`https://wa.me/905468156089?text=${encodeURIComponent("Merhaba! Fiyat teklifi almak istiyorum.")}`}
+              href={`https://wa.me/${whatsapp}?text=${encodeURIComponent("Merhaba! Fiyat teklifi almak istiyorum.")}`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-semibold text-sm text-black transition-all hover:scale-105 cursor-none"

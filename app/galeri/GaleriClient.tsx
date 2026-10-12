@@ -5,6 +5,7 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, X } from "lucide-react";
 import { ManagedPageContent, type ManagedPageProps } from "@/components/cms/ManagedPageContent";
+import { useSiteContact } from "@/components/layout/SiteContactProvider";
 
 const FILTERS = ["Tümü", "İşletme", "Ev Dekorasyon", "Özel Gün", "Kafe", "Güzellik", "Spor"];
 
@@ -24,6 +25,7 @@ const GALLERY_ITEMS = [
 ];
 
 export default function GaleriClient({ title, description, coverImage, content }: ManagedPageProps) {
+  const { whatsapp } = useSiteContact();
   const [activeFilter, setActiveFilter] = useState("Tümü");
   const [selected, setSelected] = useState<typeof GALLERY_ITEMS[0] | null>(null);
 
@@ -141,7 +143,7 @@ export default function GaleriClient({ title, description, coverImage, content }
         >
           <p className="text-black/40 mb-6">Beğendiğiniz tasarım burada yok mu?</p>
           <a
-            href={`https://wa.me/905468156089?text=${encodeURIComponent("Merhaba! Özel tasarım neon tabela yaptırmak istiyorum.")}`}
+            href={`https://wa.me/${whatsapp}?text=${encodeURIComponent("Merhaba! Özel tasarım neon tabela yaptırmak istiyorum.")}`}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-3 px-8 py-4 rounded-full font-bold text-black cursor-none hover:scale-105 transition-all"
@@ -192,7 +194,7 @@ export default function GaleriClient({ title, description, coverImage, content }
               <p className="text-sm text-black/40 mb-8">{selected.cat}</p>
 
               <a
-                href={`https://wa.me/905468156089?text=${encodeURIComponent(`Merhaba! "${selected.name}" tasarımı neon tabela olarak yaptırmak istiyorum. Fiyat öğrenebilir miyim?`)}`}
+                href={`https://wa.me/${whatsapp}?text=${encodeURIComponent(`Merhaba! "${selected.name}" tasarımı neon tabela olarak yaptırmak istiyorum. Fiyat öğrenebilir miyim?`)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-bold text-black cursor-none"

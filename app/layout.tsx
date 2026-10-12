@@ -6,6 +6,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { CustomCursor } from "@/components/layout/CustomCursor";
 import { CartDrawer } from "@/components/cart/CartDrawer";
+import { SiteContactProvider } from "@/components/layout/SiteContactProvider";
 import { getPublicSettings } from "@/lib/cms/settings";
 import { db } from "@/lib/db";
 
@@ -65,11 +66,13 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
     <html lang="tr" className={`${inter.variable} scroll-smooth`}>
       <body className="min-h-full flex flex-col antialiased" style={styles}>
         {/* Developed with care by mssbey */}
-        <CustomCursor />
-        <Header menuItems={headerLinks} logo={settings.brand.logo} />
-        <CartDrawer />
-        <main className="flex-1">{children}</main>
-        <Footer settings={settings} links={footerLinks} />
+        <SiteContactProvider value={settings.contact}>
+          <CustomCursor />
+          <Header menuItems={headerLinks} logo={settings.brand.logo} />
+          <CartDrawer />
+          <main className="flex-1">{children}</main>
+          <Footer settings={settings} links={footerLinks} />
+        </SiteContactProvider>
         <a href={`https://wa.me/${settings.contact.whatsapp}?text=${encodeURIComponent("Merhaba! Bilgi almak istiyorum.")}`} target="_blank" rel="noopener noreferrer" className="site-whatsapp" title="WhatsApp ile ulaşın">💬</a>
       </body>
     </html>

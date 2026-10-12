@@ -2,6 +2,33 @@ import { cache } from "react";
 import { db } from "@/lib/db";
 import { SERVICES, type ServiceData } from "@/lib/services";
 
+// Panelden yeni eklenen ve kodda şablonu olmayan hizmetler için sade bir sayfa iskeleti.
+function genericService(record: { slug: string; name: string; shortDescription: string | null }, stored: object): ServiceData {
+  const summary = record.shortDescription || "";
+  const storedBody = "body" in stored ? stored.body : undefined;
+  const body = typeof storedBody === "string" && storedBody.trim() ? storedBody : summary;
+  return {
+    slug: record.slug,
+    navLabel: record.name,
+    title: record.name,
+    shortTitle: record.name,
+    tagline: summary,
+    heroIcon: "Sparkles",
+    category: "Hizmetler",
+    color: "#D9668A",
+    seo: { title: `${record.name} | Ikarus Reklam`, description: summary || record.name, keywords: [] },
+    intro: { eyebrow: "Hizmet detayı", heading: record.name, paragraphs: body.split(/\r?\n\s*\r?\n/).map((item) => item.trim()).filter(Boolean) },
+    whyUs: [],
+    useCases: [],
+    process: [],
+    materials: [],
+    advantages: [],
+    gallery: [],
+    faq: [],
+    cta: { heading: `${record.name} için teklif alın`, sub: "Projenizi anlatın, size en uygun çözümü birlikte planlayalım.", whatsappMessage: `Merhaba! ${record.name} hizmeti hakkında bilgi almak istiyorum.` },
+  };
+}
+
 function hydrateService(record: {
   slug: string;
   name: string;
@@ -14,8 +41,7 @@ function hydrateService(record: {
 }): ServiceData | null {
   const fallback = SERVICES.find((item) => item.slug === record.slug);
   const stored = record.content && typeof record.content === "object" ? record.content as Partial<ServiceData> : {};
-  const base = fallback || (stored.seo && stored.faq ? stored as ServiceData : null);
-  if (!base) return null;
+  const base = fallback || (stored.seo && stored.faq ? stored as ServiceData : genericService(record, stored));
   return {
     ...base,
     ...stored,

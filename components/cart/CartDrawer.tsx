@@ -4,8 +4,10 @@ import { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Plus, Minus, Trash2, ShoppingBag, MessageCircle } from "lucide-react";
 import { useCart } from "@/lib/store/useCart";
+import { useSiteContact } from "@/components/layout/SiteContactProvider";
 
 export function CartDrawer() {
+  const { whatsapp } = useSiteContact();
   const { items, isOpen, closeCart, removeItem, updateQuantity, itemCount, buildWhatsAppMessage } = useCart();
 
   useEffect(() => {
@@ -14,7 +16,7 @@ export function CartDrawer() {
     return () => { document.body.style.overflow = ""; };
   }, [isOpen]);
 
-  const waLink = `https://wa.me/905468156089?text=${buildWhatsAppMessage()}`;
+  const waLink = `https://wa.me/${whatsapp}?text=${buildWhatsAppMessage()}`;
 
   return (
     <AnimatePresence>

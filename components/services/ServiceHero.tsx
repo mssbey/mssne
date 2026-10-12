@@ -6,6 +6,7 @@ import { ChevronRight, ChevronDown } from "lucide-react";
 import { ServiceImage } from "./ServiceImage";
 import { getServiceIcon } from "./icon-map";
 import type { ServiceData } from "@/lib/services";
+import { useSiteContact } from "@/components/layout/SiteContactProvider";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -16,6 +17,7 @@ export function ServiceHero({
   service: ServiceData;
   showGalleryLink?: boolean;
 }) {
+  const { whatsapp } = useSiteContact();
   const Icon = getServiceIcon(service.heroIcon);
   const basePath = service.basePath ?? "hizmetler";
   const heroImage = service.coverImage || `/${basePath}/${service.slug}/hero.jpg`;
@@ -147,7 +149,7 @@ export function ServiceHero({
             className="flex flex-wrap gap-4"
           >
             <a
-              href={`https://wa.me/905468156089?text=${encodeURIComponent(service.cta.whatsappMessage)}`}
+              href={`https://wa.me/${whatsapp}?text=${encodeURIComponent(service.cta.whatsappMessage)}`}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 px-8 py-4 rounded-full text-base font-bold text-black transition-all hover:scale-105 cursor-none"

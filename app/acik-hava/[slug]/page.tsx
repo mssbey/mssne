@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { getPublicSettings } from "@/lib/cms/settings";
 import { ACIK_HAVA, getAcikHavaBySlug, getOtherAcikHava } from "@/lib/acik-hava";
 import { ServiceHero } from "@/components/services/ServiceHero";
 import { ServiceIntro } from "@/components/services/ServiceIntro";
@@ -57,6 +58,7 @@ export default async function AcikHavaDetailPage({ params }: Props) {
   if (!service) notFound();
 
   const others = getOtherAcikHava(service.slug, 4);
+  const { contact } = await getPublicSettings();
   const url = `${SITE_URL}/acik-hava/${service.slug}`;
 
   const jsonLd = {
@@ -74,8 +76,8 @@ export default async function AcikHavaDetailPage({ params }: Props) {
           "@type": "Organization",
           name: "Ikarus Reklam",
           url: SITE_URL,
-          telephone: "+905468156089",
-          email: "ikarusreklam@outlook.com",
+          telephone: `+${contact.whatsapp}`,
+          email: contact.email,
         },
       },
       {

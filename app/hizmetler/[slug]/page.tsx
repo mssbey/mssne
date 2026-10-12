@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { SERVICES } from "@/lib/services";
 import { getCmsService, getCmsServices } from "@/lib/cms/services";
+import { getPublicSettings } from "@/lib/cms/settings";
 import { ServiceHero } from "@/components/services/ServiceHero";
 import { ServiceIntro } from "@/components/services/ServiceIntro";
 import { WhyUsSection } from "@/components/services/WhyUsSection";
@@ -58,7 +59,8 @@ export default async function ServiceDetailPage({ params }: Props) {
   const service = await getCmsService(slug);
   if (!service) notFound();
 
-  const others = (await getCmsServices()).filter((item) => item.slug !== service.slug).slice(0, 4);
+  const [services, settings] = await Promise.all([getCmsServices(), getPublicSettings()]);
+  const others = services.filter((item) => item.slug !== service.slug).slice(0, 4);
   const url = `${SITE_URL}/hizmetler/${service.slug}`;
 
   const jsonLd = {
@@ -76,8 +78,8 @@ export default async function ServiceDetailPage({ params }: Props) {
           "@type": "Organization",
           name: "Ikarus Reklam",
           url: SITE_URL,
-          telephone: "+905468156089",
-          email: "ikarusreklam@outlook.com",
+          telephone: `+${settings.contact.whatsapp}`,
+          email: settings.contact.email,
         },
       },
       {
@@ -108,13 +110,13 @@ export default async function ServiceDetailPage({ params }: Props) {
       <ServiceHero service={service} showGalleryLink={service.slug === "kutu-harf"} />
       {service.slug === "kutu-harf" && <KutuHarfDesigner service={service} />}
       <ServiceIntro service={service} />
-      <WhyUsSection service={service} />
-      <UseCasesSection service={service} />
-      <ProcessTimeline service={service} />
-      <MaterialsSection service={service} />
-      <AdvantagesSection service={service} />
+      {service.whyUs.length > 0 && <WhyUsSection service={service} />}
+      {service.useCases.length > 0 && <UseCasesSection service={service} />}
+      {service.process.length > 0 && <ProcessTimeline service={service} />}
+      {service.materials.length > 0 && <MaterialsSection service={service} />}
+      {service.advantages.length > 0 && <AdvantagesSection service={service} />}
       {service.slug === "kutu-harf" && <GallerySection service={service} />}
-      <FaqSection service={service} />
+      {service.faq.length > 0 && <FaqSection service={service} />}
       <ServiceCTA service={service} />
       <RelatedServices services={others} />
     </>

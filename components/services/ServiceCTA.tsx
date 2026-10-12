@@ -3,8 +3,10 @@
 import { motion } from "framer-motion";
 import { MessageCircle, Phone, Mail } from "lucide-react";
 import type { ServiceData } from "@/lib/services";
+import { useSiteContact } from "@/components/layout/SiteContactProvider";
 
 export function ServiceCTA({ service }: { service: ServiceData }) {
+  const { whatsapp, phone, email } = useSiteContact();
   return (
     <section className="py-24 px-6 bg-[#FBF8F6]">
       <div className="max-w-5xl mx-auto">
@@ -26,7 +28,7 @@ export function ServiceCTA({ service }: { service: ServiceData }) {
 
           <div className="flex flex-wrap items-center justify-center gap-4 mb-10">
             <a
-              href={`https://wa.me/905468156089?text=${encodeURIComponent(service.cta.whatsappMessage)}`}
+              href={`https://wa.me/${whatsapp}?text=${encodeURIComponent(service.cta.whatsappMessage)}`}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 px-8 py-4 rounded-full text-base font-bold text-black transition-all hover:scale-105 cursor-none"
@@ -36,14 +38,14 @@ export function ServiceCTA({ service }: { service: ServiceData }) {
               WhatsApp&apos;tan Yaz
             </a>
             <a
-              href="tel:+905468156089"
+              href={`tel:+${whatsapp}`}
               className="flex items-center gap-2 px-8 py-4 rounded-full text-base font-semibold text-black border border-black/15 bg-black/5 backdrop-blur-sm hover:bg-black/10 hover:border-black/25 transition-all cursor-none"
             >
               <Phone size={16} />
               Hemen Teklif Al
             </a>
             <a
-              href="mailto:ikarusreklam@outlook.com?subject=Ücretsiz Keşif Talebi"
+              href={`mailto:${email}?subject=${encodeURIComponent("Ücretsiz Keşif Talebi")}`}
               className="flex items-center gap-2 px-8 py-4 rounded-full text-base font-semibold text-black border border-black/15 bg-black/5 backdrop-blur-sm hover:bg-black/10 hover:border-black/25 transition-all cursor-none"
             >
               <Mail size={16} />
@@ -52,7 +54,7 @@ export function ServiceCTA({ service }: { service: ServiceData }) {
           </div>
 
           <p className="text-xs text-black/30 tracking-wide">
-            0546 815 6089 &nbsp;·&nbsp; ikarusreklam@outlook.com &nbsp;·&nbsp; 81 il, 7/24 destek
+            {phone} &nbsp;·&nbsp; {email} &nbsp;·&nbsp; 81 il, 7/24 destek
           </p>
         </motion.div>
       </div>

@@ -5,15 +5,17 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Minus, Plus, Trash2, ShoppingBag, MessageCircle, ArrowLeft } from "lucide-react";
 import { useCart } from "@/lib/store/useCart";
+import { useSiteContact } from "@/components/layout/SiteContactProvider";
 
 export default function SepetPage() {
+  const { whatsapp } = useSiteContact();
   const { items, removeItem, updateQuantity, clearCart, buildWhatsAppMessage } = useCart();
   const [hydrated, setHydrated] = useState(false);
   useEffect(() => setHydrated(true), []);
 
   if (!hydrated) return null;
 
-  const waLink = `https://wa.me/905468156089?text=${buildWhatsAppMessage()}`;
+  const waLink = `https://wa.me/${whatsapp}?text=${buildWhatsAppMessage()}`;
 
   return (
     <div className="min-h-screen pt-24 pb-20 px-6 bg-[#FBF8F6]">

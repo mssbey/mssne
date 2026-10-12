@@ -5,6 +5,7 @@ import type { CSSProperties } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Check, MessageCircle, Ruler, Type, Lightbulb } from "lucide-react";
 import type { ServiceData } from "@/lib/services";
+import { useSiteContact } from "@/components/layout/SiteContactProvider";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -76,6 +77,7 @@ const FACADE_BG: CSSProperties = {
 };
 
 export function KutuHarfDesigner({ service }: { service: ServiceData }) {
+  const { whatsapp } = useSiteContact();
   const [lighting, setLighting] = useState<LightingId>("onden");
   const [text, setText] = useState("");
   const [height, setHeight] = useState("");
@@ -266,7 +268,7 @@ export function KutuHarfDesigner({ service }: { service: ServiceData }) {
 
             <div className="mt-auto pt-2">
               <a
-                href={`https://wa.me/905468156089?text=${encodeURIComponent(whatsappMessage)}`}
+                href={`https://wa.me/${whatsapp}?text=${encodeURIComponent(whatsappMessage)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 w-full px-8 py-4 rounded-full text-base font-bold text-black transition-all hover:scale-[1.03] cursor-none"

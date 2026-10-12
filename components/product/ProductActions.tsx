@@ -6,8 +6,10 @@ import { useCart } from "@/lib/store/useCart";
 import { useFavorites } from "@/lib/store/useFavorites";
 import { cn } from "@/lib/utils";
 import type { Product } from "@/lib/products";
+import { useSiteContact } from "@/components/layout/SiteContactProvider";
 
 export function ProductActions({ product }: { product: Product }) {
+  const { whatsapp } = useSiteContact();
   const [selectedColor, setSelectedColor] = useState(product.colors[0]);
   const [selectedSize, setSelectedSize] = useState(product.sizes[0]);
   const [quantity, setQuantity] = useState(1);
@@ -25,7 +27,7 @@ export function ProductActions({ product }: { product: Product }) {
     setTimeout(() => setAdded(false), 2000);
   };
 
-  const waLink = `https://wa.me/905468156089?text=${encodeURIComponent(
+  const waLink = `https://wa.me/${whatsapp}?text=${encodeURIComponent(
     `Merhaba! Şu ürün için teklif almak istiyorum:\n\n• ${product.name}\n  Renk: ${selectedColor.name}\n  Boyut: ${selectedSize.label} (${selectedSize.cm})\n  Adet: ${quantity}\n\nFiyat bilgisi alabilir miyim?`
   )}`;
 

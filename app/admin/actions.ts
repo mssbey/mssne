@@ -122,11 +122,9 @@ export async function saveItem(module: AdminModule, _state: SaveState, formData:
     }
     await audit({ userId: user.id, action: value.id ? "UPDATE" : "CREATE", module: module.toUpperCase(), recordId, newData: { ...value, summary: module === "users" ? undefined : value.summary } });
     revalidatePath(`/admin/${module}`);
-    revalidatePath("/");
-    if (module === "pages") {
-      revalidatePath(`/${slug}`);
-      revalidatePath("/", "layout");
-    }
+    // Public sayfalar statik üretildiği için tüm site (header/footer menüleri, listeler, sitemap) yenilenir.
+    revalidatePath("/", "layout");
+    revalidatePath("/sitemap.xml");
     return { ok: true };
   } catch (error) {
     return { error: error instanceof Error && error.message.includes("Unique constraint") ? "Bu slug veya e-posta zaten kullanılıyor." : "Kayıt sırasında bir hata oluştu." };
@@ -137,7 +135,6 @@ export async function deleteItem(module: AdminModule, id: string) {
   await assertSameOrigin();
   const user = await requireRole(["SUPER_ADMIN", "EDITOR"]);
   if (module === "users" && user.role !== "SUPER_ADMIN") throw new Error("Yetkisiz işlem.");
-  let affectedPath: string | undefined;
   switch (module) {
     case "services": await db.service.update({ where: { id }, data: { deletedAt: new Date() } }); break;
     case "projects": await db.project.update({ where: { id }, data: { deletedAt: new Date() } }); break;
@@ -146,7 +143,6 @@ export async function deleteItem(module: AdminModule, id: string) {
       if (!page) throw new Error("Sayfa bulunamadı.");
       if (page.slug === "ana-sayfa") throw new Error("Ana sayfa silinemez.");
       await db.page.update({ where: { id }, data: { deletedAt: new Date() } });
-      affectedPath = `/${page.slug}`;
       break;
     }
     case "references": await db.reference.update({ where: { id }, data: { deletedAt: new Date() } }); break;
@@ -159,6 +155,6 @@ export async function deleteItem(module: AdminModule, id: string) {
   }
   await audit({ userId: user.id, action: "DELETE", module: module.toUpperCase(), recordId: id });
   revalidatePath(`/admin/${module}`);
-  if (affectedPath) revalidatePath(affectedPath);
   revalidatePath("/", "layout");
+  revalidatePath("/sitemap.xml");
 }

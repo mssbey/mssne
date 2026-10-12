@@ -2,9 +2,11 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { useSiteContact } from "@/components/layout/SiteContactProvider";
 
 export function WhatsAppCTA() {
-  const waLink = `https://wa.me/905468156089?text=${encodeURIComponent("Merhaba! Neon tabela için fiyat almak istiyorum.")}`;
+  const { whatsapp } = useSiteContact();
+  const waLink = `https://wa.me/${whatsapp}?text=${encodeURIComponent("Merhaba! Neon tabela için fiyat almak istiyorum.")}`;
 
   return (
     <section className="py-28 px-6 relative overflow-hidden">

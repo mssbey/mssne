@@ -5,8 +5,8 @@ import NextImage from "next/image";
 import { motion } from "framer-motion";
 import { MessageCircle, ImagePlus, Download, X } from "lucide-react";
 import { STUDIO_FONTS, getStudioFont } from "./fonts";
-import { CONTACT } from "@/lib/data";
 import { ManagedPageContent, type ManagedPageProps } from "@/components/cms/ManagedPageContent";
+import { useSiteContact } from "@/components/layout/SiteContactProvider";
 
 const COLORS = [
   { hex: "#FF00C8", name: "Neon Pembe" },
@@ -65,6 +65,7 @@ function hexToRgba(hex: string, alpha: number) {
 }
 
 export default function StudioClient({ title, description, coverImage, content }: ManagedPageProps) {
+  const { whatsapp } = useSiteContact();
   const [text, setText] = useState("Ikarus Neon");
   const [fontKey, setFontKey] = useState(STUDIO_FONTS[0].key);
   const [color, setColor] = useState(COLORS[0].hex);
@@ -260,7 +261,7 @@ export default function StudioClient({ title, description, coverImage, content }
       `Tasarım görselini de sohbete ekleyeceğim. Fiyat teklifi almak istiyorum.`;
 
     setTimeout(() => {
-      window.open(`https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(msg)}`, "_blank");
+      window.open(`https://wa.me/${whatsapp}?text=${encodeURIComponent(msg)}`, "_blank");
     }, 400);
   };
 

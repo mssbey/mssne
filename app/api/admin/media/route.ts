@@ -1,6 +1,7 @@
 import { randomBytes } from "node:crypto";
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { put } from "@vercel/blob";
 import { NextResponse } from "next/server";
 import { audit } from "@/lib/auth/audit";
 import { assertSameOrigin, getSessionUser } from "@/lib/auth/session";
@@ -52,14 +53,23 @@ export async function POST(request: Request) {
   }
 
   const filename = `${Date.now()}-${randomBytes(8).toString("hex")}${extension}`;
-  const uploadDirectory = path.resolve(process.cwd(), "public", "uploads");
-  await mkdir(uploadDirectory, { recursive: true });
-  await writeFile(path.join(uploadDirectory, filename), bytes, { flag: "wx" });
+  let url = `/uploads/${filename}`;
+  if (process.env.BLOB_READ_WRITE_TOKEN) {
+    // Vercel gibi salt-okunur disklerde dosyalar Vercel Blob'a yüklenir.
+    const blob = await put(`uploads/${filename}`, Buffer.from(bytes), { access: "public", contentType: file.type, addRandomSuffix: false });
+    url = blob.url;
+  } else if (process.env.VERCEL) {
+    return NextResponse.json({ ok: false, error: "Dosya depolama yapılandırılmamış. Vercel projesine bir Blob Store bağlayın (BLOB_READ_WRITE_TOKEN)." }, { status: 503 });
+  } else {
+    const uploadDirectory = path.resolve(process.cwd(), "public", "uploads");
+    await mkdir(uploadDirectory, { recursive: true });
+    await writeFile(path.join(uploadDirectory, filename), bytes, { flag: "wx" });
+  }
   const media = await db.media.create({
     data: {
       filename,
       originalName: file.name.slice(0, 240),
-      url: `/uploads/${filename}`,
+      url,
       mimeType: file.type,
       size: file.size,
       alt: alt.slice(0, 300) || null,
