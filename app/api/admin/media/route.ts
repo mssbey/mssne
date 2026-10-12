@@ -54,12 +54,12 @@ export async function POST(request: Request) {
 
   const filename = `${Date.now()}-${randomBytes(8).toString("hex")}${extension}`;
   let url = `/uploads/${filename}`;
-  if (process.env.BLOB_READ_WRITE_TOKEN) {
-    // Vercel gibi salt-okunur disklerde dosyalar Vercel Blob'a yüklenir.
-    const blob = await put(`uploads/${filename}`, Buffer.from(bytes), { access: "public", contentType: file.type, addRandomSuffix: false });
-    url = blob.url;
+  if (process.env.BLOB_READ_WRITE_TOKEN || process.env.BLOB_STORE_ID) {
+    // Vercel'de disk salt-okunur; dosyalar private Blob store'a yüklenir ve /media/... route'u ile sunulur.
+    await put(`uploads/${filename}`, Buffer.from(bytes), { access: "private", contentType: file.type, addRandomSuffix: false });
+    url = `/media/uploads/${filename}`;
   } else if (process.env.VERCEL) {
-    return NextResponse.json({ ok: false, error: "Dosya depolama yapılandırılmamış. Vercel projesine bir Blob Store bağlayın (BLOB_READ_WRITE_TOKEN)." }, { status: 503 });
+    return NextResponse.json({ ok: false, error: "Dosya depolama yapılandırılmamış. Vercel projesine bir Blob Store bağlayın." }, { status: 503 });
   } else {
     const uploadDirectory = path.resolve(process.cwd(), "public", "uploads");
     await mkdir(uploadDirectory, { recursive: true });

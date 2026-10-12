@@ -9,9 +9,7 @@ import { db } from "@/lib/db";
 
 export type PromotionState = { ok?: boolean; error?: string };
 
-const isMediaUrl = (value: string) => value.startsWith("/") || /^https:\/\/[a-z0-9-]+\.public\.blob\.vercel-storage\.com\//i.test(value);
-
-const localImage = z.string().trim().max(800).refine((value) => !value || isMediaUrl(value), "Görsel medya kütüphanesinden seçilmelidir.");
+const localImage = z.string().trim().max(800).refine((value) => !value || value.startsWith("/"), "Görsel medya kütüphanesinden seçilmelidir.");
 
 const productSchema = z.object({
   id: z.string().optional(),
@@ -60,7 +58,7 @@ export async function savePromotionProduct(_state: PromotionState, formData: For
     const product = value.id
       ? await db.promotionProduct.update({ where: { id: value.id }, data })
       : await db.promotionProduct.create({ data });
-    const gallery = value.galleryUrls.split(/\r?\n|,/).map((item) => item.trim()).filter(isMediaUrl);
+    const gallery = value.galleryUrls.split(/\r?\n|,/).map((item) => item.trim()).filter((item) => item.startsWith("/"));
     await db.$transaction([
       db.promotionImage.deleteMany({ where: { productId: product.id } }),
       ...(gallery.length ? [db.promotionImage.createMany({ data: gallery.map((url, sortOrder) => ({ productId: product.id, url, alt: value.name, sortOrder })) })] : []),
